@@ -10,6 +10,8 @@ public interface MovieService {
 
 	
 	
+	
+		public int getTotal(Criteria cri);
 		
 		public List<MovieDTO> getList(Criteria cri);
 	

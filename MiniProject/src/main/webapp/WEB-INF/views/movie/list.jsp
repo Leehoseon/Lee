@@ -103,7 +103,8 @@
 							
 							<div class="contact-category">
 							<h4>List</h4>
-								  <h3><table><tr><td>Tno</td><td>Tno</td></tr></table></h3>
+								  <!-- <h3><table><tr><td>Tno</td><td>Tno</td></tr></table></h3> -->
+								
 								<ul class='listUL'>
 								  
 								  <c:forEach var="movie" items="${list}">
@@ -112,7 +113,8 @@
 								   <li><a href='${movie.tno }'>${movie.title }</a> </li>
 								   <br>
 								  </c:forEach>
-								
+								  <br>
+								<ul class="pageArea"></ul>
 								</ul>
 								
 		
@@ -132,6 +134,8 @@
 								<div class="pen">
 								<a href="/movie/register"><img src="/resources/js/assets/images/check.png"></a>
 								</div>
+								
+								
 							
 							
 							<!-- <div class="contact-category">
@@ -148,9 +152,11 @@
 				</div>
 			</div>
 		</section>
-
+								
 
         <!--Footer-->
+        
+        
         <footer id="footer" class="footer">
             <div class="container">
             	<div class="row">
@@ -208,15 +214,18 @@
 </div>
 
 
-
  <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/resources/js/paging.js"></script>
+
   
 <script>
 
-$(document).ready(function (){
+
+$(document).ready(function(){
 
 	var actionForm = $("#actionForm");
 	
@@ -230,6 +239,27 @@ $(document).ready(function (){
 		actionForm.find("input[name='tno']").val(tno);
 		
 		actionForm.submit(); 
+	});
+	
+	var pageStr = makePage(
+		      {
+		          total:${criteria.total},
+		          current:${criteria.page},
+		          pageSize:10
+		      });
+	  
+	  console.log("==================");
+	  console.log(pageStr);
+	  
+	  $(".pageArea").html(pageStr);
+	  
+	  $(".pageArea").on("click","li", function (e) {
+		
+		  var pageNum = $(this).html();
+		  console.log(pageNum);
+		  self.location="/movie/list?page="+pageNum;
+		  
+		
 	});
 
 });

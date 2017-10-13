@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.java96.dto.Criteria;
@@ -21,6 +22,8 @@ public interface MovieMapper {
 	
 	public MovieDTO view(Long tno);
 	
+	@Select("select count(*) from tbl_testmovie where tno > 0")
+	public int getTotal(Criteria cri);
 	
 	@Insert("insert into tbl_testmovie (title,writer) values(#{title},#{writer})")
 	public void register(MovieDTO dto);

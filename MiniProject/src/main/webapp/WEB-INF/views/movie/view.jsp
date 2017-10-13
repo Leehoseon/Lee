@@ -147,11 +147,20 @@
 name="Submit" value="reg"  align="absmiddle"  class = "pen">
 </form>
 
+
+<input type="text" id="tno" value="${view.tno }">
+<input type="text" id="reply" value="${view.title }">
+<input type="text" id="replyer" value="${view.writer }">
+<button id="replyBtn" class="replyBtn"></button>
+
+
+
 <div class="pen">
 <a href="/movie/list"><img src="/resources/js/assets/images/hom.png"></a>
 </div>
-
-
+<button id="replyBtn1" class="replyBtn1"></button>
+<div class="replyUL">
+</div>
 
 								  
 								</div>
@@ -199,6 +208,52 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+  
+  
+  <script>
+  
+  
+  $("#replyBtn1").click(function(e){
+	  
+	  var tno = $("#tno");
+	  
+	  console.log()
+	  var str = "";
+	  $.getJSON("/{tno}",function(arr){
+		 
+		for(var i = 0; i < arr.length; i++){
+			str +="<li data-rno='"+ arr[i].rno +"'>"+arr[i].rno +"  " + arr[i].reply +"</li>";
+		}
+		$(".replyUL").html(str);
+		
+	  });
+	  
+  });
+
+  
+$("#replyBtn").click(function(e){
+	  
+	  console.log("button clicked");
+	 
+	  var data = { reply:$("#reply").val() , replyer:$("#replyer").val(), tno:$("#tno").val() };
+	  
+	  console.log(data);
+	  
+	  $.ajax({
+		  url:'/reply/new',
+		  type:'POST',
+		  contentType: "application/json; charset=utf-8",
+		  data:JSON.stringify(data),
+		  success: function (result){
+			  alert("success");
+			  
+		  }
+	  });
+  
+}); 
+  
+  </script>
+  
 
 </body>
 </html>

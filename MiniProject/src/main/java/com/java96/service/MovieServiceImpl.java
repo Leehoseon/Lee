@@ -18,7 +18,7 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public List<MovieDTO> getList(Criteria cri) {
-		
+		cri.setTotal(mapper.getTotal(cri));
 		return mapper.listPage(cri);
 		
 	}
@@ -52,6 +52,15 @@ public class MovieServiceImpl implements MovieService {
 		mapper.modify(dto);
 		
 	}
+
+
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotal(cri);
+	}
+
+
+	
 
 
 	
