@@ -662,17 +662,154 @@ textarea::-ms-input-placeholder
 	text-align: center;
 	
 }
+/* .pageArea1{
+	display:inline !important;
+	margin:0px !important;
+	text-align: center !important; 
+} */
 
-.pageArea {
+
+.pageArea li {
 	
 	
-	display:inline;
-	margin:0px;
-	text-align: center;
+	display:inline !important;
+	margin:0px !important;
+	text-align: center !important;
+	margin-right: 2em !important;
+	margin-left: 2em !important;
+	width: 50em !important;
 	
 	
 }
+.hide{
+	display:inline !important;
+	margin:0px !important;
+	text-align: center !important;
+	margin-right: 2em !important;
+	margin-left: 2em !important;
+	width: 50em !important;
+	
+}
+.replyUL{
+	position: inline !important;
+	/* //터치 x */
 
+}
+.replyUL pen {
+	
+	font-size: 26px;
+    color: #202020; 
+    
+    
+    height: 10px;
+    width: 10px;
+	margin: 10px;
+    line-height: 45px;
+    text-align: center;
+    display: inline-block;
+	transition:.3s ease-in-out;
+	-webkit-transition:.3s ease-in-out;
+	-moz-transition:.3s ease-in-out;
+}
+
+
+
+/* ===========================================table================================== */
+
+body {
+	line-height: 2em;
+	font-family: 'nexa_boldregular';
+}
+
+ ul, li {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+} 
+
+#mainWrapper {
+	width: 700px;
+	margin: 0 auto; /*가운데 정렬*/
+}
+
+#mainWrapper>ul>li:first-child {
+	text-align: center;
+	font-size: 14pt;
+	height: 40px;
+	vertical-align: middle;
+	line-height: 30px;
+}
+
+#ulTable {
+	margin-top: 10px;
+}
+
+#ulTable>li:first-child>ul>li {
+	background-color:rgb(255, 255, 255);
+	font-weight: bold;
+	font-family: 'nexa_boldregular';
+	text-align: center;
+}
+
+#ulTable>li>ul {
+	clear: both;
+	padding: 0px auto;
+	position: relative;
+	min-width: 40px;
+}
+
+#ulTable>li>ul>li {
+	float: left;
+	font-size: 10pt;
+	border-bottom: 1px solid silver;
+	vertical-align: baseline;
+}
+
+#ulTable>li>ul>li:first-child {
+	width: 10%;
+} /*No 열 크기*/
+#ulTable>li>ul>li:first-child+li {
+	width: 45%;
+} /*제목 열 크기*/
+#ulTable>li>ul>li:first-child+li+li {
+	width: 20%;
+} /*작성일 열 크기*/
+#ulTable>li>ul>li:first-child+li+li+li {
+	width: 15%;
+} /*작성자 열 크기*/
+#ulTable>li>ul>li:first-child+li+li+li+li {
+	width: 10%;
+} /*조회수 열 크기*/
+#divPaging {
+	clear: both;
+	margin: 0 auto;
+	width: 220px;
+	height: 50px;
+}
+
+#divPaging>div {
+	float: left;
+	width: 30px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#liSearchOption {
+	clear: both;
+}
+
+#liSearchOption>div {
+	margin: 0 auto;
+	margin-top: 30px;
+	width: auto;
+	height: 100px;
+}
+
+.left {
+	text-align: left;
+}
+</style>
 
 
 

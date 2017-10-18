@@ -1,5 +1,7 @@
 package com.java96.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +22,28 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public ReplyDTO getList_rpl(Criteria cri) {
-		
-		return mapper.getList(cri);
+	public List<ReplyDTO> getList_rpl(int tno) {
+		return mapper.getList(tno);
+	}
+
+	@Override
+	public void delete_rpl(ReplyDTO dto) {
+		mapper.delete(dto);
+	}
+
+	@Override
+	public void update_rpl(ReplyDTO dto) {
+		mapper.update(dto);
 		
 	}
 
+	
+
+	
+
+	
+
+	
 	
 	
 	

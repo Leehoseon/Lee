@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -64,7 +64,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#home">Home</a></li>
+                        <li class="active"><a href="/movie/list">Home</a></li>
                         <li><a href="#about">About Me</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -116,7 +116,7 @@
 		</div>
 		<div class="row">
 		
-			<!-- ÅØ½ºÆ® ¿¡¾î¸®¾î ¾ç½Ä -->
+			<!-- í…ìŠ¤íŠ¸ ì—ì–´ë¦¬ì–´ ì–‘ì‹ -->
 			<!-- <label for="message">Your message:</label><br>
 			<textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br> -->
 			<label for="name">Writer:</label><br>

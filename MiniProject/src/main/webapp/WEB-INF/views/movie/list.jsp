@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -65,10 +68,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="active"><a href="/movie/list">Home</a></li>
+                        <li><a href="#about"></a></li>
+                        <li><a href="#portfolio"></a></li>
+                        <li><a href="#contact"></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -80,8 +83,8 @@
 				<div class="container">
 					
 					<div class="row">
-						
-					</div>
+					
+		  	</div>
 				</div>
 			</div>
         </header>
@@ -99,9 +102,72 @@
 					<div class="col-md-6 col-md-offset-3">
 						<div class="contact-details text-center">
 						
+						
+						<div class="bg-faded p-4 my-4 listpoint">
+
+	<!-- 리스트 들어가는곳 -->
+
+
+
+	<div id="mainWrapper">
+
+		<ul>
+			<!-- 게시판 제목 -->
+			<li></li>
+
+			<!-- 게시판 목록  -->
+	
+		<h4>Video clip List</h4>
+			<li>
+				<ul id="ulTable">
+					<li>
+						<ul>
+							<li>No</li>
+							<li>Title</li>
+							<li>Date</li>
+							<li>User</li>
+							<li>Views</li>
+						</ul>
+					</li>
+				
+					<!-- 게시물이 출력될 영역 -->
+
+					<c:forEach items="${list}" var="movie">
+						<li>
+							<ul>
+								<li>${movie.tno }</li>
+								<li class="left"><a
+									href="http://192.168.0.34:8080/movie/view?tno=${movie.tno } ">${movie.title }</a></li>
+								<li><fmt:formatDate value="${movie.regdate}"
+										pattern="yyyy-MM-dd" /></li>
+								<li>${movie.writer }</li>
+								<li>0</li>
+							</ul>
+							
+								
+						</li>
+					</c:forEach>
+					<br>
+					
+			
+</ul>
+</li>
+</ul>
+</div>
+
+
+		<div class="pageArea1">
+			<span><ul class="pageArea"></ul> </span>	 							
+		</div>
+
+
+			<!-- 게시판 페이징 영역 -->
+
+						
+						
 							
 							
-							<div class="contact-category">
+							<%-- <div class="contact-category">
 							<h4>List</h4>
 								  <!-- <h3><table><tr><td>Tno</td><td>Tno</td></tr></table></h3> -->
 								
@@ -113,9 +179,11 @@
 								   <li><a href='${movie.tno }'>${movie.title }</a> </li>
 								   <br>
 								  </c:forEach>
-								  <br>
-								<ul class="pageArea"></ul>
-								</ul>
+								  <br> 
+								  <ul class="pageArea"></ul>
+								   --%>
+								
+								
 								
 		
 
@@ -152,12 +220,11 @@
 				</div>
 			</div>
 		</section>
-								
 
         <!--Footer-->
         
         
-        <footer id="footer" class="footer">
+        <<!-- footer id="footer" class="footer">
             <div class="container">
             	<div class="row">
             		<div class="col-md-12">
@@ -167,7 +234,7 @@
             		</div>
             	</div>
             </div>
-        </footer>
+        </footer> -->
 
 
         <script src="/resources/js/assets/js/vendor/jquery-1.11.2.min.js"></script>
@@ -251,7 +318,12 @@ $(document).ready(function(){
 	  console.log("==================");
 	  console.log(pageStr);
 	  
+	 
+	  
 	  $(".pageArea").html(pageStr);
+	  
+	  
+	  
 	  
 	  $(".pageArea").on("click","li", function (e) {
 		

@@ -1,9 +1,13 @@
 package com.java96.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,11 +34,26 @@ public class ReplyController {
 		
 	}
 	
-	@GetMapping("/{tno}")
-	public ReplyDTO list(@PathVariable("tno") Criteria cri) {
+	@GetMapping("/list/{tno}")
+	public List<ReplyDTO> list(@PathVariable("tno") int tno) {
+		/*log.info("tno:"+tno);*/
+		log.info(tno+"");
+		return service.getList_rpl(tno);
 		
 		
-		return service.getList_rpl(cri);
+	}
+	@DeleteMapping("/remove")
+	public void remove(@RequestBody ReplyDTO dto) {
+		
+		
+		service.delete_rpl(dto);
+	}
+	@PutMapping("/put")
+	public void put(@RequestBody ReplyDTO dto) {
+		
+		log.info(dto+"dto~~~");
+		service.update_rpl(dto);
+		
 	}
 	
 }

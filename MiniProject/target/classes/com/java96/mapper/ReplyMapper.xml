@@ -9,7 +9,7 @@
 	
 	<select id="getList" resultType="ReplyDTO" >
 	
-		select * from tbl_testreply order by tno desc limit #{skip} ,20
+		select * from tbl_testreply where tno = #{tno}  order by rno desc limit 0 ,10
 		
 	</select>
 	

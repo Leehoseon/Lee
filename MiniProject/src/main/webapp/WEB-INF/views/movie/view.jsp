@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
@@ -64,10 +64,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="active"><a href="/movie/list">Home</a></li>
+                        <li><a href="#about"></a></li>
+                        <li><a href="#portfolio"></a></li>
+                        <li><a href="#contact"></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -114,7 +114,7 @@
 		</div>
 		<div class="row">
 		
-			<!-- ÅØ½ºÆ® ¿¡¾î¸®¾î ¾ç½Ä -->
+			<!-- í…ìŠ¤íŠ¸ ì—ì–´ë¦¬ì–´ ì–‘ì‹ -->
 			<!-- <label for="message">Your message:</label><br>
 			<textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br> -->
 			<label for="name">Writer:</label><br>
@@ -135,32 +135,48 @@
  Writer <input type='text' name='writer'readonly="readonly" value="${view.writer }">
  </div> --%>
  
- <video src="c:/zzz/${view.tno }.mp4" type="video/mp4" width="320" height="240" controls >
-
-</video>
 
 <form action="/movie/modify" method="get">
 <input type="hidden" name="tno" value="${view.tno }">
 <input type="hidden" name="title" value="${view.title }">
 <input type="hidden" name="writer" value="${view.writer }">
-<br><input  TYPE="IMAGE" src="/resources/js/assets/images/check.png" 
+<input  TYPE="IMAGE" src="/resources/js/assets/images/check.png" 
 name="Submit" value="reg"  align="absmiddle"  class = "pen">
-</form>
-
-
-<input type="text" id="tno" value="${view.tno }">
-<input type="text" id="reply" value="${view.title }">
-<input type="text" id="replyer" value="${view.writer }">
-<button id="replyBtn" class="replyBtn"></button>
-
-
-
 <div class="pen">
 <a href="/movie/list"><img src="/resources/js/assets/images/hom.png"></a>
 </div>
-<button id="replyBtn1" class="replyBtn1"></button>
-<div class="replyUL">
+</form>
+ <video src="c:/zzz/${view.tno }.mp4" type="video/mp4" width="320" height="240" controls >
+
+</video>
+
+<img id="showBtn1" class="showBtn1" src="/resources/js/assets/images/reply.png" ></img>
+
+<div id="hide">
+<input type="hidden" id="tno" value="${view.tno }">
+<input type="text" id="reply" value="reply">
+<input type="text" id="replyer" value="replyer">
+
+<div class="pen"><img id="replyBtn" class="replyBtn" src="/resources/js/assets/images/check.png" ></img>
 </div>
+<div class="replyUL">
+
+
+
+</div>
+<div class="pen"><img id="closeBtn" class="closeBtn" src="/resources/js/assets/images/close.png" ></img>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 								  
 								</div>
@@ -209,29 +225,56 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
   
+  <style>
+ #hide { display:none; }
+ .popup { position: absolute; 
+          width: 300em; 
+          height:300em; 
+          top:10px; 
+          left:50%; 
+          background-color: pink;}
+ .show{display:block;}
+ </style>
+  
   
   <script>
   
-  
-  $("#replyBtn1").click(function(e){
+	function getReplies(){
 	  
-	  var tno = $("#tno");
-	  
-	  console.log()
-	  var str = "";
-	  $.getJSON("/{tno}",function(arr){
+		 var tno = ${view.tno };
+		  
+		 console.log(tno)
+		 var str = "";
+		 $.getJSON("/reply/list/${view.tno }",function(arr){
 		 
-		for(var i = 0; i < arr.length; i++){
-			str +="<li data-rno='"+ arr[i].rno +"'>"+arr[i].rno +"  " + arr[i].reply +"</li>";
-		}
+			for(var i = 0; i < arr.length; i++){
+				str +="<li name='rli' data-rno='"+ arr[i].rno +"'>"+arr[i].replyer +"  " + arr[i].reply +"<img data-rno='"+ arr[i].rno +
+				"' name='delImg' class='pen' src='/resources/js/assets/images/close.png'>"
+				
+				/* +"<img data-rno='"+ arr[i].rno +
+				"' name='modImg' class='pen' src='/resources/js/assets/images/check.png'></li>" */;
+			}
+  		console.log(str);
 		$(".replyUL").html(str);
 		
+	 	 });
+ 	};
+  
+  $("#showBtn1").click(function(e){
+	  
+	    getReplies();
+	 
+		$("#hide").show("slow");
 	  });
 	  
-  });
-
   
-$("#replyBtn").click(function(e){
+  $(".closeBtn").click(function (e) {
+	  
+	  $("#hide").hide("slow");
+	  
+})
+
+ $("#replyBtn").click(function(e){
 	  
 	  console.log("button clicked");
 	 
@@ -246,10 +289,103 @@ $("#replyBtn").click(function(e){
 		  data:JSON.stringify(data),
 		  success: function (result){
 			  alert("success");
-			  
+			  getReplies();
 		  }
 	  });
+	  /* $("#hide").hide("slow");
+	  $("#hide").show("slow"); */
+}); 
   
+$(".replyUL").on("click","li", function(e){
+ var $this = $(this)
+	
+	var  cls = $this.attr("name");
+    var  rno = $this.attr("data-rno");
+    var text = $(".replyUL li").text();
+    var tmp = text.split(" ");
+    var title = tmp[0];
+    var author = tmp[1];
+    var children = $(text).children();
+    
+    console.log("===============");
+    console.log(title);
+    console.log(author);
+    console.log("===============");
+    console.log(text);
+    console.log(children);
+
+    
+ $(this).replaceWith($('<li>'+rno+'</li>  <input value="'+text+'" name=text> </input>'+"<img data-rno='"+ rno +
+			"' name='modImg' class='pen' src='/resources/js/assets/images/check.png'></li>"));
+
+
+
+});
+  
+  
+$(".replyUL").on("click","img", function(e){
+	var $this = $(this)
+	
+	var  cls = $this.attr("name");
+	
+	
+	console.log(cls);
+	
+	
+	 if(cls==="delImg"){ 
+	  var $this = $(this)	
+	  
+	  var  data = $this.attr("data-rno");
+	  
+	  var rno = {rno:data}; 
+	  console.log(data);
+	  console.log(rno);
+
+	 
+	 
+	  
+	  $.ajax({
+		  url:'/reply/remove',
+		    type: 'DELETE',
+		    /* data: rno,  */
+		    contentType: "application/json; charset=utf-8",
+		    data:JSON.stringify({rno:data}),
+		    dataType: 'text',   
+		  success: function (result){
+			  getReplies();
+			  alert("success");
+		  }
+	  });
+	  /* $("#hide").hide("slow");
+	  $("#hide").show("slow"); */
+	 }
+	 else if(cls==="modImg") {
+		 
+		 
+		 var strr = $(".replyUL").find("input").val();
+		 
+		 var  data = $this.attr("data-rno");
+		 var reply = $(".replyUL").find("input").val();
+		 console.log(reply);
+		 console.log(data);
+		 
+		 
+		 
+		 
+		  
+		  $.ajax({
+			  url:'/reply/put',
+			    type: 'PUT',
+			    /* data: rno,  */
+			    contentType: "application/json; charset=utf-8",
+			    data:JSON.stringify({rno:data,reply:reply}),
+			    dataType: 'text',   
+			  success: function (result){
+				  getReplies();
+				  alert("success");
+	 			}
+		  }); 
+	 }
 }); 
   
   </script>
