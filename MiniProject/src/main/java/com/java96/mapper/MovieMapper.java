@@ -27,4 +27,7 @@ public interface MovieMapper {
 	
 	@Insert("insert into tbl_testmovie (title,writer) values(#{title},#{writer})")
 	public void register(MovieDTO dto);
+	
+	@Update("update tbl_testmovie set replycnt = replycnt + 1 where tno = #{tno}")
+	public void updateReplyCnt(int tno);
 }
