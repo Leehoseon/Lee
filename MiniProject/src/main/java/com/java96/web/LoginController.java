@@ -43,12 +43,22 @@ public class LoginController {
 		
 	}
 	
-	@PostMapping("/homeregister")
-	public void loginRegister(MemberDTO dto, Model model) {
+	@GetMapping("/homeregister")
+	public void loginRegisterGet() {
 		
 		
 		
 	}
+	
+	@PostMapping("/homeregister")
+	public String loginRegister(MemberDTO dto, Model model) {
+		
+		service.register(dto);
+		
+		return "redirect:/movie/home";
+	}
+	
+	
 	
 	
 }

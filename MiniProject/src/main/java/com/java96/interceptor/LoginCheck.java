@@ -21,10 +21,11 @@ public class LoginCheck extends HandlerInterceptorAdapter {
 			throws Exception {
 		System.out.println("Login check prehandle..............");
 		
+		
 
 		boolean useSession = 
 				request.getSession().getAttribute("memberDTO") != null?true:false;
-		System.out.println(useSession);
+		
 		if(useSession) {
 			System.out.println("current user use session ");
 			return true;

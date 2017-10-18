@@ -11,5 +11,6 @@
     <input type="checkbox" name="auto"> 
     <input type='submit'>
   </form>
+  <a href="/movie/homeregister"><button>register</button></a>
 </body>
 </html>
