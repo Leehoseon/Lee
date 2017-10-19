@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java96.dto.Criteria;
 import com.java96.dto.MovieDTO;
+import com.java96.dto.SearchCriteria;
 import com.java96.service.MovieService;
 
 import lombok.extern.java.Log;
@@ -27,14 +28,17 @@ public class MovieController {
 	
 	
 	@GetMapping("/list")
-	public void list(@ModelAttribute("criteria") Criteria cri, Model model) {
+	public void list(@ModelAttribute("criteria") SearchCriteria cri, Model model) {
 
-		
+		log.info("cri:~~~~~~~~~~~~~~"+cri);
 		
 		model.addAttribute("list",service.getList(cri));
 		
 		
 	}
+	
+	
+	
 	
 	@GetMapping("/view")
 	public void view(Long tno, Model model) {

@@ -10,5 +10,6 @@ public class MovieDTO {
 	private String title,writer;
 	private int tno;
 	private Date regdate;
+	private int replycnt;
 	
 }

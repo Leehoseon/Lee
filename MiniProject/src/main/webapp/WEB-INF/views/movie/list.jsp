@@ -117,7 +117,7 @@
 
 			<!-- 게시판 목록  -->
 	
-		<h4>Video clip List</h4>
+		<h7>Video clip List</h7>
 			<li>
 				<ul id="ulTable">
 					<li>
@@ -136,8 +136,8 @@
 						<li>
 							<ul>
 								<li>${movie.tno }</li>
-								<li class="left"><a
-									href="http://192.168.0.34:8080/movie/view?tno=${movie.tno } ">${movie.title }</a></li>
+								<li><a
+									href="/movie/view?tno=${movie.tno } ">${movie.title }</a>[${movie.replycnt }] </li>
 								<li><fmt:formatDate value="${movie.regdate}"
 										pattern="yyyy-MM-dd" /></li>
 								<li>${movie.writer }</li>
@@ -153,39 +153,80 @@
 </ul>
 </li>
 </ul>
+
+
+		    <%-- <div class="input-group">
+                <form action="/movie/list">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul name="searchType" class="dropdown-menu" role="menu">
+                      <li><a href="/movie/list/title?${criteria.title}&">title</a></li>
+                      <li><a href="/movie/list/writer?${criteria.writer}&">writer</a></li>
+                      <li><a href="/movie/list/tno?${criteria.tno}&">tno</a></li>
+                      <li><a href="/movie/list/title?${criteria.title}&writer?${criteria.writer}">title+writer < </a></li>
+                      <li class="divider"></li>
+                      <li value="title">title</li>
+                      <li value="writer">writer</li>
+                    </ul>
+                    <div class='box-body'>
+                    <select name="searchType" class="dropdown-menu" role="menu">
+                    <option value='n' <c:out value=""/>>---------</option>
+                    <option value='t' <c:out value="title"/>>---------</option>
+                    <option value='w' <c:out value="writer"/>>---------</option>
+                    
+                    </select> 
+                    </div>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <input type="hidden" name="page" value="${criteria.page }" id="search_param">
+                         
+                <input type="text" class="form-control" name="keyword" id="keywordInput" placeholder="Search term...">
+               
+                    <button id="searchBtn" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </form> --%>
+                
+           		 </div>
+           		 
+           		 
+ <div class="container">
+ <form id="searchForm">
+    <div class="row">    
+        <div class="col-xs-8 col-xs-offset-2">
+		    <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li value="title">title</li>
+                      <li value="writer">writer</li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <form method="get" id = "searchForm">
+                <input type="hidden" name="page" value="${criteria.page }" id="page_param">         
+                <input type="hidden" name="searchType" value="all" id="searchType">
+                <input type="text" class="form-control" name="keyword" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button id= "dsds" class="btn btn-default" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+                </form>
+            </div>
+        </div>
+	</div>
+	</form>
 </div>
-
-
-		<div class="pageArea1">
+           		 
+   
+<div class="pageArea1">
 			<span><ul class="pageArea"></ul> </span>	 							
 		</div>
 
+</div>
 
-			<!-- 게시판 페이징 영역 -->
-
-						
-						
-							
-							
-							<%-- <div class="contact-category">
-							<h4>List</h4>
-								  <!-- <h3><table><tr><td>Tno</td><td>Tno</td></tr></table></h3> -->
-								
-								<ul class='listUL'>
-								  
-								  <c:forEach var="movie" items="${list}">
-								  
-								   <li>${movie.tno }</li>
-								   <li><a href='${movie.tno }'>${movie.title }</a> </li>
-								   <br>
-								  </c:forEach>
-								  <br> 
-								  <ul class="pageArea"></ul>
-								   --%>
-								
-								
-								
-		
 
 								
 								
@@ -204,16 +245,7 @@
 								</div>
 								
 								
-							
-							
-							<!-- <div class="contact-category">
-								<div class="social">
-									
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-									<a href="#"><i class="fa fa-instagram"></i></a>
-								</div>
-							</div> -->
+				
 							
 						</div>
 					</div>
@@ -224,7 +256,7 @@
         <!--Footer-->
         
         
-        <<!-- footer id="footer" class="footer">
+        <footer id="footer" class="footer">
             <div class="container">
             	<div class="row">
             		<div class="col-md-12">
@@ -234,7 +266,7 @@
             		</div>
             	</div>
             </div>
-        </footer> -->
+        </footer> 
 
 
         <script src="/resources/js/assets/js/vendor/jquery-1.11.2.min.js"></script>
@@ -250,31 +282,7 @@
 
 
 <div>
-<%-- <ul class='listUL'>
-  <c:forEach var="movie" items="${list}">
-   <li><a href='${movie.tno }'>${movie.tno }</a> ${movie.title } </li>
-  </c:forEach>
 
-</ul>
-
-<form id="actionForm" method='get'>
-  <input type='hidden' name='page' value = "${criteria.page }">
-  <input type='hidden' name='tno'>
-  
-</form>
-
-<form action="/movie/register">
-<br><center><input type="submit" value="reg"></center><p>
-</form> --%>
-
-
-<%-- <form method="post" name="regBtn">
-<input type="submit" value="register">
-<input type="hidden" value="${view.tno }">
-<input type="hidden" value="${view.title }">
-<input type="hidden" value="${view.writer }">
-</form>
-  --%>
  
 
 
@@ -287,6 +295,8 @@
   crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="/resources/js/paging.js"></script>
+
+
 
   
 <script>
@@ -333,6 +343,21 @@ $(document).ready(function(){
 		  
 		
 	});
+	  
+	  
+	  $(document).ready(function(e){
+		    $('.search-panel .dropdown-menu').find('li').click(function(e) {
+				e.preventDefault();
+				var param = $(this).attr("value");
+				console.log(param);
+				var concept = $(this).text();
+				$('.search-panel span#search_concept').text(concept);
+				$('.input-group #searchType').val(param);
+				
+		    
+			});
+		    
+		});
 
 });
 

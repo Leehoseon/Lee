@@ -10,12 +10,12 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 html,
 body {
     background-color: #ffffff;
-    font-size: 20px;
+    /* font-size: 22px; */
     color: #202020;
-    width: 100%;
-    padding: 0;
+    width: 99%;
+    padding: 8px;
     margin-left: 0;
-    margin-right: 0;
+    margin-right: -6px;
     font-family: 'open_sanslight';
     font-weight: 300;
 }
@@ -168,6 +168,12 @@ h5 {
 h6 {
     font-size: 1rem;
     margin-bottom: .9rem;
+}
+
+h7{
+	text-align:center;
+    margin-left: -5em;
+    font-size:x-large;
 }
 p {
     line-height: 1.5rem;
@@ -654,6 +660,24 @@ textarea::-ms-input-placeholder
     color:red;
 }
 
+.container{
+	display: inline;
+	
+}
+.form-control{
+	height : 2.5em;
+	margin: .1em ;
+	padding-left:2em ;
+	width: 10em !important ;
+}
+.btn btn-default{
+	position: relative !important;
+	margin-left: 10em !important;
+	height : 3em !important;
+	
+}
+
+
 /* ======================================table css================================== */
 
 .listUL li{
@@ -675,8 +699,8 @@ textarea::-ms-input-placeholder
 	display:inline !important;
 	margin:0px !important;
 	text-align: center !important;
-	margin-right: 2em !important;
-	margin-left: 2em !important;
+	margin-right: 10px !important;
+	margin-left: 10px !important;
 	width: 50em !important;
 	
 	
@@ -692,7 +716,7 @@ textarea::-ms-input-placeholder
 }
 .replyUL{
 	position: inline !important;
-	/* //터치 x */
+	/* //�꽣移� x */
 
 }
 .replyUL pen {
@@ -712,12 +736,15 @@ textarea::-ms-input-placeholder
 	-moz-transition:.3s ease-in-out;
 }
 
-
+/* .input-group-btn search-panel{
+	display: inline;
+	
+} */
 
 /* ===========================================table================================== */
 
 body {
-	line-height: 2em;
+	line-height: 3em;
 	font-family: 'nexa_boldregular';
 }
 
@@ -729,9 +756,11 @@ body {
 } 
 
 #mainWrapper {
-	width: 700px;
-	margin: 0 auto; /*가운데 정렬*/
+	width: 50em;
+	margin: 0 auto; /*媛��슫�뜲 �젙�젹*/
 }
+
+
 
 #mainWrapper>ul>li:first-child {
 	text-align: center;
@@ -740,6 +769,8 @@ body {
 	vertical-align: middle;
 	line-height: 30px;
 }
+
+
 
 #ulTable {
 	margin-top: 10px;
@@ -768,19 +799,19 @@ body {
 
 #ulTable>li>ul>li:first-child {
 	width: 10%;
-} /*No 열 크기*/
+} /*No �뿴 �겕湲�*/
 #ulTable>li>ul>li:first-child+li {
-	width: 45%;
-} /*제목 열 크기*/
+	width: 25%;
+} /*�젣紐� �뿴 �겕湲�*/
 #ulTable>li>ul>li:first-child+li+li {
 	width: 20%;
-} /*작성일 열 크기*/
+} /*�옉�꽦�씪 �뿴 �겕湲�*/
 #ulTable>li>ul>li:first-child+li+li+li {
 	width: 15%;
-} /*작성자 열 크기*/
+} /*�옉�꽦�옄 �뿴 �겕湲�*/
 #ulTable>li>ul>li:first-child+li+li+li+li {
 	width: 10%;
-} /*조회수 열 크기*/
+} /*議고쉶�닔 �뿴 �겕湲�*/
 #divPaging {
 	clear: both;
 	margin: 0 auto;

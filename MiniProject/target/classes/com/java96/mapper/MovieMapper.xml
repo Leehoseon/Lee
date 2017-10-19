@@ -7,11 +7,28 @@
 <mapper namespace="com.java96.mapper.MovieMapper">
 	
 	<select id="listPage" resultType="MovieDTO" >
-	<!-- resultType 은 list가 아니고 하나의 로우를 처리할 방법에 대해 말하기 때문에 dto를 써야됨  
 	
-	파라미터에 스킵을 입력하면 criteria에서 getskip을 찾아간다-->
-		select * from db_96.tbl_testmovie order by tno desc limit #{skip} ,9
+		select * from db_96.tbl_testmovie
+	
+	<where>		
+      
+      <if test="searchType != null">
+	
+	      <if test="searchType == 'title' ">
+	         title like #{keyword}
+	      </if>
+			
+	      <if test="searchType == 'writer' ">
+	         AND writer like #{keyword}
+	      </if>
+      
+  	
+		</if>
+      </where>
+
+		order by tno desc limit #{skip} ,9
 	</select>
+	
 	
 	<select id="view" resultType="MovieDTO">
 		select * from db_96.tbl_testmovie where tno = #{tno}
