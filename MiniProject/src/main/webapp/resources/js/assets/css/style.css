@@ -678,6 +678,8 @@ textarea::-ms-input-placeholder
 }
 
 
+
+
 /* ======================================table css================================== */
 
 .listUL li{
@@ -686,11 +688,7 @@ textarea::-ms-input-placeholder
 	text-align: center;
 	
 }
-/* .pageArea1{
-	display:inline !important;
-	margin:0px !important;
-	text-align: center !important; 
-} */
+
 
 
 .pageArea li {

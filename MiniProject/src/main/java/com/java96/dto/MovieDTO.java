@@ -11,5 +11,6 @@ public class MovieDTO {
 	private int tno;
 	private Date regdate;
 	private int replycnt;
+	private int dbhit;
 	
 }

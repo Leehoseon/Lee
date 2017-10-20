@@ -24,6 +24,8 @@
 	<context:component-scan base-package="com.java96.web" />
 	
 	
+	
+	
 	<!-- <beans:bean id="checkLogin" class="com.java96.interceptor.LoginCheck"></beans:bean>
 	
 	<beans:bean id="AfterLogin" class="com.java96.interceptor.LoginAfter"></beans:bean> 

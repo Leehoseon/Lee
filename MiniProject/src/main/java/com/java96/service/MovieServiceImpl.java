@@ -26,7 +26,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public MovieDTO getView(Long tno) {
-		
+		mapper.updatedbhit(tno);
 		return mapper.view(tno);
 	}
 

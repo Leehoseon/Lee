@@ -32,6 +32,9 @@ public class MovieController {
 
 		log.info("cri:~~~~~~~~~~~~~~"+cri);
 		
+		
+		model.addAttribute("criteria",cri);
+		
 		model.addAttribute("list",service.getList(cri));
 		
 		

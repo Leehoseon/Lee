@@ -22,7 +22,7 @@ public interface MovieMapper {
 	
 	public MovieDTO view(Long tno);
 	
-	@Select("select count(*) from tbl_testmovie where tno > 0")
+//	@Select("select count(*) from tbl_testmovie where tno > 0")
 	public int getTotal(Criteria cri);
 	
 	@Insert("insert into tbl_testmovie (title,writer) values(#{title},#{writer})")
@@ -30,4 +30,7 @@ public interface MovieMapper {
 	
 	@Update("update tbl_testmovie set replycnt = replycnt + 1 where tno = #{tno}")
 	public void updateReplyCnt(int tno);
+	
+	@Update("update tbl_testmovie set dbhit = dbhit + 1 where tno = #{tno}")
+	public void updatedbhit(Long tno);
 }

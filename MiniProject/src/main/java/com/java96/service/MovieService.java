@@ -23,5 +23,7 @@ public interface MovieService {
 		public void remove(Long tno);
 		
 		public void modify(MovieDTO dto);
+		
+		
 	
 }

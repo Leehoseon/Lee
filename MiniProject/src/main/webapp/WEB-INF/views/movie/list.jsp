@@ -121,12 +121,12 @@
 			<li>
 				<ul id="ulTable">
 					<li>
-						<ul>
-							<li>No</li>
-							<li>Title</li>
-							<li>Date</li>
-							<li>User</li>
-							<li>Views</li>
+						<ul id="sortTable">
+							<li id="No">No</li>
+							<li id="Title">Title</li>
+							<li id="Date">Date</li>
+							<li id="User">User</li>
+							<li id="Views">Views</li>
 						</ul>
 					</li>
 				
@@ -141,7 +141,7 @@
 								<li><fmt:formatDate value="${movie.regdate}"
 										pattern="yyyy-MM-dd" /></li>
 								<li>${movie.writer }</li>
-								<li>0</li>
+								<li>${movie.dbhit }</li>
 							</ul>
 							
 								
@@ -155,37 +155,7 @@
 </ul>
 
 
-		    <%-- <div class="input-group">
-                <form action="/movie/list">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
-                    </button>
-                    <ul name="searchType" class="dropdown-menu" role="menu">
-                      <li><a href="/movie/list/title?${criteria.title}&">title</a></li>
-                      <li><a href="/movie/list/writer?${criteria.writer}&">writer</a></li>
-                      <li><a href="/movie/list/tno?${criteria.tno}&">tno</a></li>
-                      <li><a href="/movie/list/title?${criteria.title}&writer?${criteria.writer}">title+writer < </a></li>
-                      <li class="divider"></li>
-                      <li value="title">title</li>
-                      <li value="writer">writer</li>
-                    </ul>
-                    <div class='box-body'>
-                    <select name="searchType" class="dropdown-menu" role="menu">
-                    <option value='n' <c:out value=""/>>---------</option>
-                    <option value='t' <c:out value="title"/>>---------</option>
-                    <option value='w' <c:out value="writer"/>>---------</option>
-                    
-                    </select> 
-                    </div>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="hidden" name="page" value="${criteria.page }" id="search_param">
-                         
-                <input type="text" class="form-control" name="keyword" id="keywordInput" placeholder="Search term...">
-               
-                    <button id="searchBtn" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                </form> --%>
+		   
                 
            		 </div>
            		 
@@ -208,10 +178,12 @@
                 </div>
                 <form method="get" id = "searchForm">
                 <input type="hidden" name="page" value="${criteria.page }" id="page_param">         
-                <input type="hidden" name="searchType" value="all" id="searchType">
-                <input type="text" class="form-control" name="keyword" placeholder="Search term...">
+                <input type="hidden" name="searchType" value="${criteria.searchType }" id="searchType">
+                <input type="hidden" name="searchSort" value="${criteria.searchSort }" id="searchSort">
+                <input type="hidden" name="sortName" value="${criteria.sortName }" id="sortName">
+                <input type="text" class="form-control" name="keyword" value="${criteria.keyword }" placeholder="Search term...">
                 <span class="input-group-btn">
-                    <button id= "dsds" class="btn btn-default" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
+                    <button id= "subBtn" class="btn btn-default" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
                 </span>
                 </form>
             </div>
@@ -339,9 +311,11 @@ $(document).ready(function(){
 		
 		  var pageNum = $(this).html();
 		  console.log(pageNum);
-		  self.location="/movie/list?page="+pageNum;
+		  /* self.location="/movie/list?page="+pageNum; */
 		  
-		
+		  $("#page_param").val(pageNum);
+		  
+		  $("#searchForm").submit();
 	});
 	  
 	  
@@ -358,8 +332,59 @@ $(document).ready(function(){
 			});
 		    
 		});
+	  
+	  $("#sortTable").on("click","li", function (e){
+		  
+		  var $this = $(this);
+		  
+		  var sortName = $(this).attr("id");
+		  
+		  console.log(sortName);
+		  
+		  var searchSort = $("#searchSort").val(); 
+		  
+		  
+		  
+		  
+		  /* if (sortName === "desc"){
+			  $("#searchSort").attr("value","asc");
+		  } */
+		  
+		  $("#searchSort").val("asc");
+		  
+		  $("#sortName").val(sortName);
+		  
+		 
+		  
+		  if(searchSort === "desc"){
+			  $("#searchSort").val("asc");
+		  }
+		  
+		  else if (searchSort === "asc"){
+			  $("#searchSort").val("desc");
+		  }
+		
+		  console.log(searchSort);
+		  
+		  
+		  $("#searchForm").submit();  
+	  });
+		
+	  $("#subBtn").on("click", function (e) {
+		  e.preventDefault();
+		  
+		  $("#page_param").val("1");
+		  
+		  $("#searchForm").submit();
+		
+	});
+	
+		  
+	  
 
 });
+
+
 
 </script>
 

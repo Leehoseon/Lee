@@ -136,16 +136,25 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 
 </form>
 -->
+<form id="fileForm"  enctype="multipart/form-data" method="POST">
+<input type="file" id="file" name="file" mutiple>
+<button id="subBtn" type="submit">추가</button>
 
+<span class="imgList" id="imgList" >
+
+</span>
+
+<div  class="imgList"  placeholder="DropImg...." width="50em;" height="50em;"></div>
+</form>
 								  
 								</div>
-							
 							
 							
 						</div>
 					</div>
 				</div>
 			</div>
+							
 		</section>
 
 
@@ -173,7 +182,103 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
         <script src="/resources/js/assets/js/main.js"></script>
 
 
+<script>
 
+$(document).ready(function(){
+
+	
+	
+	
+	 $("#subBtn").on("click",function(e){
+		
+		 e.preventDefault();
+		
+
+		var formData = new FormData();
+		
+		var dd = $("#file")[0].files[0];
+		formData.append("file", $("#file")[0].files[0]);
+		
+		console.log(dd);
+		
+		
+		$.ajax({
+			  url:'/upload/new',
+			  data: formData,
+			  dataType:'json',
+			  processData: false,
+			  contentType: false,
+			  type: 'POST',
+			  success: function(data){
+				
+		 		  
+				console.log(data);
+				
+
+				var str ="";
+				str ="<li data-file='" + data.uploadName  +"'><div>";
+				str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
+				str +="<span>" + data.original + " </span>";
+				str +="</div></li>";
+				$(".imgList").append(str);
+				console.log(str);
+				
+			  } 
+		});
+		
+	
+	}); 
+	 
+		
+			
+			$("#contact").on("dragenter dragover",function(e){
+				
+				e.preventDefault();
+				
+			});
+			$("#contact").on("drop",function(e){
+				
+				e.preventDefault();
+				
+				var files = e.originalEvent.dataTransfer.files;
+				
+				var file = files[0];
+				
+				var formData = new FormData();
+				
+				formData.append("file", $("#file")[0].files[0]);
+				
+				console.log(file);
+				console.log(files);
+				
+				
+				$(".imgList").html("<li>"/* +file.name+"</li><input type="'file'" id="'file'" name="'file'" >" */);
+				
+			/* 	$.ajax({
+					  url:'/upload/new',
+					  data: file,
+					  dataType:'json',
+					  processData: false,
+					  contentType: false,
+					  type: 'POST',
+					  success: function(file){
+						
+				 		  
+						console.log(data); 
+						
+
+						
+					  } 
+				});*/
+			});
+			
+	
+	 
+	 
+});
+
+
+</script>
 
 
 
