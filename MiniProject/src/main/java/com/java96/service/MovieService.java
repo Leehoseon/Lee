@@ -5,6 +5,7 @@ import java.util.List;
 import com.java96.dto.Criteria;
 import com.java96.dto.MovieDTO;
 
+
 public interface MovieService {
 
 
@@ -23,6 +24,10 @@ public interface MovieService {
 		public void remove(Long tno);
 		
 		public void modify(MovieDTO dto);
+		
+		
+		
+		
 		
 		
 	

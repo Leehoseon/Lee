@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -90,6 +91,10 @@
 		
 		<!-- Sections -->
         
+		<div id= "attachList">
+			
+			
+			
 		
 		<section id="contact" class="contact sections">
 			<div class="container">
@@ -121,6 +126,7 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 		<div class="pen">
 <a href="/movie/list"><img src="/resources/js/assets/images/hom.png"></a>
 </div> 
+<div id="filename"></div>
 		
 		</div>
 		</form>
@@ -137,14 +143,16 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 </form>
 -->
 <form id="fileForm"  enctype="multipart/form-data" method="POST">
-<input type="file" id="file" name="file" mutiple>
+<input type="file" id="file" name="file" mutiple/>
 <button id="subBtn" type="submit">추가</button>
 
+<form id = fileNameForm>
 <span class="imgList" id="imgList" >
 
-</span>
 
-<div  class="imgList"  placeholder="DropImg...." width="50em;" height="50em;"></div>
+</span>
+</form>
+
 </form>
 								  
 								</div>
@@ -184,9 +192,9 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 
 <script>
 
-$(document).ready(function(){
 
-	
+$(document).ready(function(){
+	var jbAry = new Array();
 	
 	
 	 $("#subBtn").on("click",function(e){
@@ -203,7 +211,7 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-			  url:'/upload/new',
+			  url:'/upload/modify',
 			  data: formData,
 			  dataType:'json',
 			  processData: false,
@@ -221,6 +229,7 @@ $(document).ready(function(){
 				str +="<span>" + data.original + " </span>";
 				str +="</div></li>";
 				$(".imgList").append(str);
+				
 				console.log(str);
 				
 			  } 
@@ -229,6 +238,8 @@ $(document).ready(function(){
 	
 	}); 
 	 
+	 
+	 
 		
 			
 			$("#contact").on("dragenter dragover",function(e){
@@ -236,43 +247,119 @@ $(document).ready(function(){
 				e.preventDefault();
 				
 			});
-			$("#contact").on("drop",function(e){
+			
+			$("#contact").on('drop', function (e) {
+		          e.preventDefault();
+		          
+
+		          var files = e.originalEvent.dataTransfer.files;
+		          if(files.length < 1)
+		               return;
+
+		          F_FileMultiUpload(files);
+		     });
+
+		
+			function F_FileMultiUpload(files) {
+				
+					
+				     
+			         var data = new FormData();
+			         for (var i = 0; i < files.length; i++) {
+			            data.append('file', files[i]);
+			            
+			            console.log(files[i]);
+					
+			         var url = "/upload/new";
+			         $.ajax({
+			            url: url,
+			            method: 'post',
+			            data: data,
+			            dataType: 'json',
+			            processData: false,
+			            contentType: false,
+			            success: function(data) {
+			            	var str ="";
+			            	
+		            		 
+			            	 for (var i = 0; i < files.length; i++) {
+			            		 var dt = data.thumbName;
+			            		 console.log(dt);
+			            		 jbAry.push(dt); 
+			            		 
+							str ="<li data-file='" + data.uploadName  +"'><div>";
+							str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
+							str +="<span>" + data.original + " </span>";
+							str +="<button id='delBtn'>del</button>"
+							str +="</div></li>";
+							$(".imgList").append(str);
+							
+			            	
+							
+							console.log(str);
+							
+							var filename = new FormData(); 
+							
+							/* var str ="<input type='text' name='filename' val='"+data.thumbName+"'>"; */ 
+							
+							
+			            	 }
+			            	 
+			            	 console.log(jbAry);
+			            	 for (var i = 0; i < files.length; i++){
+			            		 
+			            	 
+			            	 var cstr = "<input type='hidden' name='filename' value='"+jbAry[i]+"'>";
+			            	 console.log(cstr);
+			            	 }
+			            	 $("#filename").append(cstr);
+			            }
+			         });
+			     }
+			}
+
+			$(".imgList").on("click","li", function (e) {
 				
 				e.preventDefault();
 				
-				var files = e.originalEvent.dataTransfer.files;
+				var $this = $(this);
 				
-				var file = files[0];
+				console.log($this);
 				
-				var formData = new FormData();
+				var value = $this.attr("data-file");
 				
-				formData.append("file", $("#file")[0].files[0]);
+				console.log(value);
 				
-				console.log(file);
-				console.log(files);
+				var uploadName = "uploadName : " + value;
+				
+				console.log(uploadName);
+				
+				$this.remove();
 				
 				
-				$(".imgList").html("<li>"/* +file.name+"</li><input type="'file'" id="'file'" name="'file'" >" */);
+			 	
+				 $.ajax({
+			            url: "/upload/remove",
+			            method: 'DELETE',
+			            data:JSON.stringify({uploadName:value}),
+			            dataType: 'json',
+			            processData: false,
+			            contentType:'application/json; charset=utf-8',
+			            success: function(result) {
+			            	console.log("del comple./..")
+			            	
+			     
+			            } 
+			            
+			            
+				 
+			            
 				
-			/* 	$.ajax({
-					  url:'/upload/new',
-					  data: file,
-					  dataType:'json',
-					  processData: false,
-					  contentType: false,
-					  type: 'POST',
-					  success: function(file){
-						
-				 		  
-						console.log(data); 
-						
+			});
 
-						
-					  } 
-				});*/
+
 			});
 			
-	
 	 
 	 
 });

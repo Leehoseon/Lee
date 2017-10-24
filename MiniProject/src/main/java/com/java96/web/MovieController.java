@@ -12,6 +12,7 @@ import com.java96.dto.Criteria;
 import com.java96.dto.MovieDTO;
 import com.java96.dto.SearchCriteria;
 import com.java96.service.MovieService;
+import com.java96.service.UploadService;
 
 import lombok.extern.java.Log;
 
@@ -25,6 +26,8 @@ public class MovieController {
 
 	@Autowired
 	MovieService service;
+	@Autowired
+	UploadService upservice;
 	
 	
 	@GetMapping("/list")
@@ -46,6 +49,8 @@ public class MovieController {
 	@GetMapping("/view")
 	public void view(Long tno, Model model) {
 		
+		
+		model.addAttribute("attach", upservice.viewAttach(tno));
 		model.addAttribute("view", service.getView(tno));
 		
 	}
@@ -56,7 +61,9 @@ public class MovieController {
 	}
 	
 	@PostMapping("/register")
-	public String register(MovieDTO dto) {
+	public String register(MovieDTO dto ) {
+		
+		log.info("dto:!!!!!!!!!!!!!!"+dto);
 		
 		service.register(dto);
 		
@@ -67,6 +74,8 @@ public class MovieController {
 	@GetMapping("/modify")
 	public void modifyGet(Long tno, Model model) {
 		
+		
+		model.addAttribute("attach", upservice.viewAttach(tno));
 		model.addAttribute("view",service.getView(tno));
 		
 	}

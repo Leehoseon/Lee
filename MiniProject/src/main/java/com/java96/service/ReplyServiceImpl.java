@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.java96.dto.Criteria;
 import com.java96.dto.ReplyDTO;
+import com.java96.dto.UploadDTO;
 import com.java96.mapper.MovieMapper;
 import com.java96.mapper.ReplyMapper;
 
@@ -42,6 +43,8 @@ public class ReplyServiceImpl implements ReplyService {
 		mapper.update(dto);
 		
 	}
+
+	
 
 	
 

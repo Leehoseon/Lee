@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -90,6 +91,14 @@
 		
 		
 		<!-- Sections -->
+        <div id="attachArea" >
+        <c:forEach items="${attach}" var="attach">
+							
+					 <li data-file="${attach.thumbName }">${attach.uploadName }<div><img id='drgImg' src='/upload/new/${attach.thumbName } '></div></li> 
+					 
+			</c:forEach>
+			</div>
+		
         
 		
 		<section id="contact" class="contact sections">
@@ -178,16 +187,133 @@ name="Submit" value="remove"  align="absmiddle"  class = "pen">
 
 
 
+<script>
+$(document).ready(function(){
+
+$("#attachArea").on("click","li", function (e) {
+				
+				e.preventDefault();
+				
+				var $this = $(this);
+				
+				console.log($this);
+				
+				var value = $this.text();
+				
+				console.log(value);
+				
+				var uploadName = "uploadName : " + value;
+				
+				console.log(uploadName);
+				
+				$this.remove();
+				
+				
+			 	
+				 $.ajax({
+			            url: "/upload/remove",
+			            method: 'DELETE',
+			            data:JSON.stringify({uploadName:value}),
+			            dataType: 'json',
+			            processData: false,
+			            contentType:'application/json; charset=utf-8',
+			            success: function(result) {
+			            	console.log("del comple./..")
+			            	
+			     
+			            } 
+			            
+			            
+				 
+			            
+				
+			});
 
 
+			});
+			
+$("#contact").on("dragenter dragover",function(e){
+	
+	e.preventDefault();
+	
+});
+
+$("#contact").on('drop', function (e) {
+      e.preventDefault();
+      
+
+      var files = e.originalEvent.dataTransfer.files;
+      if(files.length < 1)
+           return;
+
+      F_FileMultiUpload(files);
+      
+     
+ });
 
 
- 
-<%--  <input type="hidden" name="tno" value="${view.tno }">
- <input type="hidden" name="title" value="$(#title)">
- <input type="hidden" name="writer" value="${view.writer }">
- --%>
-
-
+function F_FileMultiUpload(files) {
+	
+	 var tno = ${view.tno};
+	 
+		console.log(tno);
+	     
+         var data = new FormData();
+         for (var i = 0; i < files.length; i++) {
+            data.append('file', files[i]);
+             data.append('tno',tno); 
+            
+            console.log(files[i]);
+		
+         var url = "/upload/modify";
+         $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function(data) {
+            	var str ="";
+            	
+        		 
+            	 for (var i = 0; i < files.length; i++) {
+            		 var dt = data.thumbName;
+            		 console.log(dt);
+            		 jbAry.push(dt); 
+            		 
+				str ="<li data-file='" + data.uploadName  +"'><div>";
+				str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
+				str +="<span>" + data.original + " </span>";
+				str +="<button id='delBtn'>del</button>"
+				str +="</div></li>";
+				
+				$(".imgList").append(str);
+				
+            	
+				
+				console.log(str);
+				
+				var filename = new FormData(); 
+				
+				/* var str ="<input type='text' name='filename' val='"+data.thumbName+"'>"; */ 
+				
+				
+            	 }
+            	 
+            	 console.log(jbAry);
+            	 for (var i = 0; i < files.length; i++){
+            		 
+            	 
+            	 var cstr = "<input type='hidden' name='filename' value='"+jbAry[i]+"'>";
+            	 console.log(cstr);
+            	 }
+            	 $("#filename").append(cstr);
+            }
+         });
+     }
+}
+});
+</script>
 </body>
 </html>

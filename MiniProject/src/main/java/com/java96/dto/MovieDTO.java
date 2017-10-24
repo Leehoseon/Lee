@@ -12,5 +12,6 @@ public class MovieDTO {
 	private Date regdate;
 	private int replycnt;
 	private int dbhit;
+	private String filename;
 	
 }
