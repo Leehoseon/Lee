@@ -184,11 +184,16 @@ name="Submit" value="remove"  align="absmiddle"  class = "pen">
 
 		 
         <script src="/resources/js/assets/js/main.js"></script>
-
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 
 
 <script>
 $(document).ready(function(){
+	
+	var jbAry = new Array();
 
 $("#attachArea").on("click","li", function (e) {
 				
@@ -253,17 +258,20 @@ $("#contact").on('drop', function (e) {
 
 
 function F_FileMultiUpload(files) {
-	
-	 var tno = ${view.tno};
-	 
-		console.log(tno);
-	     
+	/* parseInt("${view.tno}", 10) */
+	 var tno = parseInt("${view.tno}");
+	 var tno = parseInt(405);
+	  
          var data = new FormData();
+            data.append('tno',tno); 
+		
+		
          for (var i = 0; i < files.length; i++) {
             data.append('file', files[i]);
-             data.append('tno',tno); 
             
             console.log(files[i]);
+            console.log(data.tno);
+            console.log(data);
 		
          var url = "/upload/modify";
          $.ajax({
@@ -288,7 +296,7 @@ function F_FileMultiUpload(files) {
 				str +="<button id='delBtn'>del</button>"
 				str +="</div></li>";
 				
-				$(".imgList").append(str);
+				$("#attachArea").append(str);
 				
             	
 				
@@ -299,7 +307,7 @@ function F_FileMultiUpload(files) {
 				/* var str ="<input type='text' name='filename' val='"+data.thumbName+"'>"; */ 
 				
 				
-            	 }
+            	 
             	 
             	 console.log(jbAry);
             	 for (var i = 0; i < files.length; i++){
@@ -307,8 +315,10 @@ function F_FileMultiUpload(files) {
             	 
             	 var cstr = "<input type='hidden' name='filename' value='"+jbAry[i]+"'>";
             	 console.log(cstr);
+            	 $("#contact_form").append(cstr);
             	 }
-            	 $("#filename").append(cstr);
+            	 
+            	 }
             }
          });
      }

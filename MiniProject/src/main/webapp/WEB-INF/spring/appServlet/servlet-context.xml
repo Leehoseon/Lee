@@ -26,28 +26,28 @@
 	
 	
 	
-	<!-- <beans:bean id="checkLogin" class="com.java96.interceptor.LoginCheck"></beans:bean>
+	<beans:bean id="checkLogin" class="com.java96.interceptor.LoginCheck"></beans:bean>
 	
 	<beans:bean id="AfterLogin" class="com.java96.interceptor.LoginAfter"></beans:bean> 
 	
 	
 	<interceptors>	  
 	  <interceptor>
-	    <mapping path="/movie/list"/>
+	    
 	    <mapping path="/movie/register"/>
-	    <exclude-mapping path="/movie/home"/>
+	    
 	    <beans:ref bean="checkLogin"/>
 	  </interceptor>
 	  
-	 <interceptor>
+	  <interceptor>
 	    <mapping path="/movie/home"/>
 	    <beans:ref bean="AfterLogin"/>
-	  </interceptor> 
+	  </interceptor>  
 	  
 	  
 	  
 	  	
-	</interceptors> -->
+	</interceptors> 
 	
 	
 	

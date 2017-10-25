@@ -33,16 +33,16 @@ public class LoginCheck extends HandlerInterceptorAdapter {
 		
 		System.out.println("we need check login cookie");
 		
-		Cookie loginCookie = WebUtils.getCookie(request, "login");
+		Cookie loginCookie = WebUtils.getCookie(request, "memberDTO");
 		
 		boolean useCookie = loginCookie != null?true:false;
 		
 		if(useCookie) {
 			System.out.println("current user use cookie...");
 			
-			MemberDTO dto = service.login(loginCookie.getValue());
 			
-			request.getSession().setAttribute("memberDTO", dto);
+			
+			request.getSession().setAttribute("memberDTO", "memberDTO");
 			
 			return true;
 		}

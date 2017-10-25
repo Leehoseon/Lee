@@ -269,6 +269,8 @@ $(document).ready(function(){
 			            data.append('file', files[i]);
 			            
 			            console.log(files[i]);
+			            
+			         }
 					
 			         var url = "/upload/new";
 			         $.ajax({
@@ -315,7 +317,7 @@ $(document).ready(function(){
 			            	 $("#filename").append(cstr);
 			            }
 			         });
-			     }
+			     
 			}
 
 			$(".imgList").on("click","li", function (e) {

@@ -16,7 +16,7 @@ public interface MovieMapper {
 	@Delete("delete from tbl_testmovie where tno = #{tno}")
 	public void remove(Long tno);
 	
-	@Update("UPDATE tbl_testmovie SET title = #{title} , writer = #{writer} where tno = #{tno}")
+	@Update("UPDATE tbl_testmovie SET title = #{title} , writer = #{writer}, filename=#{filename} where tno = #{tno}")
 	public void modify(MovieDTO dto);
 	
 	public List<MovieDTO> listPage(Criteria cri);

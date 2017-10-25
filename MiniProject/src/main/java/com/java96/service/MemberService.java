@@ -1,10 +1,11 @@
 package com.java96.service;
 
 import com.java96.dto.MemberDTO;
+import com.java96.dto.MemberVO;
 
 public interface MemberService {
 
-	public MemberDTO login(String uid);
+	public MemberVO login(MemberDTO dto);
 	
 	public void register(MemberDTO dto);
 	

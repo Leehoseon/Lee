@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
-
+import javax.swing.text.html.parser.Parser;
 
 import org.apache.commons.io.FileUtils;
 import org.imgscalr.Scalr;
@@ -160,7 +160,7 @@ public class UploadController {
 	}
 	
 	@PostMapping("/modify")
-	public @ResponseBody Map<String, String> modify(@RequestParam("file") MultipartFile file,@RequestParam("tno")UploadDTO udto) throws Exception {
+	public @ResponseBody Map<String, String> modify(@RequestParam("file") MultipartFile file,@RequestParam("tno")String tno) throws Exception {
 		
 		Map<String, String> map = new HashMap<>();
 		
@@ -223,7 +223,7 @@ public class UploadController {
 		dto.setThumbName(thumbName);
 		
 		
-		dto.setTno(udto.getTno());
+		dto.setTno(Integer.parseInt(tno));
 		
 		
 		log.info(dto+"dto~~~~~~~~~~~~~~~~~~~~~~~~~~~~");

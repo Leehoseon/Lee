@@ -1,5 +1,6 @@
 package com.java96.interceptor;
 
+
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -10,12 +11,25 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.java96.dto.MemberDTO;
+import com.java96.dto.MemberVO;
 
 public class LoginAfter extends HandlerInterceptorAdapter {
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		
+		Object MemberDTO = modelAndView.getModel();
+		
+		System.out.println(MemberDTO);
+		
+		
+		
+		if(MemberDTO == null) {
+			
+			response.sendRedirect("/movie/home");
+			
+		}
 		
 		if(request.getMethod().equals("GET")) {
 			return;
@@ -39,9 +53,12 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 			request.getSession().setAttribute("memberDTO", map.get("memberDTO"));
 			try {
 			if(auto.equals("on")) {
+				
+				System.out.println("use Session");
 				//use cookie
-				MemberDTO dto = (MemberDTO)map.get("memberDTO");
-				Cookie loginCookie = new Cookie("login",dto.getUid() );
+				MemberVO dto = (MemberVO) map.get("memberDTO");
+				System.out.println(dto);
+				Cookie loginCookie = new Cookie("memberDTO", dto.getUid() );
 				loginCookie.setMaxAge(60*60*24);
 				response.addCookie(loginCookie);
 			
@@ -50,6 +67,7 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 				System.out.println("not have");
 			}
 		
+			response.sendRedirect("/movie/list");
 		}
 	}
 
