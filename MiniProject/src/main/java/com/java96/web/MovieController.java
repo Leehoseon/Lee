@@ -1,5 +1,10 @@
 package com.java96.web;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,12 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.util.WebUtils;
 
 import com.java96.dto.Criteria;
 import com.java96.dto.MovieDTO;
 import com.java96.dto.SearchCriteria;
 import com.java96.service.MovieService;
 import com.java96.service.UploadService;
+import com.mysql.fabric.Response;
 
 import lombok.extern.java.Log;
 
@@ -96,6 +103,34 @@ public class MovieController {
 		service.remove(tno);
 		
 		return "redirect:/movie/list";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) {
+		
+		Object obj = session.getAttribute("memberDTO");
+		
+		if(obj != null) {
+			
+			session.removeAttribute("memberDTO");
+			session.invalidate();
+			
+			Cookie loginCookie = WebUtils.getCookie(request, "memberDTO");
+			
+			if(loginCookie != null) {
+				
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+				
+				
+				
+				
+			}
+			
+		}
+		return "redirect:/movie/home";
 	}
 	
 }

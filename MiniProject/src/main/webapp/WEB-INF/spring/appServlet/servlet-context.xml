@@ -34,9 +34,12 @@
 	<interceptors>	  
 	  <interceptor>
 	    
-	    <mapping path="/movie/register"/>
-	    
+	    <mapping path="/movie/**/"/>
+	    <exclude-mapping path="/movie/home"/>
+	    <exclude-mapping path="/movie/homeregister"/>
+	    <exclude-mapping path="/movie/homemodify"/>
 	    <beans:ref bean="checkLogin"/>
+	    
 	  </interceptor>
 	  
 	  <interceptor>

@@ -4,49 +4,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>web</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="stylesheet" href="/resources/js/assets/css/bootstrap.min.css">
+<!--        <link rel="stylesheet" href="/resources/js/assets/css/bootstrap-theme.min.css">-->
+
+
+<!--For Plugins external css-->
+<link rel="stylesheet" href="/resources/js/assets/css/plugins.css" />
+<link rel="stylesheet"
+	href="/resources/js/assets/css/magnific-popup.css">
+
+<link rel="stylesheet" href="/resources/js/assets/css/nexa-web-font.css" />
+<link rel="stylesheet"
+	href="/resources/js/assets/css/opensans-web-font.css" />
+
+<!--Theme custom css -->
+<link rel="stylesheet" href="/resources/js/assets/css/style.css">
+
+<!--Theme Responsive css-->
+<link rel="stylesheet" href="/resources/js/assets/css/responsive.css" />
+
+<script
+	src="/resources/js/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
-<body>
 
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-        <link rel="stylesheet" href="/resources/js/assets/css/bootstrap.min.css">
-        <!--        <link rel="stylesheet" href="/resources/js/assets/css/bootstrap-theme.min.css">-->
-
-
-        <!--For Plugins external css-->
-        <link rel="stylesheet" href="/resources/js/assets/css/plugins.css" />
-		<link rel="stylesheet" href="/resources/js/assets/css/magnific-popup.css">
-		
-        <link rel="stylesheet" href="/resources/js/assets/css/nexa-web-font.css" />
-        <link rel="stylesheet" href="/resources/js/assets/css/opensans-web-font.css" />
-
-        <!--Theme custom css -->
-        <link rel="stylesheet" href="/resources/js/assets/css/style.css">
-
-        <!--Theme Responsive css-->
-        <link rel="stylesheet" href="/resources/js/assets/css/responsive.css" />
-
-        <script src="/resources/js/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+     
 		
-		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
 		
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -64,11 +54,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="/movie/list">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+						<li class="active"><a href="/movie/list">Home</a></li>
+						<li><a href="/movie/logout">logout</a></li>
+						<li><a href="#about"></a></li>
+						<li><a href="#portfolio"></a></li>
+					</ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
@@ -91,7 +81,7 @@
 		
 		<!-- Sections -->
         
-		<div id= "attachList">
+		<div id= "attachList"></div>
 			
 			
 			
@@ -104,7 +94,7 @@
 						
 							
 							
-							<div class="contact-category">
+					
 							
 								
 								
@@ -155,7 +145,7 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 
 </form>
 								  
-								</div>
+								
 							
 							
 						</div>

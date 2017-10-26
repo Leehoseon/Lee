@@ -47,9 +47,12 @@ public class LoginCheck extends HandlerInterceptorAdapter {
 			return true;
 		}
 		
-		response.sendRedirect("/movie/list");
+		
+		
+		response.sendRedirect("/movie/home");
 		
 		return false;
+		
 	}
 	
 
