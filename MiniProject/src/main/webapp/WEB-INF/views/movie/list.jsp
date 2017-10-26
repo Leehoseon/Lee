@@ -100,8 +100,8 @@
 
 								<!-- 게시판 목록  -->
 
-								<h7>Video clip List</h7>
-								<li>
+								<h7 class="h7">Video clip List</h7>
+								<%-- <li>
 									<ul id="ulTable">
 										<li>
 											<ul id="sortTable">
@@ -134,7 +134,42 @@
 
 
 									</ul>
-								</li>
+								</li> --%>
+								
+								<table>
+								  
+								  <!-- <thead>
+								    <tr id="sortTable">
+								      <th id="No" scope="col">No</th>
+								      <th id="Title" scope="col">Title</th>
+								      <th id="Date" scope="col">Date</th>
+								      <th id="User" scope="col">User</th>
+								      <th id="Views" scope="col">Views</th>
+								    </tr>
+								  </thead> -->
+								  <tbody>
+								  	<tr id="sortTable">
+								      <td id="No" scope="col">No</th>
+								      <td id="Title" scope="col">Title</th>
+								      <td id="Date" scope="col">Date</th>
+								      <td id="User" scope="col">User</th>
+								      <td id="Views" scope="col">Views</th>
+								    </tr>
+								    
+								    <c:forEach items="${list}" var="movie">
+								    <tr>
+											
+								      <td data-label="No">${movie.tno }</td>
+								      <td data-label="Title"><a href="/movie/view?tno=${movie.tno } ">${movie.title }</a>[${movie.replycnt }]</td>
+								      <td data-label="Date"><fmt:formatDate value="${movie.regdate}"
+															pattern="yyyy-MM-dd" /></td>
+								      <td data-label="User">${movie.writer }</td>
+								      <td data-label="Views">${movie.dbhit }</td>
+								    </tr>
+										</c:forEach>
+								    
+								  </tbody>
+								</table>
 							</ul>
 
 
@@ -162,8 +197,8 @@
 														class="caret"></span>
 												</button>
 												<ul class="dropdown-menu" role="menu">
-													<li value="title">title</li>
-													<li value="writer">writer</li>
+													<li value="title">title</li><br>
+													<li value="writer">writer</li><br>
 													<li class="divider"></li>
 													<li><a href="#all">Anything</a></li>
 												</ul>
@@ -182,15 +217,18 @@
 													<button id="subBtn" class="btn btn-default" type="submit">
 														<span class="glyphicon glyphicon-search"></span>
 													</button>
+													<button id="writeBtn" class="btn btn-default" type="button">
+														<a href="/movie/register">write</a>
+													</button>
 												</span>
 
 											</form>
 
 
-										<div class="pen">
+										<!-- <div class="pen">
 											<a href="/movie/register"><img
 											src="/resources/js/assets/images/check.png"></a>
-										</div>
+										</div> -->
 										</div>
 
 									</div>
@@ -329,7 +367,7 @@ $(document).ready(function(){
 		    
 		});
 	  
-	  $("#sortTable").on("click","li", function (e){
+	  $("#sortTable").on("click","td", function (e){
 		  
 		  var $this = $(this);
 		  

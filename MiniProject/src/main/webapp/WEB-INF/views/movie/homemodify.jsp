@@ -78,12 +78,24 @@
 				<div class="bg-faded p-4 my-4 listpoint">
 
 					<form method="post">
-						<input type='text' name='uid' value='aaa'> <input
-							type='text' name='upw' value='aaa'> <input
-							type="checkbox" name="auto"> <input type='submit'>
+						
+						  
+						<div class="row">
+							<label for="name">ID:</label><br>
+							<input type='text'  name='uid'  size="30"><br>
+						</div>
+						<div class="row">
+							<label for="name">PW:</label><br>
+							<input type='text'  name='upw'  size="30"><br>
+						</div>
+						 <button name="Submit"   class="btn btn-default" type="submit" >
+							login
+						</button>
+						<input type="checkbox" name="auto">
 					</form>
-					<a href="/movie/homeregister"><button>register</button></a>
-
+					<button name="Submit"   class="btn btn-default" type="submit" >
+						<a href="/movie/homeregister">register</a>
+					</button>
 				</div>
 			</div>
 		</div>

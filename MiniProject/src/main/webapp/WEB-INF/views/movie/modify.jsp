@@ -118,8 +118,17 @@
 			<textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br> -->
 			<label for="name">Writer:</label><br>
 			<input type='text' class="input" name='writer'  value="${view.writer }" size="30"><br>
-<br><input  TYPE="IMAGE" src="/resources/js/assets/images/check.png" 
-name="Submit" value="modify"  align="absmiddle"  class = "pen">
+<br>
+
+<button name="Submit" value="modify" id="closeBtn"  class="btn btn-default" type="submit" >
+		OK
+	</button>
+	<button id="removeBtn" name="removeBtn" value="remove"  class="btn btn-default" type="submit" >
+		remove
+	</button>
+	<button name="Submit" value="list" id="closeBtn"  class="btn btn-default" type="submit" >
+		list
+	</button>
 		</div>
 		</form>
 
@@ -127,19 +136,13 @@ name="Submit" value="modify"  align="absmiddle"  class = "pen">
 
 
 
- <form action="/movie/remove" method="post">
+ <form id="removeForm" action="/movie/remove" method="post">
  <input type="hidden" name="tno" value="${view.tno }">
-<br><input  TYPE="IMAGE" src="/resources/js/assets/images/close.png" 
-name="Submit" value="remove"  align="absmiddle"  class = "pen">
+<br>
+
+
 </form>
-
-
-<div class="pen">
-<a href="/movie/list"><img src="/resources/js/assets/images/hom.png"></a>
-</div>
-
-							
-							
+	
 						</div>
 					</div>
 				</div>
@@ -177,6 +180,27 @@ name="Submit" value="remove"  align="absmiddle"  class = "pen">
 
 <script>
 $(document).ready(function(){
+	
+	
+	$("#listBtn").on("click", function (e) {
+		
+		e.preventDefault();
+		
+		window.location="/movie/list"; 
+		
+		
+	});
+	
+	
+	
+	$("#removeBtn").on("click", function (e) {
+		
+		e.preventDefault();
+		
+		$("#removeForm").submit();
+		
+		
+	});
 	
 	var jbAry = new Array();
 

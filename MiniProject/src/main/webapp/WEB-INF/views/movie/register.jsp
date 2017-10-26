@@ -110,12 +110,14 @@
 			<!-- <label for="message">Your message:</label><br>
 			<textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br> -->
 			<label for="name">Writer:</label><br>
-			<input type='text' class="input" name='writer'   size="30"><br>
-<br><input  TYPE="IMAGE" src="/resources/js/assets/images/check.png" 
-name="Submit" value="reg"  align="absmiddle"  class = "pen">
-		<div class="pen">
-<a href="/movie/list"><img src="/resources/js/assets/images/hom.png"></a>
-</div> 
+			<input type='text' class="input" name='writer'   size="30" value="${membername }"><br>
+<br>
+	<button name="Submit" value="reg" id="regBtn"  class="btn btn-default" type="submit" >
+		register
+	</button>
+	<button name="SubmitList" value="list" id="listBtn"  class="btn btn-default" type="submit" >
+		list
+	</button>
 <div id="filename"></div>
 		
 		</div>
@@ -132,9 +134,9 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 
 </form>
 -->
-<form id="fileForm"  enctype="multipart/form-data" method="POST">
-<input type="file" id="file" name="file" mutiple/>
-<button id="subBtn" type="submit">추가</button>
+<form class="btn btn-default" id="fileForm"  enctype="multipart/form-data" method="POST">
+<input class="btn btn-default" type="file" id="file" name="file" mutiple/>
+<button class="btn btn-default"  id="subBtn" type="submit">추가</button>
 
 <form id = fileNameForm>
 <span class="imgList" id="imgList" >
@@ -186,6 +188,16 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 $(document).ready(function(){
 	var jbAry = new Array();
 	
+		$("#listBtn").on("click", function (e) {
+		
+		e.preventDefault();
+		
+		window.location="/movie/list"; 
+		
+		
+		});
+	
+	
 	
 	 $("#subBtn").on("click",function(e){
 		
@@ -201,7 +213,7 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-			  url:'/upload/modify',
+			  url:'/upload/new',
 			  data: formData,
 			  dataType:'json',
 			  processData: false,
@@ -353,7 +365,7 @@ $(document).ready(function(){
 			});
 			
 	 
-	 
+			
 });
 
 

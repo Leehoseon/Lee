@@ -21,9 +21,6 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 		
 		Object MemberDTO = modelAndView.getModel();
 		
-		System.out.println(MemberDTO);
-		
-		
 		
 		if(MemberDTO == null) {
 			
@@ -62,6 +59,8 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 				loginCookie.setMaxAge(60*60*24);
 				response.addCookie(loginCookie);
 			
+				System.out.println("use Cookie");
+				
 				}
 			}catch (Exception e) {
 				System.out.println("not have");

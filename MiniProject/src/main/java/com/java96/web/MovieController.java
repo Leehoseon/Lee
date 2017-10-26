@@ -1,5 +1,7 @@
 package com.java96.web;
 
+
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 
-import com.java96.dto.Criteria;
+
 import com.java96.dto.MovieDTO;
 import com.java96.dto.SearchCriteria;
 import com.java96.service.MovieService;
 import com.java96.service.UploadService;
-import com.mysql.fabric.Response;
+
 
 import lombok.extern.java.Log;
 
@@ -65,6 +67,7 @@ public class MovieController {
 	@GetMapping("/register")
 	public void registerGet() {
 		
+		
 	}
 	
 	@PostMapping("/register")
@@ -106,31 +109,11 @@ public class MovieController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
+	public void logout() {
 		
-		Object obj = session.getAttribute("memberDTO");
-		
-		if(obj != null) {
-			
-			session.removeAttribute("memberDTO");
-			session.invalidate();
-			
-			Cookie loginCookie = WebUtils.getCookie(request, "memberDTO");
-			
-			if(loginCookie != null) {
-				
-				loginCookie.setPath("/");
-				loginCookie.setMaxAge(0);
-				response.addCookie(loginCookie);
-				
-				
-				
 				
 			}
 			
-		}
-		return "redirect:/movie/home";
-	}
+	
 	
 }

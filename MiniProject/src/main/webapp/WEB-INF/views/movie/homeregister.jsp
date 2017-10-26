@@ -116,10 +116,24 @@
 				<div class="bg-faded p-4 my-4 listpoint">
 
 					  <form method="post">
-					    <input type='text' name='uid' >
-					    <input type='text' name='upw' > 
-					    <input type='submit'>
-					  </form>
+						
+						  
+						<div class="row">
+							<label for="name">ID:</label><br>
+							<input type='text'  name='uid'  size="30"><br>
+						</div>
+						<div class="row">
+							<label for="name">PW:</label><br>
+							<input type='text'  name='upw'  size="30"><br>
+						</div>
+						 <button name="Submit"   class="btn btn-default" type="submit" >
+							register
+						</button>
+						
+					</form>
+					<button name="Submit"   class="btn btn-default" type="submit" >
+						<a href="/movie/home">home</a>
+					</button>
 
 				</div>
 			</div>

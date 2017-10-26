@@ -82,14 +82,14 @@
 		
 		<!-- Sections -->
         
-		<div id= "attachList">
+		<div class="attachList" id= "attachList">
 			
 			
 			<c:forEach items="${attach}" var="attach">
 							
 					 <li data-file="${attach.thumbName }">${attach.thumbName }<div><img id='drgImg' src='/upload/new/${attach.thumbName } '></div></li>
 			</c:forEach>
-			</div>
+		</div>
 		
 		
 		<section id="contact" class="contact sections">
@@ -128,32 +128,46 @@
 	<input type="hidden" name="tno" value="${view.tno }">
 	<input type="hidden" name="title" value="${view.title }">
 	<input type="hidden" name="writer" value="${view.writer }">
-	<input  TYPE="IMAGE" src="/resources/js/assets/images/check.png" 
-	name="Submit" value="reg"  align="absmiddle"  class = "pen">
-	<div class="pen">
-	<a href="/movie/list"><img src="/resources/js/assets/images/hom.png"></a>
-	</div>
+	<!-- <input  TYPE="IMAGE" src="/resources/js/assets/images/check.png" 
+	name="Submit" value="reg"  align="absmiddle"  class = "pen"> -->
+	
+	<button id="writeBtn" name="Submit" class="btn btn-default" type="submit" value="reg">
+		modify
+	</button>
+	
+	<button id="writeBtn" class="btn btn-default" type="button">
+		<a href="/movie/list">list</a>
+	</button>
+	
 </form>
  <video src="c:/zzz/${view.tno }.mp4" type="video/mp4" width="320" height="240" controls >
 
 </video>
 
-<img id="showBtn1" class="showBtn1" src="/resources/js/assets/images/reply.png" ></img>
+<!-- <img id="showBtn1" class="showBtn1" src="/resources/js/assets/images/reply.png" ></img> -->
+<button id="showBtn1"  class="btn btn-default" type="button" >
+		showReply
+	</button>
 
 <div id="hide">
 	<input type="hidden" id="tno" value="${view.tno }">
 	<input type="text" id="reply" value="reply">
 	<input type="text" id="replyer" value="replyer">
 
-<div class="pen">
-	<img id="replyBtn" class="replyBtn" src="/resources/js/assets/images/check.png" ></img>
-</div>
+
+<button id="replyBtn"  class="btn btn-default" type="button" >
+		add
+	</button>
+
 <div class="replyUL">
 
 </div>
 
-<div class="pen"><img id="closeBtn" class="closeBtn" src="/resources/js/assets/images/close.png" ></img>
-</div>
+<!-- <div class="pen"><img id="closeBtn" class="closeBtn" src="/resources/js/assets/images/close.png" ></img>
+</div> -->
+<button id="closeBtn"  class="btn btn-default" type="button" >
+		closeReply
+	</button>
 
 
 </div>
@@ -240,10 +254,13 @@
 	    getReplies();
 	 
 		$("#hide").show("slow");
+		
+		
+		
 	  });
 	  
   
-  $(".closeBtn").click(function (e) {
+  $("#closeBtn").click(function (e) {
 	  
 	  $("#hide").hide("slow");
 	  
@@ -290,7 +307,7 @@ $(".replyUL").on("click","li", function(e){
     console.log(children);
 
     
- $(this).replaceWith($('<li>'+rno+'</li>  <input value="'+text+'" name=text> </input>'+"<img data-rno='"+ rno +
+ $(this).replaceWith($('<li>'+rno+'</li>  <input value="'+author+'" name=text> </input>'+"<img data-rno='"+ rno +
 			"' name='modImg' class='pen' src='/resources/js/assets/images/check.png'></li>"));
 
 

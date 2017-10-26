@@ -28,16 +28,19 @@
 	
 	<beans:bean id="checkLogin" class="com.java96.interceptor.LoginCheck"></beans:bean>
 	
-	<beans:bean id="AfterLogin" class="com.java96.interceptor.LoginAfter"></beans:bean> 
+	<beans:bean id="AfterLogin" class="com.java96.interceptor.LoginAfter"></beans:bean>
+	
+	<beans:bean id="Logout" class="com.java96.interceptor.Logout"></beans:bean> 
 	
 	
 	<interceptors>	  
 	  <interceptor>
 	    
-	    <mapping path="/movie/**/"/>
-	    <exclude-mapping path="/movie/home"/>
-	    <exclude-mapping path="/movie/homeregister"/>
-	    <exclude-mapping path="/movie/homemodify"/>
+	    <mapping path="/movie/modify"/>
+	    <mapping path="/movie/register"/>
+	    <mapping path="/movie/view"/>
+	    <mapping path="/movie/list"/>
+	   
 	    <beans:ref bean="checkLogin"/>
 	    
 	  </interceptor>
@@ -46,6 +49,12 @@
 	    <mapping path="/movie/home"/>
 	    <beans:ref bean="AfterLogin"/>
 	  </interceptor>  
+	  
+	  <interceptor>
+	  	<mapping path="/movie/logout"/>
+	  	<beans:ref bean="Logout"/>
+	  
+	  </interceptor>
 	  
 	  
 	  
