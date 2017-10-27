@@ -86,15 +86,19 @@
 						</div>
 						<div class="row">
 							<label for="name">PW:</label><br>
-							<input type='text'  name='upw'  size="30"><br>
+							<input type='password'  name='upw'  size="30"><br>
 						</div>
+						<br>
 						 <button name="Submit"   class="btn btn-default" type="submit" >
 							login
-						</button>
-						<input type="checkbox" name="auto">
+						</button></br>
+						<input type="checkbox" name="auto"> Remember
 					</form>
-					<button name="Submit"   class="btn btn-default" type="submit" >
+					<button name="button"   class="btn btn-default" type="submit" >
 						<a href="/movie/homeregister">register</a>
+					</button>
+					<button name="button"   class="btn btn-default" type="submit" >
+						<a href="/movie/homemodify">modify</a>
 					</button>
 
 				</div>

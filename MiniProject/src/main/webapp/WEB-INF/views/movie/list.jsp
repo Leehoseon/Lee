@@ -147,7 +147,7 @@
 								      <th id="Views" scope="col">Views</th>
 								    </tr>
 								  </thead> -->
-								  <tbody>
+								  <tbody class="tablehover">
 								  	<tr id="sortTable">
 								      <td id="No" scope="col">No</th>
 								      <td id="Title" scope="col">Title</th>
@@ -193,14 +193,14 @@
 												<button type="button"
 													class="btn btn-default dropdown-toggle"
 													data-toggle="dropdown">
-													<span id="search_concept">Filter by</span> <span
+													<span id="search_concept">${criteria.searchType }</span> <span
 														class="caret"></span>
 												</button>
 												<ul class="dropdown-menu" role="menu">
 													<li value="title">title</li><br>
 													<li value="writer">writer</li><br>
-													<li class="divider"></li>
-													<li><a href="#all">Anything</a></li>
+													<li value="all">all</li>
+													
 												</ul>
 											</div>
 											<form method="get" id="searchForm">
@@ -337,8 +337,6 @@ $(document).ready(function(){
 	 
 	  
 	  $(".pageArea").html(pageStr);
-	  
-	  
 	  
 	  
 	  $(".pageArea").on("click","li", function (e) {

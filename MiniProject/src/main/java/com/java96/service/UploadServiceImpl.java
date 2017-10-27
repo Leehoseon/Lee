@@ -28,7 +28,7 @@ public class UploadServiceImpl implements UploadService {
 	}
 
 	@Override
-	public List<UploadDTO> viewAttach(Long tno) {
+	public List<UploadDTO> viewAttach(int tno) {
 		return mapper.viewAttach(tno);
 	}
 

@@ -23,7 +23,7 @@
 	      <if test="searchType == 'writer' ">
 	         AND writer like #{keyword}
 	      </if>
-      
+	      
   	
 		</if>
 		
@@ -33,17 +33,20 @@
 		
 			<choose>
 			
-					<when test="sortName == 'no' ">
+					<when test="sortName == 'No' ">
 					 tno
 					</when>
-					<when test="sortName == 'title' ">
+					<when test="sortName == 'Title' ">
 					 title
 					</when>
-					<when test="sortName == 'date' ">
+					<when test="sortName == 'Date' ">
 					 regdate
 					</when>
-					<when test="sortName == 'user' ">
+					<when test="sortName == 'User' ">
 				 	writer
+					</when>
+					<when test="sortName == 'Views' ">
+				 	dbhit *1
 					</when>
 			
 			<otherwise>

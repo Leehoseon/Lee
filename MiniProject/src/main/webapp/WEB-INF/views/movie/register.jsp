@@ -110,7 +110,8 @@
 			<!-- <label for="message">Your message:</label><br>
 			<textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br> -->
 			<label for="name">Writer:</label><br>
-			<input type='text' class="input" name='writer'   size="30" value="${membername }"><br>
+			<input type='text' class="input" name='writer'   size="30" value="${member.uid }" readonly="readonly"><br>
+
 <br>
 	<button name="Submit" value="reg" id="regBtn"  class="btn btn-default" type="submit" >
 		register
@@ -118,7 +119,7 @@
 	<button name="SubmitList" value="list" id="listBtn"  class="btn btn-default" type="submit" >
 		list
 	</button>
-<div id="filename"></div>
+<div  id="filename"></div>
 		
 		</div>
 		</form>
@@ -135,7 +136,7 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 </form>
 -->
 <form class="btn btn-default" id="fileForm"  enctype="multipart/form-data" method="POST">
-<input class="btn btn-default" type="file" id="file" name="file" mutiple/>
+<input class="btn btn-default" type="file" id="file" name="file"  mutiple="multuple">
 <button class="btn btn-default"  id="subBtn" type="submit">추가</button>
 
 <form id = fileNameForm>
@@ -186,7 +187,45 @@ name="Submit" value="reg"  align="absmiddle"  class = "pen">
 
 
 $(document).ready(function(){
+	
+	
+	
 	var jbAry = new Array();
+	
+	
+	$("#regBtn").on("click",function (e) {
+		
+		e.preventDefault();
+		
+		
+		$("#contact_form").submit();
+		
+		
+		
+	})
+	
+	
+	function registerForm() {
+  	  
+		
+		
+  	  
+  	  
+  	  
+	  	$.ajax({
+			  url:'/upload/add',
+			  data: JSON.stringify({writer:"writer"}),
+			  dataType:'json',
+			  processData: false,
+			  contentType: 'application/json; charset=utf-8',
+			  type: 'POST',
+			  success: function(data){
+				  
+			  }
+		  });
+  	  
+		
+	}registerForm();
 	
 		$("#listBtn").on("click", function (e) {
 		
@@ -254,6 +293,8 @@ $(document).ready(function(){
 		          e.preventDefault();
 		          
 
+		          
+		          
 		          var files = e.originalEvent.dataTransfer.files;
 		          if(files.length < 1)
 		               return;
@@ -294,7 +335,7 @@ $(document).ready(function(){
 							str ="<li data-file='" + data.uploadName  +"'><div>";
 							str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
 							str +="<span>" + data.original + " </span>";
-							str +="<button id='delBtn'>del</button>"
+							str +="<button class='btn btn-default' id='delBtn'>del</button>"
 							str +="</div></li>";
 							$(".imgList").append(str);
 							

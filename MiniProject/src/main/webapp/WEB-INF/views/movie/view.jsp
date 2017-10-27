@@ -82,14 +82,7 @@
 		
 		<!-- Sections -->
         
-		<div class="attachList" id= "attachList">
-			
-			
-			<c:forEach items="${attach}" var="attach">
-							
-					 <li data-file="${attach.thumbName }">${attach.thumbName }<div><img id='drgImg' src='/upload/new/${attach.thumbName } '></div></li>
-			</c:forEach>
-		</div>
+		
 		
 		
 		<section id="contact" class="contact sections">
@@ -140,6 +133,15 @@
 	</button>
 	
 </form>
+<br>
+
+<div class="btn btn-default" id= "attachList">
+	
+	<c:forEach items="${attach}" var="attach">
+							
+		<li data-file="${attach.thumbName }">${attach.thumbName }<div><img id='drgImg' src='/upload/new/${attach.thumbName } '></div></li>
+	</c:forEach>
+</div>
  <video src="c:/zzz/${view.tno }.mp4" type="video/mp4" width="320" height="240" controls >
 
 </video>
@@ -150,21 +152,25 @@
 	</button>
 
 <div id="hide">
+	
+
 	<input type="hidden" id="tno" value="${view.tno }">
 	<input type="text" id="reply" value="reply">
-	<input type="text" id="replyer" value="replyer">
-
-
-<button id="replyBtn"  class="btn btn-default" type="button" >
+	<input type="text" id="replyer" value="${view.writer }" readonly="readonly"> 
+	<button id="replyBtn"  class="btn btn-default" type="button" >
 		add
 	</button>
 
-<div class="replyUL">
+</br>
+<div class='btn btn-default' id="replyUL">
 
 </div>
 
+
 <!-- <div class="pen"><img id="closeBtn" class="closeBtn" src="/resources/js/assets/images/close.png" ></img>
 </div> -->
+
+<br>
 <button id="closeBtn"  class="btn btn-default" type="button" >
 		closeReply
 	</button>
@@ -227,8 +233,14 @@
   
 
   <script>
-  
-	function getReplies(){
+  $(document).ready(function(){
+	  
+	  
+	  
+	  $("#hide").hide();
+	
+	  
+	  function getReplies(){
 	  
 		 var tno = ${view.tno };
 		  
@@ -237,14 +249,14 @@
 		 $.getJSON("/reply/list/${view.tno }",function(arr){
 		 
 			for(var i = 0; i < arr.length; i++){
-				str +="<li name='rli' data-rno='"+ arr[i].rno +"'>"+arr[i].replyer +"  " + arr[i].reply +"<img data-rno='"+ arr[i].rno +
-				"' name='delImg' class='pen' src='/resources/js/assets/images/close.png'>"
+				str +="<br><li name='rli' data-rno='"+ arr[i].rno +"'>"+arr[i].replyer +"  " + arr[i].reply +"<button data-rno='"+ arr[i].rno +
+				"' name='delbtn' class='btn btn-default' type='button'>Delete</button><br>"
 				
 				/* +"<img data-rno='"+ arr[i].rno +
 				"' name='modImg' class='pen' src='/resources/js/assets/images/check.png'></li>" */;
 			}
   		console.log(str);
-		$(".replyUL").html(str);
+		$("#replyUL").html(str);
 		
 	 	 });
  	};
@@ -252,6 +264,8 @@
   $("#showBtn1").click(function(e){
 	  
 	    getReplies();
+	    
+	    
 	 
 		$("#hide").show("slow");
 		
@@ -288,34 +302,35 @@
 	  $("#hide").show("slow"); */
 }); 
   
-$(".replyUL").on("click","li", function(e){
- var $this = $(this)
+$("#replyUL").on("click","li", function(e){
+	 var $this = $(this)
 	
 	var  cls = $this.attr("name");
     var  rno = $this.attr("data-rno");
-    var text = $(".replyUL li").text();
-    var tmp = text.split(" ");
+    var text = $("#replyUL li").text();
+    var tmp = text.split("r ");
     var title = tmp[0];
     var author = tmp[1];
     var children = $(text).children();
     
-    console.log("===============");
+    console.log(tmp);
     console.log(title);
     console.log(author);
-    console.log("===============");
-    console.log(text);
     console.log(children);
+    
+    
+  
 
     
- $(this).replaceWith($('<li>'+rno+'</li>  <input value="'+author+'" name=text> </input>'+"<img data-rno='"+ rno +
-			"' name='modImg' class='pen' src='/resources/js/assets/images/check.png'></li>"));
+ $(this).replaceWith($('<li>'+rno+'</li>  <input value="'+title+'" name=text> </input>'+"<button data-rno='"+ rno +
+			"' name='modBtn'class='btn btn-default' type='button' >Modify</button></li><br>"));
 
 
 
 });
   
   
-$(".replyUL").on("click","img", function(e){
+$("#replyUL").on("click","button", function(e){
 	var $this = $(this)
 	
 	var  cls = $this.attr("name");
@@ -324,7 +339,7 @@ $(".replyUL").on("click","img", function(e){
 	console.log(cls);
 	
 	
-	 if(cls==="delImg"){ 
+	 if(cls==="delbtn"){ 
 	  var $this = $(this)	
 	  
 	  var  data = $this.attr("data-rno");
@@ -351,13 +366,13 @@ $(".replyUL").on("click","img", function(e){
 	  /* $("#hide").hide("slow");
 	  $("#hide").show("slow"); */
 	 }
-	 else if(cls==="modImg") {
+	 else if(cls==="modBtn") {
 		 
 		 
-		 var strr = $(".replyUL").find("input").val();
+		 var strr = $("#replyUL").find("input").val();
 		 
 		 var  data = $this.attr("data-rno");
-		 var reply = $(".replyUL").find("input").val();
+		 var reply = $("#replyUL").find("input").val();
 		 console.log(reply);
 		 console.log(data);
 		 
@@ -384,7 +399,8 @@ $(".replyUL").on("click","img", function(e){
 	 
 	 
 	 
-}); 
+  }); 
+});
 	  
   
   </script>

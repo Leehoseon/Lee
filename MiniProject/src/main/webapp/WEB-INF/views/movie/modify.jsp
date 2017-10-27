@@ -81,13 +81,7 @@
 		
 		
 		<!-- Sections -->
-        <div id="attachArea" >
-        <c:forEach items="${attach}" var="attach">
-							
-					 <li data-file="${attach.thumbName }">${attach.uploadName }<div><img id='drgImg' src='/upload/new/${attach.thumbName } '></div></li> 
-					 
-			</c:forEach>
-			</div>
+        
 		
         
 		
@@ -120,18 +114,27 @@
 			<input type='text' class="input" name='writer'  value="${view.writer }" size="30"><br>
 <br>
 
-<button name="Submit" value="modify" id="closeBtn"  class="btn btn-default" type="submit" >
+<button name="modBtn" value="modify" id="modBtn"  class="btn btn-default" type="submit" >
 		OK
 	</button>
 	<button id="removeBtn" name="removeBtn" value="remove"  class="btn btn-default" type="submit" >
 		remove
 	</button>
-	<button name="Submit" value="list" id="closeBtn"  class="btn btn-default" type="submit" >
+	<button name="listBtn" value="list" id="listBtn"  class="btn btn-default" type="button" >
 		list
 	</button>
+	
+	
 		</div>
 		</form>
-
+		<br>
+			<div class="btn btn-default" id="attachArea" >
+	        	<c:forEach items="${attach}" var="attach">
+								
+					 <li data-file="${attach.thumbName }">${attach.uploadName }<div><img id='drgImg' src='/upload/new/${attach.thumbName } '></div></li> 
+						 
+				</c:forEach>
+			</div>
  </div>
 
 
@@ -180,6 +183,19 @@
 
 <script>
 $(document).ready(function(){
+	
+	$("#modBtn").on("click", function (e) {
+		
+		e.preventDefault();
+		
+		
+		
+		
+		$("#contact_form").submit();
+		
+		 window.location="/movie/view?tno=${view.tno }"; 
+		
+	})
 	
 	
 	$("#listBtn").on("click", function (e) {
@@ -269,7 +285,7 @@ $("#contact").on('drop', function (e) {
 function F_FileMultiUpload(files) {
 	/* parseInt("${view.tno}", 10) */
 	 var tno = parseInt("${view.tno}");
-	 var tno = parseInt(405);
+	 
 	  
          var data = new FormData();
             data.append('tno',tno); 
@@ -302,7 +318,7 @@ function F_FileMultiUpload(files) {
 				str ="<li data-file='" + data.uploadName  +"'><div>";
 				str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
 				str +="<span>" + data.original + " </span>";
-				str +="<button id='delBtn'>del</button>"
+				str +="<button class='btn btn-default' id='delBtn'>del</button>"
 				str +="</div></li>";
 				
 				$("#attachArea").append(str);

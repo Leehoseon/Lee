@@ -2,9 +2,7 @@ package com.java96.web;
 
 
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.util.WebUtils;
 
 
+import com.java96.dto.MemberVO;
 import com.java96.dto.MovieDTO;
 import com.java96.dto.SearchCriteria;
 import com.java96.service.MovieService;
@@ -56,16 +54,21 @@ public class MovieController {
 	
 	
 	@GetMapping("/view")
-	public void view(Long tno, Model model) {
+	public void view(int tno, Model model) {
 		
-		
+		service.updateReplycnt(tno);
 		model.addAttribute("attach", upservice.viewAttach(tno));
 		model.addAttribute("view", service.getView(tno));
 		
 	}
 	
 	@GetMapping("/register")
-	public void registerGet() {
+	public void registerGet(HttpSession session, Model model) {
+		
+		
+		MemberVO member =   (MemberVO) session.getAttribute("memberDTO");
+		
+		model.addAttribute("member",member);
 		
 		
 	}
@@ -82,7 +85,7 @@ public class MovieController {
 	}
 	
 	@GetMapping("/modify")
-	public void modifyGet(Long tno, Model model) {
+	public void modifyGet(int tno, Model model) {
 		
 		
 		model.addAttribute("attach", upservice.viewAttach(tno));
@@ -91,17 +94,21 @@ public class MovieController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(MovieDTO dto) {
+	public void modify(MovieDTO dto) {
 		log.info("=============");
 		log.info("dto"+dto);
 		log.info("=============");
 		service.modify(dto);
 		
-		return "redirect:/movie/list";
+		int tno = dto.getTno();
+		
+		
+		
+		/*return "redirect:/movie/view";*/
 	}
 	
 	@PostMapping("/remove")
-	public String remove(Long tno) {
+	public String remove(int tno) {
 		log.info("tno" +tno);
 		service.remove(tno);
 		

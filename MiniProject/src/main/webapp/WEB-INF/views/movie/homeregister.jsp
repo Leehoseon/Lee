@@ -124,7 +124,7 @@
 						</div>
 						<div class="row">
 							<label for="name">PW:</label><br>
-							<input type='text'  name='upw'  size="30"><br>
+							<input type='password'  name='upw'  size="30"><br>
 						</div>
 						 <button name="Submit"   class="btn btn-default" type="submit" >
 							register

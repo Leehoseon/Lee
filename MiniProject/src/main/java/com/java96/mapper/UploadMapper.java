@@ -18,7 +18,7 @@ public interface UploadMapper {
 	
 	
 	@Select("select * from tbl_testattach where tno= #{tno}")
-	public List<UploadDTO> viewAttach(Long tno);
+	public List<UploadDTO> viewAttach(int tno);
 	
 	
 	

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java96.dto.MovieDTO;
 import com.java96.dto.UploadDTO;
 import com.java96.service.MovieService;
 import com.java96.service.UploadService;
@@ -40,6 +41,8 @@ public class UploadController {
 	
 	@Autowired
 	UploadService upservice;
+	@Autowired
+	MovieService mservice;
 	
 	
 	
@@ -238,6 +241,14 @@ public class UploadController {
 		
 		return map;
 		
+		
+	}
+	
+	@PostMapping("/add")
+	public void firstAdd(@RequestBody MovieDTO dto) {
+		log.info("uploaduploaduploaduploaduploaduploaduploadupload"+dto);
+		
+		mservice.registerAdd(dto);
 		
 	}
 	

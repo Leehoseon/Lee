@@ -31,6 +31,24 @@ public class MemberServiceImpl implements MemberService {
 
 
 
+	@Override
+	public void modify(MemberDTO dto) {
+		
+		mapper.modify(dto);
+		
+		
+	}
+
+
+
+	@Override
+	public void remove(MemberDTO dto) {
+		mapper.remove(dto);
+		
+	}
+
+
+
 
 
 

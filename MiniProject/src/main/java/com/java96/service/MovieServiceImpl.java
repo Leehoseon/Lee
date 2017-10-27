@@ -27,8 +27,9 @@ public class MovieServiceImpl implements MovieService {
 
 
 	@Override
-	public MovieDTO getView(Long tno) {
+	public MovieDTO getView(int tno) {
 		
+		mapper.updateReplyCnt(tno);
 		mapper.updatedbhit(tno);
 		return mapper.view(tno);
 	}
@@ -44,7 +45,7 @@ public class MovieServiceImpl implements MovieService {
 
 
 	@Override
-	public void remove(Long tno) {
+	public void remove(int tno) {
 		
 		mapper.remove(tno);
 		
@@ -62,6 +63,20 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public int getTotal(Criteria cri) {
 		return mapper.getTotal(cri);
+	}
+
+
+	@Override
+	public void updateReplycnt(int tno) {
+		mapper.updateReplyCnt(tno);
+		
+	}
+
+
+	@Override
+	public void registerAdd(MovieDTO dto) {
+		mapper.registerAdd(dto);
+		
 	}
 
 

@@ -11,7 +11,7 @@ public interface UploadService {
 	
 	public void deleteAttach(UploadDTO dto);
 	
-	public List<UploadDTO> viewAttach(Long tno);
+	public List<UploadDTO> viewAttach(int tno);
 	
 	public void modifyAttach(UploadDTO dto);
 

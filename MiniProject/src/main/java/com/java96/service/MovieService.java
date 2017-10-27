@@ -17,14 +17,17 @@ public interface MovieService {
 		public List<MovieDTO> getList(Criteria cri);
 	
 
-		public MovieDTO getView(Long tno);
+		public MovieDTO getView(int tno);
 		
 		public void register(MovieDTO dto);
 		
-		public void remove(Long tno);
+		public void remove(int tno);
 		
 		public void modify(MovieDTO dto);
 		
+		public void updateReplycnt(int tno);
+		
+		public void registerAdd(MovieDTO dto);
 		
 		
 		

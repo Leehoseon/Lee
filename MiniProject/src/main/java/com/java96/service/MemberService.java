@@ -9,4 +9,8 @@ public interface MemberService {
 	
 	public void register(MemberDTO dto);
 	
+	public void modify(MemberDTO dto);
+	
+	public void remove(MemberDTO dto);
+	
 }

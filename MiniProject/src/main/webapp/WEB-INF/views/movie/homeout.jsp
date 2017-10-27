@@ -77,11 +77,25 @@
 
 				<div class="bg-faded p-4 my-4 listpoint">
 
-					
+					<form method="post">
+						
+						  
+						<div class="row">
+							<label for="name">ID:</label><br>
+							<input type='text'  name='uid'  size="30"><br>
+						</div>
+						<div class="row">
+							<label for="name">PW:</label><br>
+							<input type='password'  name='upw'  size="30"><br>
+						</div>
+						 <button name="Submit"   class="btn btn-default" type="submit" >
+							out
+						</button>
+						
+					</form>
 					<button name="Submit"   class="btn btn-default" type="submit" >
 						<a href="/movie/home">home</a>
 					</button>
-					
 				</div>
 			</div>
 		</div>

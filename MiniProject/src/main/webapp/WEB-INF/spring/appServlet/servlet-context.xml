@@ -47,6 +47,7 @@
 	  
 	  <interceptor>
 	    <mapping path="/movie/home"/>
+	    <mapping path="/movie/list"/>
 	    <beans:ref bean="AfterLogin"/>
 	  </interceptor>  
 	  

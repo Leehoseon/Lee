@@ -73,6 +73,42 @@ public class LoginController {
 		return "redirect:/movie/home";
 	}
 	
+	@GetMapping("/homemodify")
+	public void homeModify() {
+		
+		
+		
+	}
+	
+	@PostMapping("/homemodify")
+	public String homeModifyPost(MemberDTO dto, Model model) {
+		
+		
+		
+		service.modify(dto);
+		
+		return "redirect:/movie/home";
+		
+	}
+	
+	@GetMapping("/homeout")
+	public void homeOut() {
+		
+		
+		
+	}
+	
+	@PostMapping("/homeout")
+	public String homeOutPost(MemberDTO dto, Model model) {
+		
+		service.remove(dto);
+		
+		
+		return "redirect:/movie/home";
+		
+		
+		
+	}
 	
 	
 	
