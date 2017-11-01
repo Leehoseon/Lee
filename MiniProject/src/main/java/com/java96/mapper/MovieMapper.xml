@@ -17,11 +17,11 @@
       <if test="searchType != null">
 	
 	      <if test="searchType == 'title' ">
-	         title like #{keyword}
+	         title like concat("%", #{keyword} ,"%")
 	      </if>
 			
 	      <if test="searchType == 'writer' ">
-	         AND writer like #{keyword}
+	         AND writer like concat("%", #{keyword} ,"%")
 	      </if>
 	      
   	
@@ -85,11 +85,11 @@
 		<if test="searchType != null">
 	
 	      <if test="searchType == 'title' ">
-	         title like #{keyword}
+	         title like concat("%", #{keyword} ,"%")
 	      </if>
 			
 	      <if test="searchType == 'writer' ">
-	         AND writer like #{keyword}
+	         AND writer like concat("%", #{keyword} ,"%")
 	      </if>
       
   	

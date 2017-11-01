@@ -1,145 +1,61 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>web</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<link rel="stylesheet" href="/resources/js/assets/css/bootstrap.min.css">
-<!--        <link rel="stylesheet" href="/resources/js/assets/css/bootstrap-theme.min.css">-->
-
-
-<!--For Plugins external css-->
-<link rel="stylesheet" href="/resources/js/assets/css/plugins.css" />
-<link rel="stylesheet"
-	href="/resources/js/assets/css/magnific-popup.css">
-
-<link rel="stylesheet" href="/resources/js/assets/css/nexa-web-font.css" />
-<link rel="stylesheet"
-	href="/resources/js/assets/css/opensans-web-font.css" />
-
-<!--Theme custom css -->
-<link rel="stylesheet" href="/resources/js/assets/css/style.css">
-
-<!--Theme Responsive css-->
-<link rel="stylesheet" href="/resources/js/assets/css/responsive.css" />
-
-<script
-	src="/resources/js/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-</head>
-<body>
-
-</body>
-</html>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>web</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<link rel="stylesheet" href="/resources/js/assets/css/bootstrap.min.css">
-<!--        <link rel="stylesheet" href="/resources/js/assets/css/bootstrap-theme.min.css">-->
-
-
-<!--For Plugins external css-->
-<link rel="stylesheet" href="/resources/js/assets/css/plugins.css" />
-<link rel="stylesheet"
-	href="/resources/js/assets/css/magnific-popup.css">
-
-<link rel="stylesheet" href="/resources/js/assets/css/nexa-web-font.css" />
-<link rel="stylesheet"
-	href="/resources/js/assets/css/opensans-web-font.css" />
-
-<!--Theme custom css -->
-<link rel="stylesheet" href="/resources/js/assets/css/style.css">
-
-<!--Theme Responsive css-->
-<link rel="stylesheet" href="/resources/js/assets/css/responsive.css" />
-
-<script
-	src="/resources/js/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-</head>
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<!-- Brand and toggle get grouped for better mobile display -->
-
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="/movie/list">Home</a></li>
-				<li><a href="/movie/logout">logout</a></li>
-				<li><a href="#about"></a></li>
-				<li><a href="#portfolio"></a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
-
-
-	<!--Home page style-->
-	<header id="home" class="home">
-		<div class="overlay sections">
-			<div class="container">
-
-				<div class="row"></div>
-			</div>
-		</div>
-	</header>
-
-	<!-- Sections -->
-
-
-
-	<!-- Sections -->
-
-
-	<section id="contact" class="contact sections">
-
-		<div class="col-md-6 col-md-offset-3">
-			<div class="contact-details text-center">
-
-
-				<div class="bg-faded p-4 my-4 listpoint">
-
-					  <form method="post">
-						
-						  
-						<div class="row">
-							<label for="name">ID:</label><br>
-							<input type='text'  name='uid'  size="30"><br>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>회원 가입</title>
+		<link href='<c:url value="/resources/bootstrap/css/bootstrap.min.css"></c:url>' rel="stylesheet">
+		<link href='<c:url value="/resources/font-awesome/css/font-awesome.min.css"></c:url>' rel="stylesheet">
+		<link href='<c:url value="/resources/css/sb-admin.css"></c:url>' rel="stylesheet">
+		<script src='<c:url value="/resources/bootstrap/js/bootstrap.bundle.min.js"> </c:url>'></script>
+		<script src='<c:url value="/resources/jquery/jquery.min.js"> </c:url>'></script>
+		<script src='<c:url value="/resources/jquery/jquery.easing.min.js"></c:url>'></script>
+		<script>
+		
+		</script>
+	</head>
+	<body class="bg-dark">
+		<div class="container">
+			<div class="card card-register mx-auto mt-5">
+				<div class="card-header">회원 가입</div> 
+				<div class="card-body">
+					<form method="post">
+						<div class="form-group">
+							<label for="loginId">아이디</label>
+						    <input class="form-control" id="loginId" name="uid" type="text" 
+						        	placeholder="아이디를 입력하세요">
 						</div>
-						<div class="row">
-							<label for="name">PW:</label><br>
-							<input type='password'  name='upw'  size="30"><br>
+						<div class="form-group">
+							<div class="form-row">
+								<div class="col-md-6">
+									<label for="password">비밀번호</label> 
+									<input class="form-control" id="password" name="upw" type="password"
+										placeholder="비밀번호 입력">
+								</div>
+								
+							</div>
 						</div>
-						 <button name="Submit"   class="btn btn-default" type="submit" >
-							register
-						</button>
-						
+						<div class="form-group">
+							<label for="name">이름</label>
+						     <input class="form-control" id="name" name="name" type="text" 
+						        	placeholder="이름을 입력하세요.">
+						</div>
+						<div class="form-group">
+							<label for="email">이메일</label> 
+							<input class="form-control" id="email" type="email" placeholder="이메일 입력">
+						</div>
+						<button class="btn btn-primary btn-block" type="submit">등록</button>
 					</form>
-					<button name="Submit"   class="btn btn-default" type="submit" >
-						<a href="/movie/home">home</a>
-					</button>
-
+					<div class="text-center">
+						<a class="d-block small mt-3" href="/movie/home">로그인 페이지로</a> 
+					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-
-</body>
+	</body>
 </html>
-

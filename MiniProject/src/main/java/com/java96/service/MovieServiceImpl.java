@@ -38,7 +38,21 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	
 	public void register(MovieDTO dto) {
-		mapper.register(dto);
+		
+		String filename = dto.getFilename();
+		
+		System.out.println(filename+"filname");
+		
+		if(filename != null) {
+			mapper.register(dto);
+			
+		}
+		if(filename == null) {
+			
+			mapper.registerAdd(dto);
+		}
+		
+		
 		
 		
 	}

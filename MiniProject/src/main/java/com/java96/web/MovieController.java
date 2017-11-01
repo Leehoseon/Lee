@@ -85,8 +85,12 @@ public class MovieController {
 	}
 	
 	@GetMapping("/modify")
-	public void modifyGet(int tno, Model model) {
+	public void modifyGet(int tno, HttpSession session, Model model) {
 		
+		
+		MemberVO member =   (MemberVO) session.getAttribute("memberDTO");
+		
+		model.addAttribute("member",member);
 		
 		model.addAttribute("attach", upservice.viewAttach(tno));
 		model.addAttribute("view",service.getView(tno));
