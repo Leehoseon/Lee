@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class MovieDTO {
 
-	private String title,writer;
+	private String title,writer,content;
 	private int tno;
 	private Date regdate;
 	private int replycnt;

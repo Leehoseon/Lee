@@ -11,18 +11,18 @@
 		<div class="container-fluid">
 			<div class="card mb-3">
 				<div class="card-body">
-					<form action="" id="submitFrm">
+					<form action="/movie/modify" id="submitFrm">
 						<div class="form-group">
 							<label for="title">제목</label> 
 							<div class="form-control" id="title" name="title" readonly="readonly" value="${view.title }" style="height:38px;">${view.title }</div>
 						</div>
 						<div class="form-group">
 							<label for="author">작성자</label> 
-							<input class="form-control" name="author" id="author" type="text" readonly="readonly" value="${view.writer }">
+							<input class="form-control" name="writer" id="author" type="text" readonly="readonly" value="${view.writer }">
 						</div>
 						<div class="form-group">
 							<label for="editor">내용</label>
-							<textarea class="form-control" name="editor" id="editor" style="width: 100%; height:400px" disabled></textarea>
+							<textarea class="form-control" name="content" id="editor" style="width: 100%; height:400px" disabled>${view.content }</textarea>
 						</div>
 						<input type="hidden" id="tno" name="tno" value="${view.tno }" />
 						<div class="form-group">
@@ -39,7 +39,7 @@
 						</div>
 						<div class="btn-group pull-right" role="group" aria-label="...">
 							
-							<button id="writeBtn" name="Submit" class="btn btn-default" type="submit" value="reg">
+							<button id="writeBtn" class="btn btn-default" type="submit">
 								수정
 							</button>
 	
@@ -100,6 +100,7 @@
 	<input type="hidden" name="tno" value="${view.tno }">
 	<input type="hidden" name="title" value="${view.title }">
 	<input type="hidden" name="writer" value="${view.writer }">
+	<input type="hidden" name="writer" value="${view.content }">
 
 </form>
 
@@ -140,10 +141,10 @@
 				/* str +="<br><li name='rli' data-rno='"+ arr[i].rno +"'>"+arr[i].replyer +"  " + arr[i].reply +"<button data-rno='"+ arr[i].rno +
 				"' name='delbtn' class='btn btn-default' type='button'>Delete</button><br>" */
 				
-				str += "<div class='input-group' ><div class='input-group-addon col-md-2' data-rno='"+ arr[i].rno +"'>"+arr[i].replyer +"</div>"+
-							"<input class='form-control col-md-8' id='reply' value='" + arr[i].reply +"'></input>"+
-							"<div class='form-control col-md-3'>"+
-								"<button class='btn btn-default' id='replymodBtn' data-rno='"+ arr[i].rno +"' >수정</button>"+
+				str += "<div class='input-group' ><div class='input-group-addon col-md-1' data-rno='"+ arr[i].rno +"'>"+arr[i].replyer +"</div>"+
+							"<input class='form-control col-md-10' id='reply" + arr[i].rno +"' value='" + arr[i].reply +"' disabled></input>"+
+							"<div class='form-control col-md-2'>"+
+								"<button class='btn btn-default' id='replymodBtnBefore' data-rno='"+ arr[i].rno +"' >수정</button>"+
 							
 							"<button class='btn btn-default' name='"+arr[i].rno+"' id='replyDelBtn'>삭제</button>"+
 						"</div></div>";
@@ -201,7 +202,24 @@
 			  
 		}); 
   
-
+		 $("#replyArea").on("click","button", function (e) {
+			 
+			 e.preventDefault();
+			 
+			 var $this = $(this);
+			 
+			 var rno = $this.attr("data-rno");
+			 
+			 console.log(rno);
+			 
+			  $this.replaceWith("<button class='btn btn-default' id='replymodBtn' data-rno='"+rno+"'>확인</button>");
+			 
+			 $("#reply"+rno+"").removeAttr("disabled");
+			 
+			 console.log($this);
+			 
+			
+		});
   
   
 		 $("#replyArea").on("click","button", function(e){
@@ -252,8 +270,9 @@
 				  
 				  var rno = data;
 				 
-				  var reply = $("#reply").val();
+				  var reply = $("#reply"+data+"").val();
 				  
+				  console.log(reply);
 				  
 				
 				  
@@ -275,26 +294,13 @@
 			  
 		 }); 
 	 
- 	
-	 	/* $("#modOK").on("click", function(e) {
-	 		  var $this = $(this);
-		      
-			  var  data = $this.attr("data-rno");
-			  
-			  var rno = {rno:data}; 
-			  
-			  console.log(data);
-			  console.log(rno);
-	 		
-			  
-			  
-		 }); */
-	 
  
 });
 	  
   
   </script>
+  
+  
   
 
 </body>

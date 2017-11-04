@@ -23,7 +23,7 @@
 						</div>
 						<div class="form-group">
 			                <label for="file">파일첨부</label>
-			                <div  class="filename" style="display: inline;">
+			                <div  class="filename" id="filename" style="display: inline;">
 			                
 			                <input class="form-control" type="file" id="file" name="file"  mutiple="multuple">
 							<button class="btn btn-default"  id="subBtn" type="submit">추가</button>
@@ -33,6 +33,8 @@
 						<div class="imgList" id="imgList" >
 							
 						</div>
+						
+						
 							
 						</form>
 						
@@ -54,10 +56,11 @@
 	</div>
 </div>
 
+
      
 	
 
-<!-- <script>
+<script>
 $(function(){
 	//전역변수
 	var obj = [];              
@@ -65,7 +68,7 @@ $(function(){
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: obj,
         elPlaceHolder: "content",
-        sSkinURI: Common.getContextPath() + "/resources/editor/SmartEditor2Skin.html",
+        sSkinURI: "/resources/editor/SmartEditor2Skin.html",
         htParams : {
             // 툴바 사용 여부
             bUseToolbar : true,            
@@ -76,14 +79,14 @@ $(function(){
         }
     });
     //전송버튼
-    $("#submit").click(function(){
+    $("#regBtn").click(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
         obj.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
         //폼 submit
         $("#submitFrm").submit();
     });
 });
-</script> -->
+</script>
 
 <script>
 
@@ -191,7 +194,7 @@ $(document).ready(function(){
 			$("#file").on('drop', function (e) {
 		          e.preventDefault();
 		          
-		          var list = $(".imgList").attr("li");
+		          var list = $(".imgList").find("li");
 		          
 		          if(list == null ){
 		        	  
@@ -312,28 +315,12 @@ $(document).ready(function(){
 			            contentType:'application/json; charset=utf-8',
 			            success: function(result) {
 			            	console.log("del comple./..")
-			            	
-			     
 			            } 
-			            
-			            
-				 
-			            
-				
 			});
-
-
 			});
-			
-	 
-			
 });
 
 
 </script>
 
 
-
-
-</body>
-</html>

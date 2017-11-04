@@ -19,8 +19,8 @@
 	 decorator를 검색하는 시간도 오래 걸리므로 
 	 decorator를 사용하지 않는 페이지도 반드시 등록을 해주어야 한다. -->
 	<excludes>
-		<pattern>/login</pattern>
-		<pattern>/register</pattern>
+		<pattern>/movie/home</pattern>
+		<pattern>/movie/homeregister</pattern>
 		<pattern>/resources/editor*</pattern>
 		<pattern>/excludes/*</pattern>
 		

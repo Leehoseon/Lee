@@ -13,7 +13,7 @@ public interface UploadMapper {
 	/*@Insert("insert into tbl_testattach (original,uploadName,thumbName,tno) values(#{original},#{uploadName},#{thumbName}, LAST_INSERT_ID())")*/
 	public void registerAttach(UploadDTO dto);
 	
-	@Delete("delete from tbl_testattach where uploadName = #{uploadName}")
+	@Delete("delete from tbl_testattach where thumbName = #{thumbName}")
 	public void removeAttach(UploadDTO dto);
 	
 	

@@ -24,8 +24,8 @@ public class ReplyServiceImpl implements ReplyService {
 	@Transactional
 	@Override
 	public void register_rpl(ReplyDTO dto) {
-		mmapper.updateReplyCnt(dto.getTno());
 		mapper.register(dto);
+		mmapper.updateReplyCnt(dto.getTno());
 	}
 
 	@Override

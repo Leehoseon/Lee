@@ -85,12 +85,9 @@ public class MovieController {
 	}
 	
 	@GetMapping("/modify")
-	public void modifyGet(int tno, HttpSession session, Model model) {
+	public void modifyGet(int tno,  Model model) {
 		
 		
-		MemberVO member =   (MemberVO) session.getAttribute("memberDTO");
-		
-		model.addAttribute("member",member);
 		
 		model.addAttribute("attach", upservice.viewAttach(tno));
 		model.addAttribute("view",service.getView(tno));
@@ -98,7 +95,7 @@ public class MovieController {
 	}
 	
 	@PostMapping("/modify")
-	public void modify(MovieDTO dto) {
+	public String modify(MovieDTO dto) {
 		log.info("=============");
 		log.info("dto"+dto);
 		log.info("=============");
@@ -108,7 +105,7 @@ public class MovieController {
 		
 		
 		
-		/*return "redirect:/movie/view";*/
+		return "redirect:/movie/view?tno="+tno+"";
 	}
 	
 	@PostMapping("/remove")

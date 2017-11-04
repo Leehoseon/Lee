@@ -2,7 +2,7 @@
 <sitemesh> 
 	<!--decorator 결정 --> 
 	<!-- 데코레이터 파일을 불러온다. -->
-	<property name="decorators-file" value="WEB-INF/asdfasdf/sdfasdfdecorators.xml" />
+	<property name="decorators-file" value="/WEB-INF/decorators.xml" />
 	<excludes file="${decorators-file}" /> <!--parser를 설정 : 해당 페이지의 content-type이 뭐라고 쓰여있는지에 따라 데코레이터 결정 -->
 	<page-parsers>
 		<parser content-type="text/html"
