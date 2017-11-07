@@ -1,8 +1,11 @@
 package com.java96.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java96.dto.Criteria;
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
 import com.java96.mapper.MemberMapper;
@@ -45,6 +48,23 @@ public class MemberServiceImpl implements MemberService {
 	public void remove(MemberDTO dto) {
 		mapper.remove(dto);
 		
+	}
+
+
+
+	@Override
+	public List<MemberDTO> getList(Criteria cri) {
+		
+		cri.setTotal(mapper.getTotal(cri));
+		return mapper.getList(cri);
+	}
+
+
+
+	@Override
+	public int getTotal(Criteria cri) {
+		
+		return mapper.getTotal(cri);
 	}
 
 

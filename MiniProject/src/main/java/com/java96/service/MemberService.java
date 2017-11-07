@@ -1,7 +1,11 @@
 package com.java96.service;
 
+import java.util.List;
+
+import com.java96.dto.Criteria;
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
+import com.java96.dto.MovieDTO;
 
 public interface MemberService {
 
@@ -12,5 +16,9 @@ public interface MemberService {
 	public void modify(MemberDTO dto);
 	
 	public void remove(MemberDTO dto);
+	
+	public List<MemberDTO> getList(Criteria cri);
+	
+	public int getTotal(Criteria cri);
 	
 }

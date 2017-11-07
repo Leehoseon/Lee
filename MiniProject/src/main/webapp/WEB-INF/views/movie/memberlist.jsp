@@ -10,7 +10,7 @@
 
 <!-- Page Content -->
 <div class="container">
-	<h1 class="my-4">목록</h1>
+	<h1 class="my-4">회원목록</h1>
 	<div class="content-wrapper">
 		<div class="container-fluid">
 			<div class="card mb-3">
@@ -30,8 +30,8 @@
 														class="caret"></span>
 												</button>
 												<ul class="dropdown-menu" role="menu">
-													<li value="title">title</li><br>
-													<li value="writer">writer</li><br>
+													<li value="Uid">ID</li><br>
+													<li value="Upw">PW</li><br>
 													<li value="all">all</li>
 													
 												</ul>
@@ -73,11 +73,9 @@
 						<table class="table table-bordered" id="dataTable">
 							<thead>
 								<tr id="sortTable">
-									  <th id="No" scope="col">No</th>
-								      <th id="Title" scope="col">Title</th>
+									  <th id="Uid" scope="col">ID</th>
+								      <th id="Upw" scope="col">PW</th>
 								      <th id="Date" scope="col">Date</th>
-								      <th id="User" scope="col">User</th>
-								      <th id="Views" scope="col">Views</th>
 								</tr>
 							</thead>
 							<!-- 본문 영역 -->
@@ -85,14 +83,10 @@
 								<c:forEach items="${list}" var="movie">
 								    <tr>
 											
-									      <td class="rTno" data-label="No" >${movie.tno }</td>
-									      <td  data-label="Title">
-									      <a href="/movie/view?tno=${movie.tno } ">${movie.title }</a>
-									      [<a class="replyView" value="${movie.tno }">${movie.replycnt }</a>]</td>
+									      <td class="rTno" data-label="Uid" >${movie.uid }</td>
+									      <td class="rTno" data-label="Upw" >${movie.upw }</td>
 									      <td data-label="Date"><fmt:formatDate value="${movie.regdate}"
 																pattern="yyyy-MM-dd" /></td>
-									      <td data-label="User">${movie.writer }</td>
-									      <td data-label="Views">${movie.dbhit }</td>
 								    </tr>
 								</c:forEach>
 							</tbody>

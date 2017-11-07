@@ -6,9 +6,89 @@
   
   <mapper namespace="com.java96.mapper.MemberMapper">
 	
-	<select id="listPage" resultType="MovieDTO" >
+	<select id="listPage" resultType="MemberDTO" >
 	
 		select * from tbl_member where uid = #{uid}
+	
+	</select>
+	
+	<select id="getList" resultType="MemberDTO" >
+	
+		select * from tbl_member
+	
+	<where>		
+	
+	
+      
+      <if test="searchType != null">
+	
+	      <if test="searchType == 'Uid' ">
+	         uid like concat("%", #{keyword} ,"%")
+	      </if>
+			
+	      <if test="searchType == 'Upw' ">
+	         AND upw like concat("%", #{keyword} ,"%")
+	      </if>
+	      
+  	
+		</if>
+		
+      </where>
+		<!--  order by tno desc limit #{skip} ,9 -->
+		order by  
+		
+			<choose>
+			
+					<when test="sortName == 'Uid' ">
+					 uid
+					</when>
+					<when test="sortName == 'Upw' ">
+					 upw
+					</when>
+					<when test="sortName == 'Date' ">
+					 regdate
+					</when>
+			<otherwise>
+			uid
+			</otherwise>
+			</choose>
+			<choose>
+			
+			    <when test="searchSort == 'asc'">
+			      asc
+			    </when>
+			    <when test="searchSort == 'desc'">
+			      desc
+			    </when>
+			    
+			    <otherwise>
+				desc
+				</otherwise>
+		    
+	 		</choose>
+		 limit #{skip} ,9
+		
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		
+		select count(*) from tbl_member 
+		
+		<where>
+		
+		<if test="searchType != null">
+	
+	      <if test="searchType == 'Uid' ">
+	         uid like concat("%", #{keyword} ,"%")
+	      </if>
+			
+	      <if test="searchType == 'Upw' ">
+	         AND upw like concat("%", #{keyword} ,"%")
+	      </if>
+      
+  	
+		</if>
+		</where>
 	
 	</select>
 	

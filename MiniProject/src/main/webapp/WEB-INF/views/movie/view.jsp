@@ -26,9 +26,9 @@
 						</div>
 						<input type="hidden" id="tno" name="tno" value="${view.tno }" />
 						<div class="form-group">
-							<div class="btn btn-default" id= "attachList">
+							<div class="form-control" id= "attachList" >
 		
-								<c:forEach items="${attach}" var="attach">
+								<c:forEach items="${attach}" var="attach" >
 														
 									<li data-file="${attach.thumbName }">${attach.thumbName }<div><img id='drgImg' src='/upload/new/${attach.thumbName } '></div></li>
 								</c:forEach>

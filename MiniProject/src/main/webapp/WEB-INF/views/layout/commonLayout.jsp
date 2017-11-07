@@ -32,7 +32,7 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-              		<a class="nav-link" href='<c:url value="/about"></c:url>'>About</a>
+              		<a class="nav-link" href='<c:url value="/movie/memberlist"></c:url>'>MemberList</a>
             	</li>
             	<li class="nav-item">
            			<a class="nav-link" href='<c:url value="/movie/list"></c:url>'>Board</a>

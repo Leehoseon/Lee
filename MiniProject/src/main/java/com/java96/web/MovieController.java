@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.java96.dto.Criteria;
 import com.java96.dto.MemberVO;
 import com.java96.dto.MovieDTO;
 import com.java96.dto.SearchCriteria;
+import com.java96.service.MemberService;
 import com.java96.service.MovieService;
 import com.java96.service.UploadService;
 
@@ -35,6 +36,8 @@ public class MovieController {
 	MovieService service;
 	@Autowired
 	UploadService upservice;
+	@Autowired
+	MemberService mservice;
 	
 	
 	@GetMapping("/list")
@@ -46,6 +49,18 @@ public class MovieController {
 		model.addAttribute("criteria",cri);
 		
 		model.addAttribute("list",service.getList(cri));
+		
+		
+	}
+	@GetMapping("/memberlist")
+	public void memberlist(@ModelAttribute("criteria") SearchCriteria criteria, Model model) {
+
+		log.info("cri:~~~~~~~~~~~~~~"+criteria);
+		
+		
+		model.addAttribute("criteria",criteria);
+		
+		model.addAttribute("list",mservice.getList(criteria));
 		
 		
 	}
