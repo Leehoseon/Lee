@@ -45,6 +45,7 @@
 			        </form>
 			        <div class="text-center">
 			        	<a class="d-block small mt-3" href="/movie/homeregister">회원 가입</a>
+			        	<a class="d-block small mt-3" href="/movie/homemodify">회원 수정</a>
 			        </div>
 		      	</div>
 		    </div>

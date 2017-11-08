@@ -49,10 +49,10 @@
 							<label for="email">이메일</label> 
 							<input class="form-control" id="email" type="email" placeholder="이메일 입력">
 						</div>
-						<button class="btn btn-primary btn-block" type="submit">등록</button>
+						<button class="btn btn-primary btn-block" type="submit">탈퇴</button>
 					</form>
 					<div class="text-center">
-						<a class="d-block small mt-3" href="/movie/login">로그인 페이지로</a> 
+						<a class="d-block small mt-3" href="/movie/home">로그인 페이지로</a>
 					</div>
 				</div>
 			</div>

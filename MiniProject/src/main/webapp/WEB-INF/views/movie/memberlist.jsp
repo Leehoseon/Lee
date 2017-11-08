@@ -33,7 +33,6 @@
 													<li value="Uid">ID</li><br>
 													<li value="Upw">PW</li><br>
 													<li value="all">all</li>
-													
 												</ul>
 											</div>
 											<form  id="searchForm" >
@@ -66,7 +65,6 @@
 						</div>
 						<div class="btnArea">
 					  		
-					  		<button type="button" class="pull-right btn btn-primary" onclick="Common.goUrl('/register');">글작성</button>
 						</div>
 					</div>
 					<div class="table-responsive">
@@ -76,17 +74,18 @@
 									  <th id="Uid" scope="col">ID</th>
 								      <th id="Upw" scope="col">PW</th>
 								      <th id="Date" scope="col">Date</th>
+								      <th id="Del" scope="col">Del</th>
 								</tr>
 							</thead>
 							<!-- 본문 영역 -->
-							<tbody>
+							<tbody id="delBtnArea">
 								<c:forEach items="${list}" var="movie">
 								    <tr>
-											
 									      <td class="rTno" data-label="Uid" >${movie.uid }</td>
 									      <td class="rTno" data-label="Upw" >${movie.upw }</td>
 									      <td data-label="Date"><fmt:formatDate value="${movie.regdate}"
 																pattern="yyyy-MM-dd" /></td>
+										<td ><button type="button" class="pull-right btn btn-primary" id="mDelBtn" value="${movie.uid }">Delete</button></td>
 								    </tr>
 								</c:forEach>
 							</tbody>
@@ -155,7 +154,7 @@
 		});
 		  
 		  
-		  $(document).ready(function(e){
+		  
 			    $('.search-panel .dropdown-menu').find('li').click(function(e) {
 					e.preventDefault();
 					var param = $(this).attr("value");
@@ -163,11 +162,8 @@
 					var concept = $(this).text();
 					$('.search-panel span#search_concept').text(concept);
 					$('.input-group #searchType').val(param);
-					
 			    
 				});
-			    
-			});
 		  
 		  $("#sortTable").on("click","th", function (e){
 			  
@@ -205,6 +201,30 @@
 			  e.preventDefault();
 			  
 			  $("#page_param").val("1");
+			  
+			  $("#searchForm").submit();
+			
+		});
+		  $("#delBtnArea").on("click","button", function (e) {
+			  
+			  e.preventDefault();
+			  
+			  
+			  var uid = $(this).attr("value");
+			  
+			  console.log(uid);
+			  
+			  $.ajax({
+				  
+				  url:'/movie/removemember',
+				    type: 'DELETE',
+				    contentType: "application/json; charset=utf-8",
+				    data:JSON.stringify({uid:uid}),
+				    dataType: 'text',   
+				  success: function (result){
+					  
+				  }
+			  });
 			  
 			  $("#searchForm").submit();
 			

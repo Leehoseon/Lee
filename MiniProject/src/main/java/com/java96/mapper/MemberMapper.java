@@ -26,7 +26,7 @@ public interface MemberMapper {
 	@Update("UPDATE tbl_member SET upw = #{upw} where uid = #{uid}")
 	public void modify(MemberDTO dto);
 	
-	@Delete("delete from tbl_member where uid=#{uid} and upw = #{upw}")
+	@Delete("delete from tbl_member where uid=#{uid}")
 	public void remove(MemberDTO dto);
 	
 	/*@Select("select * from tbl_member order by uid limit #{skip} ,9")*/

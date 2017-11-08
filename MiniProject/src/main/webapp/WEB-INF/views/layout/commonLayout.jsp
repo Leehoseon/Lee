@@ -50,7 +50,7 @@
               		</div>
             	</li>
             	<li class="nav-item">
-		        	<a class="nav-link" data-toggle="modal" href='<c:url value="/movie/logout"></c:url>'>
+		        	<a class="nav-link" href='<c:url value="/movie/logout"></c:url>'>
 		            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
 		        </li>
           	</ul>

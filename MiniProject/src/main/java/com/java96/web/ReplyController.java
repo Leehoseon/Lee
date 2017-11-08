@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.java96.dto.Criteria;
+import com.java96.dto.MemberDTO;
 import com.java96.dto.ReplyDTO;
 import com.java96.service.ReplyService;
 
@@ -58,5 +59,6 @@ public class ReplyController {
 		service.update_rpl(dto);
 		
 	}
+	
 	
 }

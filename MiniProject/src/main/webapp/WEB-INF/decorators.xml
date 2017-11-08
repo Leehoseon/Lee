@@ -21,6 +21,9 @@
 	<excludes>
 		<pattern>/movie/home</pattern>
 		<pattern>/movie/homeregister</pattern>
+		<pattern>/movie/homemodify</pattern>
+		<pattern>/movie/homeout</pattern>
+		<pattern>/movie/logout</pattern>
 		<pattern>/resources/editor*</pattern>
 		<pattern>/excludes/*</pattern>
 		

@@ -1,14 +1,19 @@
 package com.java96.web;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
+import com.java96.dto.ReplyDTO;
 import com.java96.service.MemberService;
 
 @Controller
@@ -109,7 +114,17 @@ public class LoginController {
 		
 		
 	}
-	
+	@DeleteMapping("/removemember")
+	public void remove(@RequestBody MemberDTO dto) {
+		
+		service.remove(dto);
+	}
+	@PutMapping("/rolemember")
+	public void put(@RequestBody MemberDTO dto) {
+		
+		service.modify(dto);
+		
+	}
 	
 	
 }

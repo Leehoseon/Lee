@@ -23,11 +23,12 @@
 	<body class="bg-dark">
 		<div class="container">
 			<div class="card card-login mx-auto mt-5">
-				<div class="card-header"></div>
+				<div class="card-header">로그인</div>
 				<div class="card-body">
-			        
+			          	
 			        <div class="text-center">
-			        	<a class="d-block small mt-3" href="/movie/home">로그인 화면</a>
+			        	<div>로그아웃 되었습니다</div>
+			        	<a class="d-block small mt-3" href="/movie/home">홈으로</a>
 			        </div>
 		      	</div>
 		    </div>
