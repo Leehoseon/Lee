@@ -21,4 +21,8 @@ public interface MemberService {
 	
 	public int getTotal(Criteria cri);
 	
+	public void addHistory(MemberDTO dto);
+	
+	public void roleModify(MemberDTO dto);
+	
 }

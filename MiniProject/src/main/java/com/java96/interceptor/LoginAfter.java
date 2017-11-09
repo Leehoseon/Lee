@@ -21,7 +21,6 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 		
 		Object MemberDTO = modelAndView.getModel();
 		
-		
 		if(MemberDTO == null) {
 			
 			response.sendRedirect("/movie/home");
@@ -68,6 +67,7 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 		
 			response.sendRedirect("/movie/list");
 		}
+		
 	}
 
 }

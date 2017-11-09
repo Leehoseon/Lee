@@ -21,7 +21,7 @@
 					            <div class="input-group">
 					            	
 							        
-							        <div class="input-group-btn search-panel">
+							        <div class="input-group-btn search-panel" id="mSearch">
 
 												<button type="button"
 													class="btn btn-default dropdown-toggle"
@@ -75,17 +75,33 @@
 								      <th id="Upw" scope="col">PW</th>
 								      <th id="Date" scope="col">Date</th>
 								      <th id="Del" scope="col">Del</th>
+								      <th id="Role" scope="col">Role</th>
 								</tr>
 							</thead>
 							<!-- 본문 영역 -->
-							<tbody id="delBtnArea">
+							<tbody id="roleBtnArea">
 								<c:forEach items="${list}" var="movie">
-								    <tr>
+								    <tr id="${movie.uid }">
 									      <td class="rTno" data-label="Uid" >${movie.uid }</td>
 									      <td class="rTno" data-label="Upw" >${movie.upw }</td>
 									      <td data-label="Date"><fmt:formatDate value="${movie.regdate}"
 																pattern="yyyy-MM-dd" /></td>
 										<td ><button type="button" class="pull-right btn btn-primary" id="mDelBtn" value="${movie.uid }">Delete</button></td>
+										<td class="rTno" data-label="Role" >
+											<div class="input-group-btn search-panel" id="rSel">
+
+												<button type="button"
+													class="btn btn-default dropdown-toggle"
+													data-toggle="dropdown">
+													<span id="role_concept${movie.uid }">${movie.role }</span> <span
+														class="caret"></span>
+												</button>
+												<ul class="dropdown-menu" role="menu">
+													<li id="${movie.uid }" value="Role1">Role1</li><br>
+													<li id="${movie.uid }" value="Role2">Role2</li><br>
+												</ul>
+											</div>
+										</td>
 								    </tr>
 								</c:forEach>
 							</tbody>
@@ -155,7 +171,7 @@
 		  
 		  
 		  
-			    $('.search-panel .dropdown-menu').find('li').click(function(e) {
+			    $('#mSearch').find('li').click(function(e) {
 					e.preventDefault();
 					var param = $(this).attr("value");
 					console.log(param);
@@ -205,32 +221,62 @@
 			  $("#searchForm").submit();
 			
 		});
-		  $("#delBtnArea").on("click","button", function (e) {
-			  
-			  e.preventDefault();
+		  $("#roleBtnArea").on("click","button", function (e) {
 			  
 			  
-			  var uid = $(this).attr("value");
+			  var btn =$(this).attr("id");
 			  
-			  console.log(uid);
-			  
-			  $.ajax({
+			  if(btn == "mDelBtn"){
 				  
-				  url:'/movie/removemember',
-				    type: 'DELETE',
-				    contentType: "application/json; charset=utf-8",
-				    data:JSON.stringify({uid:uid}),
-				    dataType: 'text',   
-				  success: function (result){
+				  var uid = $(this).attr("value");
+				  
+				  console.log(uid);
+				  
+				  $.ajax({
 					  
-				  }
-			  });
+					  url:'/movie/removemember',
+					    type: 'DELETE',
+					    contentType: "application/json; charset=utf-8",
+					    data:JSON.stringify({uid:uid}),
+					    dataType: 'text',   
+					  success: function (result){
+						  
+						 
+						  
+					  }
+				  });
+				  $('#'+uid+'').remove();
+			  }
 			  
-			  $("#searchForm").submit();
-			
+			  
 		});
-		
-			  
+		  
+		  $('#roleBtnArea').on("click","li",function(e) {
+				e.preventDefault();
+				
+				var uid = $(this).attr("id");
+				
+				console.log(uid);
+				
+				var concept = $(this).text();
+				$('#roleBtnArea .search-panel span#role_concept'+uid+'').text(concept);
+				
+				
+				$.ajax({
+					  url:'/movie/rolemember',
+					    type: 'PUT',
+					    contentType: "application/json; charset=utf-8",
+					    data:JSON.stringify({uid:uid,role:concept}),
+					    dataType: 'text',   
+					  success: function (result){
+						
+			 			}
+					    
+				  });
+				
+				  
+			});
+		  
 		  
 	});
 	</script>

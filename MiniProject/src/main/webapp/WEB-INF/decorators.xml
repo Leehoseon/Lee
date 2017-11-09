@@ -24,6 +24,7 @@
 		<pattern>/movie/homemodify</pattern>
 		<pattern>/movie/homeout</pattern>
 		<pattern>/movie/logout</pattern>
+		<pattern>/movie/error</pattern>
 		<pattern>/resources/editor*</pattern>
 		<pattern>/excludes/*</pattern>
 		

@@ -20,8 +20,6 @@ public class LoginCheck extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		System.out.println("Login check prehandle..............");
-		
-		
 
 		boolean useSession = 
 				request.getSession().getAttribute("memberDTO") != null?true:false;
@@ -40,22 +38,15 @@ public class LoginCheck extends HandlerInterceptorAdapter {
 		if(useCookie) {
 			System.out.println("current user use cookie...");
 			
-			
-			
 			request.getSession().setAttribute("memberDTO", "memberDTO");
 			
 			return true;
 		}
-		
-		
 		
 		response.sendRedirect("/movie/home");
 		
 		return false;
 		
 	}
-	
-
-	
 	
 }

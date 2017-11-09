@@ -17,12 +17,6 @@ public class ModifyCheck extends HandlerInterceptorAdapter {
 		
 			MemberVO member =	(MemberVO) request.getSession().getAttribute("memberDTO") ;
 			
-			
-			
-			
-			
-		
-		
 		
 		
 	}

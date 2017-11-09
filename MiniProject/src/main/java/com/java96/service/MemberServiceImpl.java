@@ -69,10 +69,20 @@ public class MemberServiceImpl implements MemberService {
 
 
 
+	@Override
+	public void addHistory(MemberDTO dto) {
+		mapper.addHistory(dto);
+		
+	}
 
 
 
-	
+	@Override
+	public void roleModify(MemberDTO dto) {
+		mapper.roleModify(dto);
+		
+	}
+
 
 	
 	

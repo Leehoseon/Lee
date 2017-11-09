@@ -19,8 +19,6 @@ public class Logout extends HandlerInterceptorAdapter {
 		
 		
 		HttpSession session = request.getSession();
-	
-		
 		
 		MemberVO member = (MemberVO) session.getAttribute("memberDTO");
 		

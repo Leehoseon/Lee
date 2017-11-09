@@ -42,12 +42,12 @@
 						</div>
 						<div class="form-group">
 							<label for="name">이름</label>
-						     <input class="form-control" id="name" name="name" type="text" 
+						     <input class="form-control" id="name" name="uname" type="text" 
 						        	placeholder="이름을 입력하세요.">
 						</div>
 						<div class="form-group">
 							<label for="email">이메일</label> 
-							<input class="form-control" id="email" type="email" placeholder="이메일 입력">
+							<input class="form-control" id="email" type="email" name="uemail" placeholder="이메일 입력">
 						</div>
 						<button class="btn btn-primary btn-block" type="submit">등록</button>
 					</form>

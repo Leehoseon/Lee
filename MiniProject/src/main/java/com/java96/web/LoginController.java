@@ -1,6 +1,8 @@
 package com.java96.web;
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
-import com.java96.dto.ReplyDTO;
+
 import com.java96.service.MemberService;
 
+import lombok.extern.java.Log;
+@Log
 @Controller
 @RequestMapping("/movie/*")
 public class LoginController {
@@ -27,46 +31,30 @@ public class LoginController {
 	@GetMapping("/home")
 	public void login() {
 		
-		
-		
-		
 	}
 	
 	@PostMapping("/home")
 	public void login(MemberDTO dto, Model model) {
 		System.out.println("login controller");
-		
+		System.out.println(dto);
 		/*MemberDTO member = new MemberDTO();
 		member.setUid(dto.getUid());
 		member.setUpw(dto.getUpw());
 		member.setAuto(dto.getAuto());
 		System.out.println("dto"+dto);
 		
-		*/
+		boolean loginResult = service.login(dto) != null?true:false;*/
 		
-		
-		/*boolean loginResult = service.login(dto) != null?true:false;*/
+		service.addHistory(dto);
 		
 		MemberVO vo = service.login(dto);
 		
-		
 		model.addAttribute("memberDTO",vo);
-		
-		/*if(loginResult) {
-			
-			return "redirect:/movie/list";
-		}*/
-		
-		
-		
-		
-		
+		System.out.println(dto);
 	}
 	
 	@GetMapping("/homeregister")
 	public void loginRegisterGet() {
-		
-		
 		
 	}
 	
@@ -81,14 +69,10 @@ public class LoginController {
 	@GetMapping("/homemodify")
 	public void homeModify() {
 		
-		
-		
 	}
 	
 	@PostMapping("/homemodify")
 	public String homeModifyPost(MemberDTO dto, Model model) {
-		
-		
 		
 		service.modify(dto);
 		
@@ -100,7 +84,6 @@ public class LoginController {
 	public void homeOut() {
 		
 		
-		
 	}
 	
 	@PostMapping("/homeout")
@@ -108,10 +91,7 @@ public class LoginController {
 		
 		service.remove(dto);
 		
-		
 		return "redirect:/movie/home";
-		
-		
 		
 	}
 	@DeleteMapping("/removemember")
@@ -122,9 +102,17 @@ public class LoginController {
 	@PutMapping("/rolemember")
 	public void put(@RequestBody MemberDTO dto) {
 		
-		service.modify(dto);
+		log.info("=================================="+dto);
+		service.roleModify(dto);
 		
 	}
+	
+	@GetMapping("/logout")
+	public void logout() {
+		
+				
+	}
+	
 	
 	
 }
