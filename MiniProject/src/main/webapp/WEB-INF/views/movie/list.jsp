@@ -99,12 +99,16 @@
 						</table>
 					</div>
 				</div>
+				<div id="mlist">
+					<input type='hidden' >
+				</div>
 				
 				<form id="actionForm" method='get'>
 					<input type='hidden' name='page' value="${criteria.page }">
 					<input type='hidden' name='tno'>
 
 				</form>
+				<input type="hidden" id="uid" value="${uid.role}"> 
 				<div class="pageArea1">
 					<span><ul class="pageArea"></ul> </span>
 				</div>
@@ -126,13 +130,26 @@
 
 	<script type="text/javascript" src="/resources/js/paging.js"></script>
 
-
+	
+	<script src="/resources/js/jquerycookie.js"></script>  
 
 	<script>
 
 
 	$(document).ready(function(){
 		var actionForm = $("#actionForm");
+		
+		function showMlist() {
+			
+			var uid = $("#uid").val();
+			
+			console.log(uid);
+			
+			if(uid !=="manager"){
+				
+				$("#memberlist").hide();
+			};
+		}showMlist();
 		
 		var pageStr = makePage(
 			      {
@@ -160,7 +177,6 @@
 			  $("#searchForm").submit();
 		});
 		  
-		  
 		  $(document).ready(function(e){
 			    $('.search-panel .dropdown-menu').find('li').click(function(e) {
 					e.preventDefault();
@@ -170,7 +186,6 @@
 					$('.search-panel span#search_concept').text(concept);
 					$('.input-group #searchType').val(param);
 					
-			    
 				});
 			    
 			});

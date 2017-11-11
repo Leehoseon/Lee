@@ -3,6 +3,7 @@ package com.java96.web;
 
 
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java96.dto.Criteria;
+import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
 import com.java96.dto.MovieDTO;
 import com.java96.dto.SearchCriteria;
@@ -41,19 +43,30 @@ public class MovieController {
 	
 	
 	@GetMapping("/list")
-	public void list(@ModelAttribute("criteria") SearchCriteria cri, Model model) {
+	public void list(@ModelAttribute("criteria") SearchCriteria cri,HttpSession session, Model model) {
 
+		String uid = (String) session.getAttribute("memberDTO");
+		
+		MemberDTO dto = new MemberDTO();
+		
+		dto.setUid(uid);
+		
 		log.info("cri:~~~~~~~~~~~~~~"+cri);
 		
+		model.addAttribute("uid",mservice.getRole(dto));
+		
+		log.info("cri:~dtodtodtodto~~~~~"+dto);
 		
 		model.addAttribute("criteria",cri);
 		
 		model.addAttribute("list",service.getList(cri));
 		
 		
+		
+		
 	}
 	@GetMapping("/memberlist")
-	public void memberlist(@ModelAttribute("criteria") SearchCriteria criteria, Model model) {
+	public void memberlist(@ModelAttribute("criteria") SearchCriteria criteria,HttpSession session, Model model) {
 
 		log.info("cri:~~~~~~~~~~~~~~"+criteria);
 		
@@ -62,11 +75,23 @@ public class MovieController {
 		
 		model.addAttribute("list",mservice.getList(criteria));
 		
+		String uid = (String) session.getAttribute("memberDTO");
+		
+		MemberDTO dto = new MemberDTO();
+		
+		dto.setUid(uid);
+		
+		model.addAttribute("uid",mservice.getRole(dto));
+		
+	
+	}
+	@GetMapping("/memberhistory")
+	public void memberhistory(MemberDTO dto, Model model) {
+
+		
+		model.addAttribute("list",mservice.getHistoryList(dto));
 		
 	}
-	
-	
-	
 	
 	@GetMapping("/view")
 	public void view(int tno, Model model) {

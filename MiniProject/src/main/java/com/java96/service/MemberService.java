@@ -25,4 +25,8 @@ public interface MemberService {
 	
 	public void roleModify(MemberDTO dto);
 	
+	public List<MemberDTO> getHistoryList(MemberDTO dto);
+	
+	public MemberVO getRole(MemberDTO dto);
+	
 }

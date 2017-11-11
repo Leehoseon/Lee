@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class MemberVO {
 
-	String uid,upw,auto;
+	String uid,upw,auto,uname,uemail,role;
 	Date regdate;
 	public String getUid() {
 		return uid;
@@ -24,6 +24,24 @@ public class MemberVO {
 	public void setAuto(String auto) {
 		this.auto = auto;
 	}
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public String getUemail() {
+		return uemail;
+	}
+	public void setUemail(String uemail) {
+		this.uemail = uemail;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -32,12 +50,8 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [uid=" + uid + ", upw=" + upw + ", auto=" + auto + ", regdate=" + regdate + "]";
+		return "MemberDTO [uid=" + uid + ", upw=" + upw + ", auto=" + auto + ", uname=" + uname + ", uemail=" + uemail
+				+ ", role=" + role + ", regdate=" + regdate + "]";
 	}
 	
-	
-	
-	
 }
-
-

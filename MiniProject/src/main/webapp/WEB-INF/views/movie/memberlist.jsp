@@ -17,51 +17,42 @@
 				<div class="card-body">
 					<div class="topArea">
 						<div class="searchArea">
-							
 					            <div class="input-group">
-					            	
-							        
 							        <div class="input-group-btn search-panel" id="mSearch">
-
-												<button type="button"
-													class="btn btn-default dropdown-toggle"
-													data-toggle="dropdown">
-													<span id="search_concept">${criteria.searchType }</span> <span
-														class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" role="menu">
-													<li value="Uid">ID</li><br>
-													<li value="Upw">PW</li><br>
-													<li value="all">all</li>
-												</ul>
-											</div>
-											<form  id="searchForm" >
-												<input type="hidden" name="page" value="${criteria.page }"
-													id="page_param">
-												 <input type="hidden"
-													name="searchType" value="${criteria.searchType }"
-													id="searchType">
-												 <input type="hidden"
-													name="searchSort" value="${criteria.searchSort }"
-													id="searchSort">
-												 <input type="hidden"
-													name="sortName" value="${criteria.sortName }" id="sortName">
-														 
-													
-								           		<div class="input-group-btn">
-									            	<input type="text" class="form-control" name="keyword"
-															value="${criteria.keyword }" placeholder="검색어를 입력하세요.">
-									            	<span class="input-group-btn">
-									            	</span>
-									                <button class="btn btn-primary" type="button" >
-									                	<span class="fa fa-search" id="subBtn" aria-hidden="true">검색</span>
-									                	
-									                </button>
-									        	</div>
-											</form>	
-						        	
+										<button type="button"
+											class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown">
+											<span id="search_concept">${criteria.searchType }</span> <span
+												class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li value="Uid">ID</li><br>
+											<li value="Upw">PW</li><br>
+											<li value="all">all</li>
+										</ul>
+									</div>
+									<form  id="searchForm" >
+										<input type="hidden" name="page" value="${criteria.page }"
+												id="page_param">
+										<input type="hidden"
+												name="searchType" value="${criteria.searchType }"
+												id="searchType">
+										<input type="hidden"
+												name="searchSort" value="${criteria.searchSort }"
+												id="searchSort">
+										 <input type="hidden"
+												name="sortName" value="${criteria.sortName }" id="sortName">
+								          <div class="input-group-btn">
+									            <input type="text" class="form-control" name="keyword"
+													value="${criteria.keyword }" placeholder="검색어를 입력하세요.">
+									            <span class="input-group-btn">
+									            </span>
+									            <button class="btn btn-primary" type="button" >
+									            <span class="fa fa-search" id="subBtn" aria-hidden="true">검색</span>
+									            </button>
+									       </div>
+									</form>	
 					        	</div>
-					     	
 						</div>
 						<div class="btnArea">
 					  		
@@ -74,8 +65,9 @@
 									  <th id="Uid" scope="col">ID</th>
 								      <th id="Upw" scope="col">PW</th>
 								      <th id="Date" scope="col">Date</th>
-								      <th id="Del" scope="col">Del</th>
 								      <th id="Role" scope="col">Role</th>
+								      <th id="Role" scope="col">LoginHistory</th>
+								      <th id="Del" scope="col">Del</th>
 								</tr>
 							</thead>
 							<!-- 본문 영역 -->
@@ -86,7 +78,6 @@
 									      <td class="rTno" data-label="Upw" >${movie.upw }</td>
 									      <td data-label="Date"><fmt:formatDate value="${movie.regdate}"
 																pattern="yyyy-MM-dd" /></td>
-										<td ><button type="button" class="pull-right btn btn-primary" id="mDelBtn" value="${movie.uid }">Delete</button></td>
 										<td class="rTno" data-label="Role" >
 											<div class="input-group-btn search-panel" id="rSel">
 
@@ -97,35 +88,37 @@
 														class="caret"></span>
 												</button>
 												<ul class="dropdown-menu" role="menu">
-													<li id="${movie.uid }" value="Role1">Role1</li><br>
-													<li id="${movie.uid }" value="Role2">Role2</li><br>
+													<li id="${movie.uid }" value="Role1">manager</li><br>
+													<li id="${movie.uid }" value="Role2">member</li><br>
 												</ul>
 											</div>
 										</td>
+										<td class="rTno" data-label="Uhistory" ><button type="button" class="pull-right btn btn-primary" id="mHisBtn" value="${movie.uid }">History</button></td>
+										<td ><button type="button" class="pull-right btn btn-primary" id="mDelBtn" value="${movie.uid }">Delete</button></td>
 								    </tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				
 				<form id="actionForm" method='get'>
 					<input type='hidden' name='page' value="${criteria.page }">
 					<input type='hidden' name='tno'>
-
 				</form>
+				<form id="historyForm" action="/movie/memberhistory">
+					<input type='hidden' name='uid'>
+				</form>
+				<input type="hidden" id="uid" value="${uid.role}">
 				<div class="pageArea1">
 					<span><ul class="pageArea"></ul> </span>
 				</div>
 				<!-- 페이징 영역 -->
 				<nav>
 				</nav>
-				
 			</div>
 		</div>
 	</div>
 </div>
-
 
 
  <script
@@ -135,13 +128,21 @@
 
 	<script type="text/javascript" src="/resources/js/paging.js"></script>
 
-
-
 	<script>
-
 
 	$(document).ready(function(){
 		var actionForm = $("#actionForm");
+		
+		function checkRole() {
+			
+			var uid = $("#uid").val();
+			
+			console.log(uid);
+			
+			if(uid !=="manager"){
+				window.location.href = "/movie/list";
+			};
+		}checkRole();
 		
 		var pageStr = makePage(
 			      {
@@ -150,26 +151,17 @@
 			          pageSize:10
 			      });
 		  
-		  console.log("==================");
-		  console.log(pageStr);
-		  
-		 
-		  
 		  $(".pageArea").html(pageStr);
-		  
 		  
 		  $(".pageArea").on("click","li", function (e) {
 			
 			  var pageNum = $(this).html();
 			  console.log(pageNum);
-			  /* self.location="/movie/list?page="+pageNum; */
 			  
 			  $("#page_param").val(pageNum);
 			  
 			  $("#searchForm").submit();
 		});
-		  
-		  
 		  
 			    $('#mSearch').find('li').click(function(e) {
 					e.preventDefault();
@@ -191,12 +183,9 @@
 			  
 			  var searchSort = $("#searchSort").val(); 
 			  
-			  
 			  $("#searchSort").val("asc");
 			  
 			  $("#sortName").val(sortName);
-			  
-			 
 			  
 			  if(searchSort === "desc"){
 				  $("#searchSort").val("asc");
@@ -207,7 +196,6 @@
 			  }
 			
 			  console.log(searchSort);
-			  
 			  
 			  $("#searchForm").submit();  
 		  });
@@ -222,7 +210,6 @@
 			
 		});
 		  $("#roleBtnArea").on("click","button", function (e) {
-			  
 			  
 			  var btn =$(this).attr("id");
 			  
@@ -241,14 +228,19 @@
 					    dataType: 'text',   
 					  success: function (result){
 						  
-						 
-						  
 					  }
 				  });
 				  $('#'+uid+'').remove();
 			  }
+ 			  if(btn == "mHisBtn"){
+ 				 
+ 				 var uid = $(this).attr("value");
+ 				 
+ 				 $("#historyForm").find("input").val(uid);
+ 				 
+ 				 $("#historyForm").submit();
 			  
-			  
+			  }
 		});
 		  
 		  $('#roleBtnArea').on("click","li",function(e) {
@@ -260,7 +252,6 @@
 				
 				var concept = $(this).text();
 				$('#roleBtnArea .search-panel span#role_concept'+uid+'').text(concept);
-				
 				
 				$.ajax({
 					  url:'/movie/rolemember',
@@ -274,10 +265,9 @@
 					    
 				  });
 				
-				  
 			});
 		  
-		  
+		  	
 	});
 	</script>
 

@@ -19,10 +19,10 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-		Object MemberDTO = modelAndView.getModel();
+		Object MemberVO = modelAndView.getModel();
 		
-		if(MemberDTO == null) {
-			
+		if(MemberVO == null) {
+			System.out.println("=============================="+MemberVO);
 			response.sendRedirect("/movie/home");
 			
 		}
@@ -44,15 +44,15 @@ public class LoginAfter extends HandlerInterceptorAdapter {
 		if(map.get("memberDTO") != null ) {
 			
 			System.out.println("set session Data...................");
-			
+			MemberVO dto = (MemberVO) map.get("memberDTO");
 			//use session
-			request.getSession().setAttribute("memberDTO", map.get("memberDTO"));
+			request.getSession().setAttribute("memberDTO", dto.getUid());
 			try {
 			if(auto.equals("on")) {
 				
 				System.out.println("use Session");
 				//use cookie
-				MemberVO dto = (MemberVO) map.get("memberDTO");
+				
 				System.out.println(dto);
 				Cookie loginCookie = new Cookie("memberDTO", dto.getUid() );
 				loginCookie.setMaxAge(60*60*24);

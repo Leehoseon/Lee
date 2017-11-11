@@ -52,9 +52,6 @@ public class MovieServiceImpl implements MovieService {
 			mapper.registerAdd(dto);
 		}
 		
-		
-		
-		
 	}
 
 

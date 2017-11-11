@@ -21,7 +21,7 @@ public interface MemberMapper {
 	@Insert("insert into tbl_member(uid,upw,uname,uemail) values(#{uid},#{upw},#{uname},#{uemail})")
 	public void register(MemberDTO dto);
 	
-	@Update("UPDATE tbl_member SET role where uid = #{uid}")
+	@Update("UPDATE tbl_member SET role = #{role} where uid = #{uid}")
 	public void roleModify(MemberDTO dto);
 	
 	@Update("UPDATE tbl_member SET upw = #{upw} where uid = #{uid}")
@@ -38,5 +38,15 @@ public interface MemberMapper {
 	
 	@Insert("insert into tbl_history (uid) values (#{uid})")
 	public void addHistory(MemberDTO dto);
+	
+	@Select("select count(*) from tbl_history")
+	public int getHistoryTotal(Criteria cri);
+	
+	@Select("select * from tbl_history where uid = #{uid} order by uid")	
+	public List<MemberDTO> getHistoryList(MemberDTO dto);
+	
+	@Select("select role from tbl_member where uid = #{uid}")
+	public MemberVO getRole(MemberDTO dto);
+	
 	
 }

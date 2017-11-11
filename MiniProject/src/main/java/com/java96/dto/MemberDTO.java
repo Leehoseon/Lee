@@ -6,6 +6,7 @@ public class MemberDTO {
 
 	String uid,upw,auto,uname,uemail,role;
 	Date regdate;
+
 	public String getUid() {
 		return uid;
 	}

@@ -36,21 +36,14 @@ public class LoginController {
 	@PostMapping("/home")
 	public void login(MemberDTO dto, Model model) {
 		System.out.println("login controller");
-		System.out.println(dto);
-		/*MemberDTO member = new MemberDTO();
-		member.setUid(dto.getUid());
-		member.setUpw(dto.getUpw());
-		member.setAuto(dto.getAuto());
-		System.out.println("dto"+dto);
-		
-		boolean loginResult = service.login(dto) != null?true:false;*/
+	
 		
 		service.addHistory(dto);
 		
 		MemberVO vo = service.login(dto);
 		
+		
 		model.addAttribute("memberDTO",vo);
-		System.out.println(dto);
 	}
 	
 	@GetMapping("/homeregister")
