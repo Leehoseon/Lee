@@ -30,9 +30,8 @@
 								<c:forEach items="${list}" var="movie">
 								    <tr id="${movie.uid }">
 									      <td class="rTno" data-label="Uid" >${movie.uid }</td>
-									      <td class="rTno" data-label="Udate" ><fmt:formatDate value="${movie.regdate}"
-										  pattern="yyyy-MM-dd" />
-										  </td>
+									      <td class="rTno" data-label="Udate" >
+									      ${movie.regdate }</td>
 								    </tr>
 								</c:forEach>
 							</tbody>
@@ -54,6 +53,13 @@
 		</div>
 	</div>
 </div>
+
+ <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="/resources/js/paging.js"></script>
 
 <script>
 
@@ -78,5 +84,6 @@
 			  
 			  $("#actionForm").submit();
 		});
+});
 		
 </script>

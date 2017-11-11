@@ -86,9 +86,9 @@ public class MovieController {
 	
 	}
 	@GetMapping("/memberhistory")
-	public void memberhistory(MemberDTO dto, Model model) {
+	public void memberhistory(MemberDTO dto,Criteria cri, Model model) {
 
-		
+		model.addAttribute("criteria",cri);
 		model.addAttribute("list",mservice.getHistoryList(dto));
 		
 	}

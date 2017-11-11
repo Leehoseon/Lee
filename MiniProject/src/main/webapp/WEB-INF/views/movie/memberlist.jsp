@@ -76,8 +76,7 @@
 								    <tr id="${movie.uid }">
 									      <td class="rTno" data-label="Uid" >${movie.uid }</td>
 									      <td class="rTno" data-label="Upw" >${movie.upw }</td>
-									      <td data-label="Date"><fmt:formatDate value="${movie.regdate}"
-																pattern="yyyy-MM-dd" /></td>
+									      <td data-label="Date">${movie.regdate }</td>
 										<td class="rTno" data-label="Role" >
 											<div class="input-group-btn search-panel" id="rSel">
 
