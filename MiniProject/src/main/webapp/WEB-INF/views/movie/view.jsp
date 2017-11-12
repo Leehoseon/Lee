@@ -94,7 +94,7 @@
 	</div>
 </div>
 
-							
+<input type="hidden" id="uid" value="${uid.role}">
 
 <form action="/movie/modify" method="get">
 	<input type="hidden" name="tno" value="${view.tno }">
@@ -126,7 +126,19 @@
   <script>
   $(document).ready(function(){
 	  
-	  getReplies()
+	  function showMlist() {
+			
+			var uid = $("#uid").val();
+			
+			console.log(uid);
+			
+			if(uid !=="manager"){
+				
+				$("#memberlist").hide();
+			};
+		}showMlist();
+	  
+	  getReplies();
 	  
 	  
 	  function getReplies(){

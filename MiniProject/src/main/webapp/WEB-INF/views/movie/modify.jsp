@@ -53,7 +53,7 @@
 		</div>
 	</div>
 </div>
-		
+<input type="hidden" id="uid" value="${uid.role}">
 		
  <form id="removeForm" action="/movie/remove" method="post">
  <input type="hidden" name="tno" value="${view.tno }">
@@ -95,6 +95,18 @@ $(function(){
 
 <script>
 $(document).ready(function(){
+	
+	function showMlist() {
+		
+		var uid = $("#uid").val();
+		
+		console.log(uid);
+		
+		if(uid !=="manager"){
+			
+			$("#memberlist").hide();
+		};
+	}showMlist();
 	
 	$("#modBtn").on("click",function (e) {
 		

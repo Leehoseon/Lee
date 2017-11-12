@@ -10,7 +10,7 @@
 
 <!-- Page Content -->
 <div class="container">
-	<h1 class="my-4">회원목록</h1>
+	<h1 class="my-4">회원 접속 목록</h1>
 	<div class="content-wrapper">
 		<div class="container-fluid">
 			<div class="card mb-3">

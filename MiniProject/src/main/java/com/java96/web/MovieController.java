@@ -51,9 +51,9 @@ public class MovieController {
 		
 		dto.setUid(uid);
 		
-		log.info("cri:~~~~~~~~~~~~~~"+cri);
 		
 		model.addAttribute("uid",mservice.getRole(dto));
+		log.info("cri:~~~~~~~~~~~~~~"+cri);
 		
 		log.info("cri:~dtodtodtodto~~~~~"+dto);
 		
@@ -94,7 +94,17 @@ public class MovieController {
 	}
 	
 	@GetMapping("/view")
-	public void view(int tno, Model model) {
+	public void view(int tno,HttpSession session, Model model) {
+		
+		String uid = (String) session.getAttribute("memberDTO");
+		
+		MemberDTO dto = new MemberDTO();
+		
+		dto.setUid(uid);
+		
+		log.info(uid+"uiduiduid");
+		
+		model.addAttribute("uid",mservice.getRole(dto));
 		
 		service.updateReplycnt(tno);
 		model.addAttribute("attach", upservice.viewAttach(tno));
@@ -106,7 +116,7 @@ public class MovieController {
 	public void registerGet(HttpSession session, Model model) {
 		
 		
-		MemberVO member =   (MemberVO) session.getAttribute("memberDTO");
+		String member =   (String) session.getAttribute("memberDTO");
 		
 		model.addAttribute("member",member);
 		
@@ -125,9 +135,16 @@ public class MovieController {
 	}
 	
 	@GetMapping("/modify")
-	public void modifyGet(int tno,  Model model) {
+	public void modifyGet(int tno, HttpSession session,  Model model) {
+		
+		String uid = (String) session.getAttribute("memberDTO");
+		
+		MemberDTO dto = new MemberDTO();
+		
+		dto.setUid(uid);
 		
 		
+		model.addAttribute("uid",mservice.getRole(dto));
 		
 		model.addAttribute("attach", upservice.viewAttach(tno));
 		model.addAttribute("view",service.getView(tno));

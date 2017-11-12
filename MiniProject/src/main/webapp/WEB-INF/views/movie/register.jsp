@@ -15,7 +15,7 @@
 						</div>
 						<div class="form-group">
 							<label for="author">작성자</label> 
-							<input class="form-control" name="writer" id="author" type="text" value="${member.uid }" readonly="readonly" >
+							<input class="form-control" name="writer" id="author" type="text" value="${member }" readonly="readonly" >
 						</div>
 						<div class="form-group">
 							<label for="content">내용</label>

@@ -99,9 +99,6 @@
 						</table>
 					</div>
 				</div>
-				<div id="mlist">
-					<input type='hidden' >
-				</div>
 				
 				<form id="actionForm" method='get'>
 					<input type='hidden' name='page' value="${criteria.page }">
