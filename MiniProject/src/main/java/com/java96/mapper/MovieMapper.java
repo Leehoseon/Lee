@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.java96.dto.Criteria;
+import com.java96.dto.MemberDTO;
 import com.java96.dto.MovieDTO;
 
 
@@ -37,5 +38,8 @@ public interface MovieMapper {
 	
 	@Update("update tbl_testmovie set title = #{title}, writer = #{writer}, filename = #{filename}, content = #{content} where  writer = 'writer' ")
 	public void register(MovieDTO dto);
+	
+	@Delete("delete from tbl_testattach where tno=#{tno}")
+	public void removeAttach(int tno);
 	
 }

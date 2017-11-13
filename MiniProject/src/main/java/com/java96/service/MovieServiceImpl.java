@@ -51,8 +51,9 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
+	@Transactional
 	public void remove(int tno) {
-		
+		mapper.removeAttach(tno);
 		mapper.remove(tno);
 		
 	}

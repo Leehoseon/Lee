@@ -22,7 +22,7 @@
 						</div>
 						<div class="form-group">
 							<label for="editor">내용</label>
-							<textarea class="form-control" name="content" id="editor" style="width: 100%; height:400px" disabled>${view.content }</textarea>
+							<div class="form-control" name="content" id="editor" style="width: 100%; height:400px" readonly="readonly">${view.content }</div>
 						</div>
 						<input type="hidden" id="tno" name="tno" value="${view.tno }" />
 						<div class="form-group">
