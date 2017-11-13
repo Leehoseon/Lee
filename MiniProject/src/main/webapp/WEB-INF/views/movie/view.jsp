@@ -53,9 +53,6 @@
 		</div>
 	</div>
 	
-	
-	
-	
 	<!-- 의견 영역 -->
 	<h1 class="my-4">의견</h1>
 	<hr class="read1"/>
@@ -104,7 +101,6 @@
 
 </form>
 
-
 <div id="hide">
 	<input type="hidden" id="tno" value="${view.tno }">
 	<!-- <input type="text" id="reply" value="reply"> -->
@@ -115,33 +111,28 @@
 
 </div>
 
-
-
  <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
   
-
-  <script>
-  $(document).ready(function(){
+<script>
+$(document).ready(function(){
 	  
-	  function showMlist() {
+	function showMlist() {
 			
-			var uid = $("#uid").val();
+		var uid = $("#uid").val();
 			
-			console.log(uid);
+		console.log(uid);
 			
-			if(uid !=="manager"){
+		if(uid !=="관리자"){
 				
-				$("#memberlist").hide();
-			};
-		}showMlist();
+			$("#memberlist").hide();
+		};
+		
+	}showMlist();
 	  
-	  getReplies();
-	  
-	  
-	  function getReplies(){
+	function getReplies(){
 	  
 		 var tno = ${view.tno };
 		  
@@ -154,166 +145,123 @@
 				"' name='delbtn' class='btn btn-default' type='button'>Delete</button><br>" */
 				
 				str += "<div class='input-group' ><div class='input-group-addon col-md-1' data-rno='"+ arr[i].rno +"'>"+arr[i].replyer +"</div>"+
-							"<input class='form-control col-md-10' id='reply" + arr[i].rno +"' value='" + arr[i].reply +"' disabled></input>"+
-							"<div class='form-control col-md-2'>"+
-								"<button class='btn btn-default' id='replymodBtnBefore' data-rno='"+ arr[i].rno +"' >수정</button>"+
-							
-							"<button class='btn btn-default' name='"+arr[i].rno+"' id='replyDelBtn'>삭제</button>"+
+						"<input class='form-control col-md-10' id='reply" + arr[i].rno +"' value='" + arr[i].reply +"' disabled></input>"+
+						"<div class='form-control col-md-2'>"+
+						"<button class='btn btn-default' id='replymodBtnBefore' data-rno='"+ arr[i].rno +"' >수정</button>"+
+						"<button class='btn btn-default' name='"+arr[i].rno+"' id='replyDelBtn'>삭제</button>"+
 						"</div></div>";
 			}
-			
 	  		
-	  		
-			$("#replyArea").html(str);
-			
-		 	 });
-	 	};
-  
-  
-	 	/* $("#replymodBtn").on("click", function (e) {
-	 		
-			 var $this  = $(this);
-			var tno = $this.attr("data-rno").val();
-			
-			console.log($this);
-			
-			var sads = $this.parents("#reply").val();
-			
-			console.log(sads);
-		
-			
-			
-			$(this).find(".form-control col-md-8").replaceWith($('<li>'+rno+'</li>  <input value="'+title+'" name=text> </input>'+"<button data-rno='"+ rno +
-			"' name='modBtn'class='btn btn-default' type='button' >Modify</button></li><br>"));
-
-			
-			
-			
-		}); */
-	 	
-	 	
-
-		 $("#replyBtn").click(function(e){
-			  
-			  console.log("button clicked");
-			 
-			  var data = { reply:$("#replyAdd").val() , replyer:$("#replyer").val(), tno:$("#tno").val() };
-			  
-			  console.log(data);
-			  
-			  $.ajax({
-				  url:'/reply/new',
-				  type:'POST',
-				  contentType: "application/json; charset=utf-8",
-				  data:JSON.stringify(data),
-				  success: function (result){
-					  alert("success");
-					  getReplies();
-				  }
-			  });
-			  
-		}); 
-  
-		 $("#replyArea").on("click","button", function (e) {
-			 
-			 e.preventDefault();
-			 
-			 var $this = $(this);
-			 
-			 var rno = $this.attr("data-rno");
-			 
-			 console.log(rno);
-			 
-			  $this.replaceWith("<button class='btn btn-default' id='replymodBtn' data-rno='"+rno+"'>확인</button>");
-			 
-			 $("#reply"+rno+"").removeAttr("disabled");
-			 
-			 console.log($this);
-			 
+		$("#replyArea").html(str);
 			
 		});
-  
-  
-		 $("#replyArea").on("click","button", function(e){
-			 
-			  
-			e.preventDefault();
-			  
-		      var $this = $(this);
-		      
-			  var btn = $this.attr("id");
-		      
-			  console.log(btn);
-			  
-			
-			  var asd = $this.closest("#reply");
-			 console.log(asd);
-			  
-			  if(btn =="replyDelBtn"){
-				  
-				  var  data = $this.attr("name");
-				  
-				  var rno = {rno:data}; 
-				  
-				  console.log(data);
-				  console.log(rno);
-			
-				 
-				 
-				  
-				  $.ajax({
-					  
-					  url:'/reply/remove',
-					    type: 'DELETE',
-					    contentType: "application/json; charset=utf-8",
-					    data:JSON.stringify({rno:data}),
-					    dataType: 'text',   
-					  success: function (result){
-						  getReplies();
-						  alert("success");
-					  }
-				  });
-			  
-			  }
-			  
-			  if(btn =="replymodBtn"){
-				  
- 				  var  data = $this.attr("data-rno");
-				  
-				  var rno = data;
-				 
-				  var reply = $("#reply"+data+"").val();
-				  
-				  console.log(reply);
-				  
-				
-				  
-				   $.ajax({
-					  url:'/reply/put',
-					    type: 'PUT',
-					     data: rno,  
-					    contentType: "application/json; charset=utf-8",
-					    data:JSON.stringify({rno:data,reply:reply}),
-					    dataType: 'text',   
-					  success: function (result){
-						  getReplies();
-						  alert("success");
-			 			}
-				  });  
-				  
-				  
-			  }
-			  
-		 }); 
-	 
- 
-});
-	  
-  
-  </script>
-  
-  
+		 
+	 }getReplies();
   
 
+	$("#replyBtn").click(function(e){
+			  
+		console.log("button clicked");
+			 
+		var data = { reply:$("#replyAdd").val() , replyer:$("#replyer").val(), tno:$("#tno").val() };
+			  
+		console.log(data);
+			  
+		$.ajax({
+			url:'/reply/new',
+			type:'POST',
+			contentType: "application/json; charset=utf-8",
+			data:JSON.stringify(data),
+			success: function (result){
+			alert("success");
+			getReplies();
+			
+			}
+		});
+	}); 
+  
+	$("#replyArea").on("click","button", function (e) {
+			 
+		e.preventDefault();
+			 
+		var $this = $(this);
+			 
+		var rno = $this.attr("data-rno");
+			 
+		console.log(rno);
+			 
+		$this.replaceWith("<button class='btn btn-default' id='replymodBtn' data-rno='"+rno+"'>확인</button>");
+			 
+		$("#reply"+rno+"").removeAttr("disabled");
+			 
+		console.log($this);
+			
+	});
+  
+  
+	$("#replyArea").on("click","button", function(e){
+			 
+		e.preventDefault();
+			  
+		var $this = $(this);
+		      
+		var btn = $this.attr("id");
+		      
+		console.log(btn);
+			  
+		var asd = $this.closest("#reply");
+		
+		console.log(asd);
+			  
+		if(btn =="replyDelBtn"){
+				  
+			var  data = $this.attr("name");
+				  
+			var rno = {rno:data}; 
+				  
+			console.log(data);
+			console.log(rno);
+				  
+			$.ajax({
+					  
+					url:'/reply/remove',
+					type: 'DELETE',
+					contentType: "application/json; charset=utf-8",
+					data:JSON.stringify({rno:data}),
+					dataType: 'text',   
+					success: function (result){
+					getReplies();
+					alert("success");
+				}
+			});
+		}
+			  
+		if(btn =="replymodBtn"){
+				  
+ 			var  data = $this.attr("data-rno");
+				  
+			var rno = data;
+				 
+			var reply = $("#reply"+data+"").val();
+				  
+			console.log(reply);
+				  
+			$.ajax({
+				url:'/reply/put',
+				type: 'PUT',
+				data: rno,  
+				contentType: "application/json; charset=utf-8",
+				data:JSON.stringify({rno:data,reply:reply}),
+				dataType: 'text',   
+				success: function (result){
+					getReplies();
+					alert("success");
+			 	}
+			});  
+		}
+	}); 
+});
+  
+</script>
 </body>
 </html>

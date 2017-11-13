@@ -17,7 +17,6 @@ public interface MemberMapper {
 	@Select("select * from tbl_member where uid = #{uid} and upw = #{upw}")
 	public MemberVO login(MemberDTO dto);
 	
-	
 	@Insert("insert into tbl_member(uid,upw,uname,uemail) values(#{uid},#{upw},#{uname},#{uemail})")
 	public void register(MemberDTO dto);
 	

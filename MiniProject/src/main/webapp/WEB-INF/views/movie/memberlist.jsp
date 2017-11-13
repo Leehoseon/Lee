@@ -26,9 +26,9 @@
 												class="caret"></span>
 										</button>
 										<ul class="dropdown-menu" role="menu">
-											<li value="Uid">ID</li><br>
-											<li value="Upw">PW</li><br>
-											<li value="all">all</li>
+											<li value="Uid">아이디</li><br>
+											<li value="Upw">비밀번호</li><br>
+											<li value="all">----</li>
 										</ul>
 									</div>
 									<form  id="searchForm" >
@@ -55,19 +55,18 @@
 					        	</div>
 						</div>
 						<div class="btnArea">
-					  		
 						</div>
 					</div>
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable">
 							<thead>
 								<tr id="sortTable">
-									  <th id="Uid" scope="col">ID</th>
-								      <th id="Upw" scope="col">PW</th>
-								      <th id="Date" scope="col">Date</th>
-								      <th id="Role" scope="col">Role</th>
-								      <th id="Role" scope="col">LoginHistory</th>
-								      <th id="Del" scope="col">Del</th>
+									  <th id="Uid" scope="col">아이디</th>
+								      <th id="Upw" scope="col">비밀번호</th>
+								      <th id="Date" scope="col">가입날짜</th>
+								      <th id="Role" scope="col">권한</th>
+								      <th id="Role" scope="col">접속기록</th>
+								      <th id="Del" scope="col">삭제</th>
 								</tr>
 							</thead>
 							<!-- 본문 영역 -->
@@ -87,13 +86,13 @@
 														class="caret"></span>
 												</button>
 												<ul class="dropdown-menu" role="menu">
-													<li id="${movie.uid }" value="Role1">manager</li><br>
-													<li id="${movie.uid }" value="Role2">member</li><br>
+													<li id="${movie.uid }" value="Role1">관리자</li><br>
+													<li id="${movie.uid }" value="Role2">회원</li><br>
 												</ul>
 											</div>
 										</td>
-										<td class="rTno" data-label="Uhistory" ><button type="button" class="pull-right btn btn-primary" id="mHisBtn" value="${movie.uid }">History</button></td>
-										<td ><button type="button" class="pull-right btn btn-primary" id="mDelBtn" value="${movie.uid }">Delete</button></td>
+										<td class="rTno" data-label="Uhistory" ><button type="button" class="pull-right btn btn-primary" id="mHisBtn" value="${movie.uid }">접속기록</button></td>
+										<td ><button type="button" class="pull-right btn btn-primary" id="mDelBtn" value="${movie.uid }">삭제</button></td>
 								    </tr>
 								</c:forEach>
 							</tbody>
@@ -119,156 +118,150 @@
 	</div>
 </div>
 
-
  <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-	<script type="text/javascript" src="/resources/js/paging.js"></script>
+<script type="text/javascript" src="/resources/js/paging.js"></script>
 
-	<script>
+<script>
 
-	$(document).ready(function(){
-		var actionForm = $("#actionForm");
+$(document).ready(function(){
+	
+	var actionForm = $("#actionForm");
+	
+	function checkRole() {
 		
-		function checkRole() {
-			
-			var uid = $("#uid").val();
-			
-			console.log(uid);
-			
-			if(uid !=="manager"){
-				window.location.href = "/movie/list";
-			};
-		}checkRole();
+		var uid = $("#uid").val();
 		
-		var pageStr = makePage(
-			      {
-			          total:${criteria.total},
-			          current:${criteria.page},
-			          pageSize:10
-			      });
-		  
-		  $(".pageArea").html(pageStr);
-		  
-		  $(".pageArea").on("click","li", function (e) {
-			
-			  var pageNum = $(this).html();
-			  console.log(pageNum);
-			  
-			  $("#page_param").val(pageNum);
-			  
-			  $("#searchForm").submit();
-		});
-		  
-			    $('#mSearch').find('li').click(function(e) {
-					e.preventDefault();
-					var param = $(this).attr("value");
-					console.log(param);
-					var concept = $(this).text();
-					$('.search-panel span#search_concept').text(concept);
-					$('.input-group #searchType').val(param);
-			    
-				});
-		  
-		  $("#sortTable").on("click","th", function (e){
-			  
-			  var $this = $(this);
-			  
-			  var sortName = $(this).attr("id");
-			  
-			  console.log(sortName);
-			  
-			  var searchSort = $("#searchSort").val(); 
-			  
-			  $("#searchSort").val("asc");
-			  
-			  $("#sortName").val(sortName);
-			  
-			  if(searchSort === "desc"){
-				  $("#searchSort").val("asc");
-			  }
-			  
-			  else if (searchSort === "asc"){
-				  $("#searchSort").val("desc");
-			  }
-			
-			  console.log(searchSort);
-			  
-			  $("#searchForm").submit();  
-		  });
-			
-		  $("#subBtn").on("click", function (e) {
-			  
-			  e.preventDefault();
-			  
-			  $("#page_param").val("1");
-			  
-			  $("#searchForm").submit();
-			
-		});
-		  $("#roleBtnArea").on("click","button", function (e) {
-			  
-			  var btn =$(this).attr("id");
-			  
-			  if(btn == "mDelBtn"){
-				  
-				  var uid = $(this).attr("value");
-				  
-				  console.log(uid);
-				  
-				  $.ajax({
-					  
-					  url:'/movie/removemember',
-					    type: 'DELETE',
-					    contentType: "application/json; charset=utf-8",
-					    data:JSON.stringify({uid:uid}),
-					    dataType: 'text',   
-					  success: function (result){
-						  
-					  }
-				  });
-				  $('#'+uid+'').remove();
-			  }
- 			  if(btn == "mHisBtn"){
- 				 
- 				 var uid = $(this).attr("value");
- 				 
- 				 $("#historyForm").find("input").val(uid);
- 				 
- 				 $("#historyForm").submit();
-			  
-			  }
-		});
-		  
-		  $('#roleBtnArea').on("click","li",function(e) {
-				e.preventDefault();
-				
-				var uid = $(this).attr("id");
-				
-				console.log(uid);
-				
-				var concept = $(this).text();
-				$('#roleBtnArea .search-panel span#role_concept'+uid+'').text(concept);
-				
-				$.ajax({
-					  url:'/movie/rolemember',
-					    type: 'PUT',
-					    contentType: "application/json; charset=utf-8",
-					    data:JSON.stringify({uid:uid,role:concept}),
-					    dataType: 'text',   
-					  success: function (result){
-						
-			 			}
-					    
-				  });
-				
-			});
-		  
-		  	
+		console.log(uid);
+		
+		if(uid !=="관리자"){
+			window.location.href = "/movie/list";
+		};
+		
+	}checkRole();
+	
+	var pageStr = makePage({
+		total:${criteria.total},
+		current:${criteria.page},
+		pageSize:10
 	});
-	</script>
-
+	  
+	$(".pageArea").html(pageStr);
+	  
+	$(".pageArea").on("click","li", function (e) {
+		
+		var pageNum = $(this).html();
+		console.log(pageNum);
+		  
+		$("#page_param").val(pageNum);
+		  
+		$("#searchForm").submit();
+	});
+	  
+    $('#mSearch').find('li').click(function(e) {
+		e.preventDefault();
+		var param = $(this).attr("value");
+		console.log(param);
+		var concept = $(this).text();
+		$('.search-panel span#search_concept').text(concept);
+		$('.input-group #searchType').val(param);
+	});
+	  
+	$("#sortTable").on("click","th", function (e){
+		  
+		var $this = $(this);
+		  
+		var sortName = $(this).attr("id");
+		  
+		console.log(sortName);
+		  
+		var searchSort = $("#searchSort").val(); 
+		  
+		$("#searchSort").val("asc");
+		
+		$("#sortName").val(sortName);
+		  
+		if(searchSort === "desc"){
+			  $("#searchSort").val("asc");
+		}
+		  
+		else if (searchSort === "asc"){
+			  $("#searchSort").val("desc");
+		}
+		
+		console.log(searchSort);
+		  
+		$("#searchForm").submit();  
+	});
+		
+	$("#subBtn").on("click", function (e) {
+		  
+		e.preventDefault();
+		  
+		$("#page_param").val("1");
+		  
+		$("#searchForm").submit();
+		
+	});
+	
+	$("#roleBtnArea").on("click","button", function (e) {
+		  
+		var btn =$(this).attr("id");
+		  
+		if(btn == "mDelBtn"){
+			  
+			var uid = $(this).attr("value");
+			  
+			console.log(uid);
+			  
+			$.ajax({
+				  
+				url:'/movie/removemember',
+				type: 'DELETE',
+				contentType: "application/json; charset=utf-8",
+				data:JSON.stringify({uid:uid}),
+				dataType: 'text',   
+				success: function (result){
+					  
+				}
+			});
+			$('#'+uid+'').remove();
+		}
+		if(btn == "mHisBtn"){
+				 
+			var uid = $(this).attr("value");
+				 
+			$("#historyForm").find("input").val(uid);
+				 
+			$("#historyForm").submit();
+		}
+	});
+	  
+	$('#roleBtnArea').on("click","li",function(e) {
+		e.preventDefault();
+			
+		var uid = $(this).attr("id");
+			
+		console.log(uid);
+			
+		var concept = $(this).text();
+		$('#roleBtnArea .search-panel span#role_concept'+uid+'').text(concept);
+		
+		$.ajax({
+			url:'/movie/rolemember',
+			type: 'PUT',
+			contentType: "application/json; charset=utf-8",
+			data:JSON.stringify({uid:uid,role:concept}),
+			dataType: 'text',   
+			success: function (result){
+					
+			}
+		});
+	});
+});
+</script>
 </body>
 </html>

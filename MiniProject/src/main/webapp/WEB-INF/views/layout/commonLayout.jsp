@@ -25,33 +25,30 @@
 <!-- menu -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 	<div class="container">
-		<a class="navbar-brand" href='<c:url value="/movie/list"></c:url>'>Portfolio</a>
+		<a class="navbar-brand" href='<c:url value="/movie/list"></c:url>'>시스템</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         	<span class="navbar-toggler-icon"></span>
         </button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-              		<a id="memberlist" class="nav-link" href='<c:url value="/movie/memberlist"></c:url>'>MemberList</a>
+              		<a id="memberlist" class="nav-link" href='<c:url value="/movie/memberlist"></c:url>'>회원목록</a>
             	</li>
             	<li class="nav-item">
-           			<a class="nav-link" href='<c:url value="/movie/list"></c:url>'>Board</a>
-            	</li>
-            	<li class="nav-item">
-           			<a class="nav-link" href='<c:url value="/api"></c:url>'>API(Application Programming Interface)</a>
+           			<a class="nav-link" href='<c:url value="/movie/list"></c:url>'>목록</a>
             	</li>
             	<li class="nav-item dropdown">
               		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 	Unnecessary
               		</a>
             		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-		                <a class="dropdown-item" href='<c:url value="/movie/home"></c:url>'>Login</a>
-		                <a class="dropdown-item" href='<c:url value="/movie/homeregister"></c:url>'>Register</a>
+		                <a class="dropdown-item" href='<c:url value="/movie/home"></c:url>'>로그인</a>
+		                <a class="dropdown-item" href='<c:url value="/movie/homeregister"></c:url>'>회원가입</a>
               		</div>
             	</li>
             	<li class="nav-item">
 		        	<a class="nav-link" href='<c:url value="/movie/logout"></c:url>'>
-		            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+		            <i class="fa fa-fw fa-sign-out"></i>로그아웃</a>
 		        </li>
           	</ul>
 		</div>
@@ -76,7 +73,7 @@
               <span aria-hidden="true">x</span>
             </button>
           </div>
-          <div class="modal-body">냉無</div>
+          <div class="modal-body">냉</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
             <a class="btn btn-primary" href='<c:url value="/logout"></c:url>'>로그아웃</a>

@@ -11,8 +11,6 @@
 		select * from db_96.tbl_testmovie
 	
 	<where>		
-	
-	
       
       <if test="searchType != null">
 	
@@ -23,7 +21,6 @@
 	      <if test="searchType == 'writer' ">
 	         AND writer like concat("%", #{keyword} ,"%")
 	      </if>
-	      
   	
 		</if>
 		
@@ -71,7 +68,6 @@
 		
 	</select>
 	
-	
 	<select id="view" resultType="MovieDTO">
 		select * from db_96.tbl_testmovie where tno = #{tno}
 	</select>
@@ -92,7 +88,6 @@
 	         AND writer like concat("%", #{keyword} ,"%")
 	      </if>
       
-  	
 		</if>
 		</where>
 	

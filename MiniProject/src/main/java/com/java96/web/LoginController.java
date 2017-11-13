@@ -26,8 +26,6 @@ public class LoginController {
 
 	@Autowired
 	MemberService service;
-	
-	
 	@GetMapping("/home")
 	public void login() {
 		
@@ -36,12 +34,10 @@ public class LoginController {
 	@PostMapping("/home")
 	public void login(MemberDTO dto, Model model) {
 		System.out.println("login controller");
-	
 		
 		service.addHistory(dto);
 		
 		MemberVO vo = service.login(dto);
-		
 		
 		model.addAttribute("memberDTO",vo);
 	}
@@ -76,7 +72,6 @@ public class LoginController {
 	@GetMapping("/homeout")
 	public void homeOut() {
 		
-		
 	}
 	
 	@PostMapping("/homeout")
@@ -103,9 +98,7 @@ public class LoginController {
 	@GetMapping("/logout")
 	public void logout() {
 		
-				
 	}
-	
 	
 	
 }

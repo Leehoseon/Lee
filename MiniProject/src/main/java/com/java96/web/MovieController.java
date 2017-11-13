@@ -3,7 +3,7 @@ package com.java96.web;
 
 
 
-import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java96.dto.Criteria;
 import com.java96.dto.MemberDTO;
-import com.java96.dto.MemberVO;
+
 import com.java96.dto.MovieDTO;
 import com.java96.dto.SearchCriteria;
 import com.java96.service.MemberService;
@@ -25,8 +25,6 @@ import com.java96.service.UploadService;
 
 
 import lombok.extern.java.Log;
-
-
 
 
 @Controller
@@ -40,7 +38,6 @@ public class MovieController {
 	UploadService upservice;
 	@Autowired
 	MemberService mservice;
-	
 	
 	@GetMapping("/list")
 	public void list(@ModelAttribute("criteria") SearchCriteria cri,HttpSession session, Model model) {
@@ -61,15 +58,11 @@ public class MovieController {
 		
 		model.addAttribute("list",service.getList(cri));
 		
-		
-		
-		
 	}
 	@GetMapping("/memberlist")
 	public void memberlist(@ModelAttribute("criteria") SearchCriteria criteria,HttpSession session, Model model) {
 
 		log.info("cri:~~~~~~~~~~~~~~"+criteria);
-		
 		
 		model.addAttribute("criteria",criteria);
 		
@@ -83,8 +76,8 @@ public class MovieController {
 		
 		model.addAttribute("uid",mservice.getRole(dto));
 		
-	
 	}
+	
 	@GetMapping("/memberhistory")
 	public void memberhistory(MemberDTO dto,Criteria cri, Model model) {
 
@@ -115,11 +108,9 @@ public class MovieController {
 	@GetMapping("/register")
 	public void registerGet(HttpSession session, Model model) {
 		
-		
 		String member =   (String) session.getAttribute("memberDTO");
 		
 		model.addAttribute("member",member);
-		
 		
 	}
 	
@@ -143,9 +134,7 @@ public class MovieController {
 		
 		dto.setUid(uid);
 		
-		
 		model.addAttribute("uid",mservice.getRole(dto));
-		
 		model.addAttribute("attach", upservice.viewAttach(tno));
 		model.addAttribute("view",service.getView(tno));
 		
@@ -160,8 +149,6 @@ public class MovieController {
 		
 		int tno = dto.getTno();
 		
-		
-		
 		return "redirect:/movie/view?tno="+tno+"";
 	}
 	
@@ -172,6 +159,5 @@ public class MovieController {
 		
 		return "redirect:/movie/list";
 	}
-	
 	
 }

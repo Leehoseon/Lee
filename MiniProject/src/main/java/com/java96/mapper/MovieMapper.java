@@ -26,8 +26,6 @@ public interface MovieMapper {
 //	@Select("select count(*) from tbl_testmovie where tno > 0")
 	public int getTotal(Criteria cri);
 	
-	
-	
 	@Update("UPDATE tbl_testmovie as a SET replycnt = (select count(*) from  tbl_testreply as b  where tno = #{tno}) where tno = #{tno}")
 	public void updateReplyCnt(int tno);
 	
@@ -39,8 +37,5 @@ public interface MovieMapper {
 	
 	@Update("update tbl_testmovie set title = #{title}, writer = #{writer}, filename = #{filename}, content = #{content} where  writer = 'writer' ")
 	public void register(MovieDTO dto);
-	
-	
-	
 	
 }

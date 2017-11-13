@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>회원 가입</title>
+		<title>회원 수정</title>
 		<link href='<c:url value="/resources/bootstrap/css/bootstrap.min.css"></c:url>' rel="stylesheet">
 		<link href='<c:url value="/resources/font-awesome/css/font-awesome.min.css"></c:url>' rel="stylesheet">
 		<link href='<c:url value="/resources/css/sb-admin.css"></c:url>' rel="stylesheet">
@@ -22,7 +22,7 @@
 	<body class="bg-dark">
 		<div class="container">
 			<div class="card card-register mx-auto mt-5">
-				<div class="card-header">회원 가입</div> 
+				<div class="card-header">회원 수정</div> 
 				<div class="card-body">
 					<form method="post">
 						<div class="form-group">

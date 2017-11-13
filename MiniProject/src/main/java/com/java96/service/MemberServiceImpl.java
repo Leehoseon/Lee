@@ -78,6 +78,5 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO getRole(MemberDTO dto) {
 		return mapper.getRole(dto);
 	}
-
 	
 }

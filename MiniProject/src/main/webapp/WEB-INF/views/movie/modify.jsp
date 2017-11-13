@@ -92,7 +92,6 @@ $(function(){
 });
 </script>
 
-
 <script>
 $(document).ready(function(){
 	
@@ -102,20 +101,19 @@ $(document).ready(function(){
 		
 		console.log(uid);
 		
-		if(uid !=="manager"){
+		if(uid !=="관리자"){
 			
 			$("#memberlist").hide();
+			
 		};
+		
 	}showMlist();
 	
 	$("#modBtn").on("click",function (e) {
 		
 		e.preventDefault();
 		
-		
 		$("#contact_form").submit();
-		
-		/* window.location="/movie/view?tno=${view.tno }";  */
 		
 	});
 	
@@ -125,10 +123,7 @@ $(document).ready(function(){
 		
 		window.location="/movie/list"; 
 		
-		
 	});
-	
-	
 	
 	$("#removeBtn").on("click", function (e) {
 		
@@ -140,134 +135,112 @@ $(document).ready(function(){
 	
 	var jbAry = new Array();
 
-$("#attachList").on("click","li", function (e) {
+	$("#attachList").on("click","li", function (e) {
 				
-				e.preventDefault();
+		e.preventDefault();
 				
-				var $this = $(this);
+		var $this = $(this);
 				
-				console.log($this);
+		console.log($this);
 				
-				var value = $this.attr("data-file");
+		var value = $this.attr("data-file");
 				
-				console.log(value);
+		console.log(value);
 				
-				var uploadName = "uploadName : " + value;
+		var uploadName = "uploadName : " + value;
 				
-				console.log(uploadName);
+		console.log(uploadName);
 				
-				$this.remove();
-				
-				
+		$this.remove();
 			 	
-				 $.ajax({
-			            url: "/upload/remove",
-			            method: 'DELETE',
-			            data:JSON.stringify({thumbName:value}),
-			            dataType: 'json',
-			            processData: false,
-			            contentType:'application/json; charset=utf-8',
-			            success: function(result) {
-			            	console.log("del comple./..")
-			            	
-			     
-			            } 
-			            
-			            
-				 
-			            
-				
-			});
+		$.ajax({
+			url: "/upload/remove",
+			method: 'DELETE',
+			data:JSON.stringify({thumbName:value}),
+			dataType: 'json',
+			processData: false,
+			contentType:'application/json; charset=utf-8',
+			success: function(result) {
+			console.log("del comple./..")
+				            	
+			 } 
+					
+		});
 
-
-			});
+	});
 			
-$("#attachList").on("dragenter dragover",function(e){
+	$("#attachList").on("dragenter dragover",function(e){
+		
+		e.preventDefault();
+		
+	});
+
+	$("#attachList").on('drop', function (e) {
+	      e.preventDefault();
 	
-	e.preventDefault();
+	      var files = e.originalEvent.dataTransfer.files;
+	      if(files.length < 1)
+	           return;
 	
-});
+	      F_FileMultiUpload(files);
+	     
+	 });
 
-$("#attachList").on('drop', function (e) {
-      e.preventDefault();
-      
-
-      var files = e.originalEvent.dataTransfer.files;
-      if(files.length < 1)
-           return;
-
-      F_FileMultiUpload(files);
-      
-     
- });
-
-
-function F_FileMultiUpload(files) {
-	/* parseInt("${view.tno}", 10) */
-	 var tno = parseInt("${view.tno}");
-	 
-	  
-         var data = new FormData();
-            data.append('tno',tno); 
+	function F_FileMultiUpload(files) {
 		
-		
-         for (var i = 0; i < files.length; i++) {
-            data.append('file', files[i]);
-            
-            console.log(files[i]);
-            console.log(data.tno);
-            console.log(data);
-		
-         var url = "/upload/modify";
-         $.ajax({
-            url: url,
-            method: 'post',
-            data: data,
-            dataType: 'json',
-            processData: false,
-            contentType: false,
-            success: function(data) {
-            	var str ="";
-            	
-        		 
-            	 for (var i = 0; i < files.length; i++) {
-            		 var dt = data.thumbName;
-            		 console.log(dt);
-            		 jbAry.push(dt); 
-            		 
-				str ="<li data-file='" + data.uploadName  +"'><div>";
-				str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
-				str +="<span>" + data.original + " </span>";
-				str +="<button class='btn btn-default' id='delBtn'>del</button>"
-				str +="</div></li>";
-				
-				$("#attachList").append(str);
-				
-            	
-				
-				console.log(str);
-				
-				var filename = new FormData(); 
-				
-				
-				
-				
-            	 
-            	 
-            	 console.log(jbAry);
-            	 for (var i = 0; i < files.length; i++){
-            		 
-            	 
-            	 var cstr = "<input type='hidden' name='filename' value='"+jbAry[i]+"'>";
-            	 console.log(cstr);
-            	 $("#contact_form").append(cstr);
-            	 }
-            	 
-            	 }
-            }
-         });
-     }
-}
+		var tno = parseInt("${view.tno}");
+		var data = new FormData();
+	    data.append('tno',tno); 
+			
+	    for (var i = 0; i < files.length; i++) {
+	        data.append('file', files[i]);
+	            
+	        console.log(files[i]);
+	        console.log(data.tno);
+	        console.log(data);
+			
+		    var url = "/upload/modify";
+		  	$.ajax({
+		  		
+			   	url: url,
+			    method: 'post',
+			    data: data,
+			    dataType: 'json',
+			    processData: false,
+			    contentType: false,
+			    success: function(data) {
+			    	var str ="";
+			        		 
+			        for (var i = 0; i < files.length; i++) {
+			        	var dt = data.thumbName;
+			            console.log(dt);
+			            jbAry.push(dt); 
+			            	 
+						str ="<li data-file='" + data.uploadName  +"'><div>";
+						str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
+						str +="<span>" + data.original + " </span>";
+						str +="<button class='btn btn-default' id='delBtn'>del</button>"
+						str +="</div></li>";
+						
+						$("#attachList").append(str);
+							
+						console.log(str);
+							
+						var filename = new FormData(); 
+							
+				        console.log(jbAry);
+				        for (var i = 0; i < files.length; i++){
+					           		 
+					    	var cstr = "<input type='hidden' name='filename' value='"+jbAry[i]+"'>";
+					        console.log(cstr);
+					        $("#contact_form").append(cstr);
+					           	 
+				        }
+			        }
+			    }
+			});
+	    };
+	};
 });
 </script>
 </body>

@@ -19,7 +19,6 @@ public class ReplyServiceImpl implements ReplyService {
 	ReplyMapper mapper;
 	@Autowired
 	MovieMapper mmapper;
-
 	
 	@Transactional
 	@Override
@@ -43,21 +42,5 @@ public class ReplyServiceImpl implements ReplyService {
 		mapper.update(dto);
 		
 	}
-
-	
-
-	
-
-	
-
-	
-
-	
-	
-	
-	
-	
-	
-	
 
 }

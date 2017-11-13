@@ -9,8 +9,6 @@ import com.java96.dto.UploadDTO;
 
 public interface ReplyService {
 
-	
-
 	public void register_rpl(ReplyDTO dto);
 	
 	public List<ReplyDTO> getList_rpl(int tno);
@@ -18,8 +16,5 @@ public interface ReplyService {
 	public void delete_rpl(ReplyDTO dto);
 	
 	public void update_rpl(ReplyDTO dto);
-	
-	
-
 	
 }

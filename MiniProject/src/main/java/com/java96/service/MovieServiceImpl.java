@@ -16,15 +16,13 @@ public class MovieServiceImpl implements MovieService {
 
 	@Autowired
 	MovieMapper mapper;
-	
-	
+
 	@Override
 	public List<MovieDTO> getList(Criteria cri) {
 		cri.setTotal(mapper.getTotal(cri));
 		return mapper.listPage(cri);
 		
 	}
-
 
 	@Override
 	public MovieDTO getView(int tno) {
@@ -33,7 +31,6 @@ public class MovieServiceImpl implements MovieService {
 		mapper.updatedbhit(tno);
 		return mapper.view(tno);
 	}
-
 
 	@Override
 	
@@ -51,9 +48,7 @@ public class MovieServiceImpl implements MovieService {
 			
 			mapper.registerAdd(dto);
 		}
-		
 	}
-
 
 	@Override
 	public void remove(int tno) {
@@ -62,14 +57,12 @@ public class MovieServiceImpl implements MovieService {
 		
 	}
 
-
 	@Override
 	public void modify(MovieDTO dto) {
 		
 		mapper.modify(dto);
 		
 	}
-
 
 	@Override
 	public int getTotal(Criteria cri) {
@@ -89,10 +82,5 @@ public class MovieServiceImpl implements MovieService {
 		mapper.registerAdd(dto);
 		
 	}
-
-
-	
-
-
 	
 }

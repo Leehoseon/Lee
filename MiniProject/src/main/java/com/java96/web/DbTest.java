@@ -16,10 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
 public class DbTest {
 
-	@Autowired//inject�� ���� ����  ������ Ȯ���غ��� 
+	@Autowired 
 	DataSource ds;
-	
-	
 	
 	@Test
 	public void test()throws Exception {
@@ -29,6 +27,5 @@ public class DbTest {
 		
 		con.close();
 	}
-	
 	
 }

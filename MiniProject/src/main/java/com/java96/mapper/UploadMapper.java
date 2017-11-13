@@ -16,11 +16,8 @@ public interface UploadMapper {
 	@Delete("delete from tbl_testattach where thumbName = #{thumbName}")
 	public void removeAttach(UploadDTO dto);
 	
-	
 	@Select("select * from tbl_testattach where tno= #{tno}")
 	public List<UploadDTO> viewAttach(int tno);
-	
-	
 	
 	public void modifyAttach(UploadDTO dto);
 

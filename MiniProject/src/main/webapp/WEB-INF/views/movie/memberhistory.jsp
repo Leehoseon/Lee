@@ -7,7 +7,6 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <!-- Page Content -->
 <div class="container">
 	<h1 class="my-4">회원 접속 목록</h1>
@@ -21,8 +20,8 @@
 						<table class="table table-bordered" id="dataTable">
 							<thead>
 								<tr id="sortTable">
-									  <th id="Uid" scope="col">ID</th>
-								      <th id="Date" scope="col">LoginDate</th>
+									  <th id="Uid" scope="col">아이디</th>
+								      <th id="Date" scope="col">접속기록</th>
 								</tr>
 							</thead>
 							<!-- 본문 영역 -->
@@ -41,7 +40,6 @@
 				<form id="actionForm" method='get'>
 					<input type='hidden' name='page' value="${criteria.page }">
 					<input type='hidden' name='tno'>
-
 				</form>
 				<div class="pageArea1">
 					<span><ul class="pageArea"></ul> </span>
@@ -59,7 +57,7 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-	<script type="text/javascript" src="/resources/js/paging.js"></script>
+<script type="text/javascript" src="/resources/js/paging.js"></script>
 
 <script>
 
@@ -73,17 +71,17 @@
 			          pageSize:10
 			      });
 		  
-		  $(".pageArea").html(pageStr);
+	$(".pageArea").html(pageStr);
 		  
-		  $(".pageArea").on("click","li", function (e) {
+	$(".pageArea").on("click","li", function (e) {
 			
-			  var pageNum = $(this).html();
-			  console.log(pageNum);
+		var pageNum = $(this).html();
+		console.log(pageNum);
 			  
-			  $("#page_param").val(pageNum);
+		$("#page_param").val(pageNum);
 			  
-			  $("#actionForm").submit();
-		});
+		$("#actionForm").submit();
+	});
 });
 		
 </script>

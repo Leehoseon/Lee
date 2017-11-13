@@ -17,7 +17,6 @@
 		select * from tbl_member
 	
 	<where>		
-	
       
       <if test="searchType != null">
 	
@@ -28,7 +27,6 @@
 	      <if test="searchType == 'Upw' ">
 	         AND upw like concat("%", #{keyword} ,"%")
 	      </if>
-	      
   	
 		</if>
 		
@@ -48,9 +46,13 @@
 					 regdate
 					</when>
 			<otherwise>
+			
 			uid
+			
 			</otherwise>
+			
 			</choose>
+			
 			<choose>
 			
 			    <when test="searchSort == 'asc'">
@@ -65,6 +67,7 @@
 				</otherwise>
 		    
 	 		</choose>
+	 		
 		 limit #{skip} ,9
 		
 	</select>
@@ -87,9 +90,9 @@
       
   	
 		</if>
+		
 		</where>
 	
 	</select>
-	
 	
 </mapper>

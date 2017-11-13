@@ -31,13 +31,9 @@
 			             </div>  
 			             
 						<div class="imgList" id="imgList" >
-							
 						</div>
-						
-						
 							
 						</form>
-						
 						<div class="btnArea">
 								<button name="Submit" value="reg" id="regBtn"  class="btn btn-default" type="submit" >
 									추가
@@ -56,9 +52,6 @@
 	</div>
 </div>
 
-
-     
-	
 
 <script>
 $(function(){
@@ -90,28 +83,19 @@ $(function(){
 
 <script>
 
-
 $(document).ready(function(){
 	
-	
-	
 	var jbAry = new Array();
-	
 	
 	$("#regBtn").on("click",function (e) {
 		
 		e.preventDefault();
 		
-		
 		$("#contact_form").submit();
 		
-		
-		
-	})
-	
+	});
 	
 	function registerForm() {
-  	  
   	  
 	  	$.ajax({
 			  url:'/upload/add',
@@ -123,26 +107,20 @@ $(document).ready(function(){
 			  success: function(data){
 				  
 			  }
-		  });
-  	  
-		
+		});
 	};
 	
-		$("#listBtn").on("click", function (e) {
+	$("#listBtn").on("click", function (e) {
 		
 		e.preventDefault();
 		
 		window.location="/movie/list"; 
 		
-		
-		});
-	
-	
+	});
 	
 	 $("#subBtn").on("click",function(e){
 		
 		 e.preventDefault();
-		
 
 		var formData = new FormData();
 		
@@ -151,176 +129,142 @@ $(document).ready(function(){
 		
 		console.log(dd);
 		
-		
 		$.ajax({
-			  url:'/upload/new',
-			  data: formData,
-			  dataType:'json',
-			  processData: false,
-			  contentType: false,
-			  type: 'POST',
-			  success: function(data){
-				
+			
+			url:'/upload/new',
+			data: formData,
+			dataType:'json',
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			success: function(data){
 		 		  
-				console.log(data);
+			console.log(data);
 				
-
 				var str ="";
+				
 				str ="<li data-file='" + data.uploadName  +"'><div>";
 				str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
 				str +="<span>" + data.original + " </span>";
 				str +="</div></li>";
 				$(".imgList").append(str);
 				
-				 
 				console.log(str);
 				
 			  } 
 		});
-		
-	
 	}); 
 	 
-	 
-	 
-		
+	$("#file").on("dragenter dragover",function(e){
+				
+		e.preventDefault();
+				
+	});
 			
-			$("#file").on("dragenter dragover",function(e){
-				
-				e.preventDefault();
-				
-			});
+	$("#file").on('drop', function (e) {
+		e.preventDefault();
+		          
+		var list = $(".imgList").find("li");
+		          
+		if(list == null ){
+		        	  
+			registerForm();
+		        	  
+		}
+		          
+		console.log(list);
+		          
+		var files = e.originalEvent.dataTransfer.files;
+			if(files.length < 1)
+			       return;
+
+		F_FileMultiUpload(files);
+	});
+
+	function F_FileMultiUpload(files) {
 			
-			$("#file").on('drop', function (e) {
-		          e.preventDefault();
-		          
-		          var list = $(".imgList").find("li");
-		          
-		          if(list == null ){
-		        	  
-		        	  registerForm();
-		        	  
-		          }
-		          
-		          
-		          
-		          console.log(list);
-
-		       
-		          
-		          var files = e.originalEvent.dataTransfer.files;
-		          if(files.length < 1)
-		               return;
-
-		          F_FileMultiUpload(files);
-		     });
-
+		var data = new FormData();
 		
-			function F_FileMultiUpload(files) {
+		for (var i = 0; i < files.length; i++) {
+			data.append('file', files[i]);
+		            
+		    console.log(files[i]);
+		            
+		}
 				
-					
-				     
-			         var data = new FormData();
-			         for (var i = 0; i < files.length; i++) {
-			            data.append('file', files[i]);
-			            
-			            console.log(files[i]);
-			            
-			         }
-					
-			         var url = "/upload/new";
-			         $.ajax({
-			            url: url,
-			            method: 'post',
-			            data: data,
-			            dataType: 'json',
-			            processData: false,
-			            contentType: false,
-			            success: function(data) {
-			            	var str ="";
-			            	
-		            		 
-			            	 for (var i = 0; i < files.length; i++) {
-			            		 var dt = data.thumbName;
-			            		 console.log(dt);
-			            		 jbAry.push(dt); 
-			            		 
-							str ="<li data-file='" + data.uploadName  +"'><div>";
-							str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
-							str +="<span>" + data.original + " </span>";
-							str +="<button class='btn btn-default' id='delBtn'>del</button>"
-							str +="</div></li>";
-							$(".imgList").append(str);
+		var url = "/upload/new";
+		$.ajax({
+	    	url: url,
+	        method: 'post',
+	        data: data,
+	        dataType: 'json',
+	        processData: false,
+	        contentType: false,
+	        success: function(data) {
+	          	var str ="";
+		            for (var i = 0; i < files.length; i++) {
+		            	var dt = data.thumbName;
+		            	console.log(dt);
+		            	jbAry.push(dt); 
+				           		 
+						str ="<li data-file='" + data.uploadName  +"'><div>";
+						str += "<img id='drgImg' src='/upload/new/" + data.thumbName + "'>";
+						str +="<span>" + data.original + " </span>";
+						str +="<button class='btn btn-default' id='delBtn'>del</button>"
+						str +="</div></li>";
+						$(".imgList").append(str);
 							
-							/* for (var i = 0; i < 10; i++) {
-								 
-								var upl = "<input type='hidden' value='"+data.uploadName[i]+"'> ";
-									upl += "<input type='hidden' value='"+data.thumbName[i]+"'> ";
-									upl += "<input type='hidden' value='"+data.original[i]+"'> ";
+						console.log(str);
 								
-									 $("#contact_form").append(upl);
-									 console.log(upl);	 
-							 } */
+						var filename = new FormData(); 
 							
-			            	
-							
-							console.log(str);
-							
-							var filename = new FormData(); 
-							
-							/* var str ="<input type='text' name='filename' val='"+data.thumbName+"'>"; */ 
-							
-							
-			            	 }
+						/* var str ="<input type='text' name='filename' val='"+data.thumbName+"'>"; */ 
+						
+		            }
 			            	 
-			            	 console.log(jbAry);
-			            	 for (var i = 0; i < files.length; i++){
+		             console.log(jbAry);
+		             for (var i = 0; i < files.length; i++){
 			            		 
-			            	 
-			            	 var cstr = "<input type='hidden' name='filename' value='"+jbAry[i]+"'>";
-			            	 console.log(cstr);
-			            	 }
-			            	 $("#filename").append(cstr);
-			            }
-			         });
-			     
-			}
+		            	 var cstr = "<input type='hidden' name='filename' value='"+jbAry[i]+"'>";
+		            	 console.log(cstr);
+		             }
+		             $("#filename").append(cstr);
+				}
+		});
+	};
 
-			$(".imgList").on("click","li", function (e) {
+	$(".imgList").on("click","li", function (e) {
 				
-				e.preventDefault();
+		e.preventDefault();
 				
-				var $this = $(this);
+		var $this = $(this);
 				
-				console.log($this);
+		console.log($this);
 				
-				var value = $this.attr("data-file");
+		var value = $this.attr("data-file");
 				
-				console.log(value);
+		console.log(value);
 				
-				var uploadName = "uploadName : " + value;
+		var uploadName = "uploadName : " + value;
 				
-				console.log(uploadName);
+		console.log(uploadName);
 				
-				$this.remove();
-				
-				
+		$this.remove();
 			 	
-				 $.ajax({
-			            url: "/upload/remove",
-			            method: 'DELETE',
-			            data:JSON.stringify({uploadName:value}),
-			            dataType: 'json',
-			            processData: false,
-			            contentType:'application/json; charset=utf-8',
-			            success: function(result) {
-			            	console.log("del comple./..")
-			            } 
-			});
-			});
+		$.ajax({
+			url: "/upload/remove",
+			method: 'DELETE',
+			data:JSON.stringify({uploadName:value}),
+			dataType: 'json',
+			processData: false,
+			contentType:'application/json; charset=utf-8',
+			success: function(result) {
+			    console.log("del comple./..")
+			} 
+		});
+	});
 });
 
-
 </script>
-
-
+</body>
+</html>

@@ -17,7 +17,6 @@ public class Logout extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		
 		HttpSession session = request.getSession();
 		
 		String member = (String) session.getAttribute("memberDTO");
@@ -30,10 +29,7 @@ public class Logout extends HandlerInterceptorAdapter {
 			session.invalidate();
 			System.out.println(member+"objobjobjobjobjobjobjobjobjobjobjobjobjobjobjobj");
 			
-			
 			Cookie loginCookie = WebUtils.getCookie(request, "memberDTO");
-			
-			
 			
 			if(loginCookie != null) {
 				System.out.println(loginCookie+"logincookie");
@@ -43,16 +39,12 @@ public class Logout extends HandlerInterceptorAdapter {
 				response.addCookie(loginCookie);
 				
 				System.out.println(loginCookie+"logincookie");
-
 		
 			}
-		
-			
 		
 		}
 		
 		return true;
 	}
-	
 	
 }

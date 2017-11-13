@@ -7,15 +7,10 @@ import com.java96.dto.MovieDTO;
 
 
 public interface MovieService {
-
-
-	
-	
 	
 		public int getTotal(Criteria cri);
 		
 		public List<MovieDTO> getList(Criteria cri);
-	
 
 		public MovieDTO getView(int tno);
 		
@@ -28,10 +23,5 @@ public interface MovieService {
 		public void updateReplycnt(int tno);
 		
 		public void registerAdd(MovieDTO dto);
-		
-		
-		
-		
-		
 	
 }

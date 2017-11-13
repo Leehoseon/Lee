@@ -29,8 +29,6 @@ public class ReplyController {
 	@Autowired
 	ReplyService service;
 	
-	
-	
 	@PostMapping("/new")
 	public void register(@RequestBody ReplyDTO dto) {
 		
@@ -40,10 +38,9 @@ public class ReplyController {
 	
 	@GetMapping("/list/{tno}")
 	public List<ReplyDTO> list(@PathVariable("tno") int tno) {
-		/*log.info("tno:"+tno);*/
+		
 		log.info(tno+"");
 		return service.getList_rpl(tno);
-		
 		
 	}
 	@DeleteMapping("/remove")

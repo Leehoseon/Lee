@@ -44,9 +44,6 @@ public class UploadController {
 	@Autowired
 	MovieService mservice;
 	
-	
-	
-	
 	@GetMapping("/new/{thumbName:.+}")
 	
 		public @ResponseBody byte[] display(@PathVariable("thumbName")String  thumbName )throws Exception {
@@ -66,7 +63,6 @@ public class UploadController {
 				return  null;
 			}
 			
-			
 	}
 	
 	@PostMapping("/new")
@@ -78,17 +74,12 @@ public class UploadController {
 		
 		String contentType = file.getContentType().toString();
 		
-		
-		
 		UUID uuid = UUID.randomUUID();
 		
 		String uploadName = uuid.toString()+"_"+file.getOriginalFilename();
 		String thumbName = "s_"+ uploadName;
 
-		
 		OutputStream out = new FileOutputStream("C:\\MiniPj\\"+ uploadName);
-		
-		
 		
 		FileCopyUtils.copy(file.getInputStream(), out);
 		
@@ -116,8 +107,6 @@ public class UploadController {
 			
 		}
 		
-		
-		
 		map.put("original", file.getOriginalFilename());
 		map.put("uploadName", uploadName);
 		map.put("thumbName", thumbName);
@@ -132,31 +121,19 @@ public class UploadController {
 		dto.setUploadName(uploadName);
 		dto.setThumbName(thumbName);
 		
-		
 		log.info(dto+"dto~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		log.info(dto+"dto~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		log.info(dto+"dto~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		
 		
 		upservice.registerAttach(dto);
 		
-		
-
-		
 		return map;
 		
-		
-		
-		
-		
-
 	}
 	
 	@DeleteMapping("/remove")
 	public void remove(@RequestBody UploadDTO dto) {
 		log.info(dto+"dtodtodtodtodtodtodtodtodtodto");
-		
-		
 		
 		upservice.deleteAttach(dto);
 		
@@ -171,17 +148,12 @@ public class UploadController {
 		
 		String contentType = file.getContentType().toString();
 		
-		
-		
 		UUID uuid = UUID.randomUUID();
 		
 		String uploadName = uuid.toString()+"_"+file.getOriginalFilename();
 		String thumbName = "s_"+ uploadName;
-
 		
 		OutputStream out = new FileOutputStream("C:\\MiniPj\\"+ uploadName);
-		
-		
 		
 		FileCopyUtils.copy(file.getInputStream(), out);
 		
@@ -209,8 +181,6 @@ public class UploadController {
 			
 		}
 		
-		
-		
 		map.put("original", file.getOriginalFilename());
 		map.put("uploadName", uploadName);
 		map.put("thumbName", thumbName);
@@ -224,23 +194,15 @@ public class UploadController {
 		dto.setOriginal(file.getOriginalFilename());
 		dto.setUploadName(uploadName);
 		dto.setThumbName(thumbName);
-		
-		
 		dto.setTno(Integer.parseInt(tno));
 		
-		
 		log.info(dto+"dto~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		log.info(dto+"dto~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		log.info(dto+"dto~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		
 		
 		upservice.modifyAttach(dto);
 		
-		
-
-		
 		return map;
-		
 		
 	}
 	
@@ -252,6 +214,4 @@ public class UploadController {
 		
 	}
 	
-	
-
 }
