@@ -53,7 +53,8 @@
 		</div>
 	</div>
 </div>
-<input type="hidden" id="uid" value="${uid.role}">
+<input type="hidden" id="role" value="${uid.role}">
+<input type="hidden" id="uid" value="${uid.uid}">
 		
  <form id="removeForm" action="/movie/remove" method="post">
  <input type="hidden" name="tno" value="${view.tno }">
@@ -95,9 +96,22 @@ $(function(){
 <script>
 $(document).ready(function(){
 	
+	var uid = $("#uid").val();
+	
+	var writer = $("#writer").val();
+	
+	console.log(uid);
+	console.log(uid);
+	
+	if(uid != writer){
+		
+		window.location.href = "/movie/list";
+		
+	};
+	
 	function showMlist() {
 		
-		var uid = $("#uid").val();
+		var uid = $("#role").val();
 		
 		console.log(uid);
 		

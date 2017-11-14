@@ -44,7 +44,7 @@ public interface MemberMapper {
 	@Select("select * from tbl_history where uid = #{uid} order by uid")	
 	public List<MemberDTO> getHistoryList(MemberDTO dto);
 	
-	@Select("select role from tbl_member where uid = #{uid}")
+	@Select("select * from tbl_member where uid = #{uid}")
 	public MemberVO getRole(MemberDTO dto);
 	
 	

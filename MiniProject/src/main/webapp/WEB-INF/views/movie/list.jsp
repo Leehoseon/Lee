@@ -88,6 +88,7 @@
 							</tbody>
 						</table>
 					</div>
+					
 				</div>
 				
 				<form id="actionForm" method='get'>
