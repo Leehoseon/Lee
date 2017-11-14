@@ -74,9 +74,9 @@
 								<c:forEach items="${list}" var="movie">
 								    <tr id="${movie.uid }">
 									      <td class="rTno" data-label="Uid" >${movie.uid }</td>
-									      <td class="rTno" data-label="Upw" >${movie.upw }</td>
+									      <td style="word-break:break-all;" wrap="hard" class="rTno" data-label="Upw" >${movie.upw }</td>
 									      <td data-label="Date">${movie.regdate }</td>
-										<td class="rTno" data-label="Role" >
+											<td class="rTno" data-label="Role" >
 											<div class="input-group-btn search-panel" id="rSel">
 
 												<button type="button"

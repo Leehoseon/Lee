@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java96.common.CommonUtil;
 import com.java96.dto.Criteria;
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
@@ -16,9 +17,15 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberMapper mapper;
+	@Autowired
+	CommonUtil util;
 
 	@Override
 	public void register(MemberDTO dto) {
+		
+		String utill = util.encryptToSHA512(dto.getUpw());
+		
+		dto.setUpw(utill);
 		
 		mapper.register(dto);
 		
@@ -26,6 +33,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO login(MemberDTO dto) {
+		
+		String utill = util.encryptToSHA512(dto.getUpw());
+		
+		dto.setUpw(utill);
+		
 		return mapper.login(dto);
 	}
 

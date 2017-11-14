@@ -90,6 +90,14 @@ s.read1{
 	
 	list-style: none;
 }
+h3{
+
+	width:10px;
+	text-overflow:ellipsis !important; 
+	overflow:hidden !important;
+
+	
+}
 
 
 
