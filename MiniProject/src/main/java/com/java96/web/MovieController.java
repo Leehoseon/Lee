@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java96.dto.Criteria;
+import com.java96.dto.HistoryDTO;
 import com.java96.dto.MemberDTO;
 
 import com.java96.dto.MovieDTO;
@@ -48,8 +49,8 @@ public class MovieController {
 		
 		dto.setUid(uid);
 		
-		
 		model.addAttribute("uid",mservice.getRole(dto));
+		
 		log.info("cri:~~~~~~~~~~~~~~"+cri);
 		
 		log.info("cri:~dtodtodtodto~~~~~"+dto);
@@ -79,10 +80,13 @@ public class MovieController {
 	}
 	
 	@GetMapping("/memberhistory")
-	public void memberhistory(MemberDTO dto,Criteria cri, Model model) {
+	public void memberhistory(@ModelAttribute("criteria") SearchCriteria cri, Model model) {
 
+		log.info(cri+"cricricri&&&&&&&&&&&&&&&&&&");
+		
 		model.addAttribute("criteria",cri);
-		model.addAttribute("list",mservice.getHistoryList(dto));
+		
+		model.addAttribute("list",mservice.getHistoryList(cri));
 		
 	}
 	

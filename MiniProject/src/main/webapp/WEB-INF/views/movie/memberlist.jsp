@@ -103,8 +103,9 @@
 					<input type='hidden' name='page' value="${criteria.page }">
 					<input type='hidden' name='tno'>
 				</form>
-				<form id="historyForm" action="/movie/memberhistory">
-					<input type='hidden' name='uid'>
+				<form id="historyForm" action="/movie/memberhistory" method="get">
+					<input type='hidden' id='keyword' name='keyword'>
+					<input type='hidden'  name='page' value="${criteria.page }">
 				</form>
 				<input type="hidden" id="uid" value="${uid.role}">
 				<div class="pageArea1">
@@ -234,7 +235,7 @@ $(document).ready(function(){
 				 
 			var uid = $(this).attr("value");
 				 
-			$("#historyForm").find("input").val(uid);
+			$("#keyword").val(uid);
 				 
 			$("#historyForm").submit();
 		}

@@ -22,6 +22,7 @@
 								<tr id="sortTable">
 									  <th id="Uid" scope="col">아이디</th>
 								      <th id="Date" scope="col">접속기록</th>
+								      <th id="ip" scope="col">접속 아이피</th>
 								</tr>
 							</thead>
 							<!-- 본문 영역 -->
@@ -29,8 +30,9 @@
 								<c:forEach items="${list}" var="movie">
 								    <tr id="${movie.uid }">
 									      <td class="rTno" data-label="Uid" >${movie.uid }</td>
-									      <td class="rTno" data-label="Udate" >
-									      ${movie.regdate }</td>
+									      <td class="rTno" data-label="Date" >
+									      ${movie.connectdate }</td>
+									      <td class="rTno" data-label="ip" >${movie.ipaddress }</td>
 								    </tr>
 								</c:forEach>
 							</tbody>
@@ -40,6 +42,10 @@
 				<form id="actionForm" method='get'>
 					<input type='hidden' name='page' value="${criteria.page }">
 					<input type='hidden' name='tno'>
+				</form>
+				<form id="historyForm" action="/movie/memberhistory" method="get">
+					<input type='hidden' id='keyword' name='keyword' value="${criteria.keyword }">
+					<input type='hidden' id='page' name='page' value="${criteria.page }">
 				</form>
 				<div class="pageArea1">
 					<span><ul class="pageArea"></ul> </span>
@@ -78,9 +84,9 @@
 		var pageNum = $(this).html();
 		console.log(pageNum);
 			  
-		$("#page_param").val(pageNum);
+		$("#page").val(pageNum);
 			  
-		$("#actionForm").submit();
+		$("#historyForm").submit();
 	});
 });
 		

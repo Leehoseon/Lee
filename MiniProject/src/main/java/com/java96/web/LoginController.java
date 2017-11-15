@@ -3,6 +3,8 @@ package com.java96.web;
 
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.java96.dto.HistoryDTO;
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
 
@@ -32,10 +35,15 @@ public class LoginController {
 	}
 	
 	@PostMapping("/home")
-	public void login(MemberDTO dto, Model model) {
+	public void login(MemberDTO dto,HttpServletRequest request, Model model) {
 		System.out.println("login controller");
 		
-		service.addHistory(dto);
+		HistoryDTO hdto = new HistoryDTO();
+		
+		hdto.setUid(dto.getUid());
+		hdto.setIpaddress(request.getRemoteAddr());
+		
+		service.addHistory(hdto);
 		
 		MemberVO vo = service.login(dto);
 		

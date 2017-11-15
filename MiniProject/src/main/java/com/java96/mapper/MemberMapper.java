@@ -8,9 +8,11 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.java96.dto.Criteria;
+import com.java96.dto.HistoryDTO;
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
 import com.java96.dto.MovieDTO;
+import com.java96.dto.SearchCriteria;
 
 public interface MemberMapper {
 
@@ -35,14 +37,14 @@ public interface MemberMapper {
 	/*@Select("select count(*) from tbl_member ")*/
 	public int getTotal(Criteria cri);
 	
-	@Insert("insert into tbl_history (uid) values (#{uid})")
-	public void addHistory(MemberDTO dto);
+	@Insert("insert into tbl_history (uid,ipaddress) values (#{uid},#{ipaddress})")
+	public void addHistory(HistoryDTO hdto);
 	
-	@Select("select count(*) from tbl_history")
+	@Select("select count(*) from tbl_history where uid = #{keyword}")
 	public int getHistoryTotal(Criteria cri);
 	
-	@Select("select * from tbl_history where uid = #{uid} order by uid")	
-	public List<MemberDTO> getHistoryList(MemberDTO dto);
+	@Select("select * from tbl_history where uid = #{keyword} order by connectdate desc limit #{skip} ,9")	
+	public List<HistoryDTO> getHistoryList(SearchCriteria cri);
 	
 	@Select("select * from tbl_member where uid = #{uid}")
 	public MemberVO getRole(MemberDTO dto);

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.java96.common.CommonUtil;
 import com.java96.dto.Criteria;
+import com.java96.dto.HistoryDTO;
 import com.java96.dto.MemberDTO;
 import com.java96.dto.MemberVO;
+import com.java96.dto.SearchCriteria;
 import com.java96.mapper.MemberMapper;
 
 @Service
@@ -67,11 +69,6 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.getTotal(cri);
 	}
 
-	@Override
-	public void addHistory(MemberDTO dto) {
-		mapper.addHistory(dto);
-		
-	}
 
 	@Override
 	public void roleModify(MemberDTO dto) {
@@ -79,16 +76,27 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	@Override
-	public List<MemberDTO> getHistoryList(MemberDTO dto) {
-		
-		return mapper.getHistoryList(dto);
-		
-	}
+	
 
 	@Override
 	public MemberVO getRole(MemberDTO dto) {
 		return mapper.getRole(dto);
 	}
+
+	@Override
+	public void addHistory(HistoryDTO hdto) {
+		
+		mapper.addHistory(hdto);
+		
+	}
+
+	@Override
+	public List<HistoryDTO> getHistoryList(SearchCriteria cri) {
+		cri.setTotal(mapper.getHistoryTotal(cri));
+		return mapper.getHistoryList(cri);
+	}
+
+
 	
+
 }
