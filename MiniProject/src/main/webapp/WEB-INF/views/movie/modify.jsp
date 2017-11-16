@@ -21,7 +21,7 @@
 						</div>
 						<div class="form-group">
 							<label for="editor">내용</label>
-							<textarea class="form-control" name="content" id="content" style="width: 100%; height:400px" >${view.content }</textarea>
+							<textarea class="form-control" name="content" id="content" style="width: 100%; height:auto;" >${view.content }</textarea>
 						</div>
 						<input type="hidden" id="tno" name="tno" value="${view.tno }" />
 						<div class="form-group">

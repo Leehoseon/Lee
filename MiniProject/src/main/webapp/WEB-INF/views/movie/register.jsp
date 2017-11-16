@@ -19,7 +19,7 @@
 						</div>
 						<div class="form-group">
 							<label for="content">내용</label>
-							<textarea class="form-control" name="content" id="content" style="width: 100%; height:500px"></textarea>
+							<textarea class="form-control" name="content" id="content" style="width: 100%; height:auto;"></textarea>
 						</div>
 						<div class="form-group">
 			                <label for="file">파일첨부</label>
